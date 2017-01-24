@@ -1,0 +1,16 @@
+  adler32.c
+  compress.c
+  crc32.c
+  deflate.c
+  infback.c
+  inffas8664.c
+  inffast.c
+  inflate.c
+  inftrees.c
+  testzlib.c
+  trees.c
+  uncompr.c
+  zutil.c
+  Generating code
+  Finished generating code
+  testzlib.vcxproj -> C:\Users\INA-SGX-USER\Desktop\TorVS2012\zlib-1.2.8\contrib\vstudio\vc11\x64\TestZlibRelease\testzlib.exe

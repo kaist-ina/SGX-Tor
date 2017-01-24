@@ -1,0 +1,1278 @@
+@downloaded-at 2016-09-03 12:32:54
+@source "10.0.0.3"
+router inaTorRelay1 127.0.0.1 6001 0 0
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkEBAZMKePtMttXuOibgy/JOXBgq0ICX2zhBo9Qa/Q8wNvxVAQAgBABRRl57
+WNhIt2t09BxcUSqzZH5pqRvJ+ZyvTj2howOoBadNq2l80mQrEYyp0AqYlb/6HJ7w
+HkQYAtbJz7uyxEvBprEOqKlJENJqkT42p0QnCip7Fw8Bs2Xije7V+i4R9gw=
+-----END ED25519 CERT-----
+master-key-ed25519 UUZee1jYSLdrdPQcXFEqs2R+aakbyfmcr049oaMDqAU
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 08:05:47
+fingerprint 2638 0760 35A5 CE48 0007 AC3E 2238 2480 0335 8423
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest D2D4B1EECEAF868C649AAFD440BBF6C9F074A459 6gKROEesDf2Ohq4+age3p7GkQlimul4IUia08ryMi1A
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL28OuN3FQPGr4e1GroL4I+1ITKX1qgL80laAiN9o6rpK6vro7HhNTRW
+mcWNKChtCBZQRI5fwtCpxCjc6MQhr59BHVBcm/yGqAXqxe6EOH6zKqwOPd53prfx
+/M+Ju3Ov1DSYJQ5kgc+28k3Uu8nhw2PGFOMrgtTDVMO4H+A8eInrAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAM2F0z27FRiE1pQD5LnCDZJAS17JxUndf/mDR0S3wQSl5C5JYHYBCfju
+DbA90t38Fjl8gkZIRkz/5MQdpm8z5nMpNyhqq34XFwKLDahPzQpb8PDuJjDyaTXg
+B7L7PTAo7qkSiV6HwddACZd7kLN/odZFCK8wCkoU+iHb5zZK7evdAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+SwfFq4Uz9Mz+vBBunxg06OXFNWIdRSKdiOY+dGgk/FfGA2RlrbWboVSWzJf4aEwG
+kJXlqwvS/Ai4mspF7x/ecclDUmD3EzFJQew1kj0FkkTumRRupq63VwG+J8stihWW
+0Bff+2cBsuihMvT3j5oTYAZk/GG5SEtw/ctCA8BzMZQ=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7ZAVFGXntY2Ei3a3T0HFxRKrNkfmmpG8n5nK9OPaGjA6gFACyhJPtquQzt
+3c1CqLSYStgH2qHQobq21EhOsZHXbkw3BvWB6xZ56xMczoXG/3RfO8vaguEyAhpX
+KatqQtT54w4=
+-----END ED25519 CERT-----
+hidden-service-dir
+ntor-onion-key 1+DQiMWE2Y6KDJYVCLpgSzXwkFDjO8CAYyNXzWcXRm8=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 4EYaQD8xXIQ6TI6jwNFOSkPMAKwhrVt/4Tc/ujO82V5m3myktVuBHg8vFdym2KfifbOfaPvI774yMokT7z4dDg
+router-signature
+-----BEGIN SIGNATURE-----
+dPwqL8xV4ny5fcIJyLhjJLlv9ArO4ujUazxCJ1sQFD/p0rwAcPW853ISpfnmF8Y9
+ithoG0vtiPRoPNn3RXM0fKc+qzXxSEiJQQRGy4ZRvNznmsfyyDhKSHrD/6euZosq
+X5U9hwnL8akLw4thc+q+XhgykpzdHNGHbsfnraWyyGc=
+-----END SIGNATURE-----
+@downloaded-at 2016-09-03 12:32:54
+@source "10.0.0.3"
+router inaTorAuth2 10.0.0.3 5002 0 7002
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABj6sAfbNmqjdCdaEMsxVFknty7kZQrJoDIdn6+9OOs8yDo3oAQAgBAALeOGH
+GrrLTYBEpLNXimJLHpv1hMdrLH4j/hots5H0i++rkT2EwsXOZmKSCORz1pjD6ACZ
+vB9MHUvNlDkHb3d7NspQUma4oFj18Ry9XHe5gfWaE1ptNIo+GvwuPxXvSw4=
+-----END ED25519 CERT-----
+master-key-ed25519 C3jhhxq6y02ARKSzV4piSx6b9YTHayx+I/4aLbOR9Is
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 08:05:48
+fingerprint DB1C F491 EBD2 5EEE 70CE B873 535A CE90 1BDE 81D4
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest C9B2EE27BAA5F9D944287F7051D07A6B63A030B3 hgRPVd4CK97z7wnMM+pgIyCHUybU0IhJ5JJtPZgQp84
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAJEKWr3OsN9x1hdYh23utFB/WU+vB8O1DnGjIca5hu5+qfnA1nNuTCe0
+xMozTdvBrVwuBRaHRXt+oKv+253eiLdpztrKV4mLxoSVHMRljekNW+kYb7Kej4m6
+Ir74PMKdXry5ODr93lZ55//EGVnyN448CRczNm8lYqKr604KufO9AgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAMud3yzGC1qNNsDVh3blRUcKGLUBuGl/dTloBfRcqTXg4AUWQgUtNHt9
+iCFJuYaGFjqDOPsKZ2s/eT0DwFeDmSh7EnV0eJ2kwRHpURo2j+lmbe2Tg7ddbAaO
+hEXnBhZPKsVYgnfag+PYf8GHProthQ1BQBmWFS3fMiciCYnUV3+FAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+grcMQLiFhAbcHV9nYR78cs46a9IVhvozesdAbx4uIFmVnxXB5Mv6TTB5KAiJ4Squ
+Xe2NKxGvvKkZDvcDXwZZwgS2u7H9WrgnWKvlPuiM9/zT3KIWGm+9/S/U5OmvwFiQ
+SYnRUt2KPkh3NT2lBQiix1RfQBMpT8ms0NNOp+Y3ECk=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 0
+-----BEGIN ED25519 CERT-----
+AQoABj7ZAQt44YcaustNgESks1eKYksem/WEx2ssfiP+Gi2zkfSLAEMcJyvc/wb6
+Q0MP+E/luU5qJHrTxq6SKyFumCXaOQfW7vBCuocROh5PNd6EJrDFnV27+TCkKt35
+zGwTU0fnsQs=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key XeFmGSIEcpYmX+9KXpPdWOk3KS1D9AwnDJKF17n3DiQ=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 ZCD7e9m643Emk+m35Vku5rCfkHcksHAju/BV9X4O0Y/Q8FKIyznUsmH0QM9yOODXKdLIwkr82a5oglIA/ONmAw
+router-signature
+-----BEGIN SIGNATURE-----
+TVMt3AqaPKjaK3RszQzP6i5A+7hQp3vQyCQrJizEZD9bKqhx3jFSWbzp75gWp4qJ
+fJ6AaY6PEnBf66RFoW/PEoJbz+o+EjFzzVxx40fU8MkoBQl1/Fao8eRyA3GzArbN
+sdnfzV7XcvGPN6KKDFA3K5I0M2tqLJbQwdu0ImX6T8A=
+-----END SIGNATURE-----
+@downloaded-at 2016-09-03 12:32:54
+@source "10.0.0.3"
+router inaTorAuth3 10.0.0.4 5003 0 7003
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABj6sAR8FfBH98+/CZPpwKjeYtdSIHzmmhQhYsiD0uVaDWRrnAQAgBAB1wK+J
+GJxZdhROLn3Ccv97tWFramRkE0Jjmib8CPwPC8nrrhRJeHnjP6frORT32CwXfqos
+IKPLtGGu4ELZ3XSF/KSyTg+2ZLizdkYz1Esv/TsyUPZSS2zdiy4HIjVY8g8=
+-----END ED25519 CERT-----
+master-key-ed25519 dcCviRicWXYUTi59wnL/e7Vha2pkZBNCY5om/Aj8Dws
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 08:35:56
+fingerprint 9537 A533 8B41 7E6E DE36 E461 73B2 33D9 4995 EC22
+uptime 11636
+bandwidth 1073741824 1073741824 8081794
+extra-info-digest 1921630DE8ECC8F08D71222AE4447592402DCB4A Z0fM2Tfv4d+ZyEJuT1g9IvbozcWJ1JMSOOrIzeUKFh8
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAOVfun5auuk+imAZgdH9nA5osINrlogwxafxmWOK4EMUcSdw4CiOifB1
+vHVR2vUEMlOAtfNws5wk63Vp9O6R9r/eZF2KnTiGddbdn6HdwBWXAUPqJoNSZzPx
+jzvDiqEZS4pqFXPGjDH+sq2/Fn7UIlWLL3ZXnu1sE1D/c0o1F+B/AgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL60ivD+AXSK1O4WB/u40XN6N2B0duDO/Jvl+9Sie+d5ujs94irJoQCu
+n7vqom8Tv4/1AkCpxfi39xHvYXsGc+adkyIYXx5Zn1ASToi/J3j5cihrh6tGv7nz
+pVHwRjNJrFLh5l5rFzKNzU2iXwrvTIOw2Os4zEyXvJiX3GfUZMBzAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+TvCt+postfpEPhGKLGXqkXBoApfP3YRKxT6R3OtBIQdoltoWDcXScovWnkxOOwLf
+1lKi4CUbpyEB3ud2ACL6JvNI2a+bFDE7PGIrgy6bsHAgXajKqSSF6udluoI9x7MT
+gQQ0zLAG+18sd+6PGEbdQCS8ONX58VnTpAYMZSxjU+8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7ZAXXAr4kYnFl2FE4ufcJy/3u1YWtqZGQTQmOaJvwI/A8LAGEXRPM4ohZm
+qDMe01QAxKXRrKE3rmZQNYCnTv+5v9K6nhqwcNRYb4CeCNkMCfklfuv/phwcjEec
+nkJT2K/49w0=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key Uy2Dd9BXaho/fWGvfykhd6AzUpkbcoQBcszy2pf1yRA=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 MomZOZRsXRGfWpdWGc7FMqIcqkZK+Rei/EM76MjQ18L7SCjdT2bQJjjOjqD25hrBSJRyrjh2W2s/kWquToW+CQ
+router-signature
+-----BEGIN SIGNATURE-----
+K9Bd9kv0sKnGHtoG6Miz1Fk0M78GWkNMW7pZcS47R9/4c35HDjIU5igT/7QTMNRZ
+f7wjmMtxeFdBG9swwaINXj1AGfVoQ4qA87vzM7RB6SnWo4k4j+xM7ZtHNlWrxF6p
+esc0nAkpQEnndJZ5NCOVurW0bt5PvixXR3ifHb7SMFM=
+-----END SIGNATURE-----
+@downloaded-at 2016-09-03 12:32:54
+@source "10.0.0.3"
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:14:22
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 171
+bandwidth 1073741824 1073741824 0
+extra-info-digest 280728EBD657EA34F19B9C216EA268724F5E0EED TjH5rk8EUsSXpOaongjF/ZJ7XymMoCjmNPspeajSrcw
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7dASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAADXsj++B1+QX
+g3Vdg8AXN2kNGcxVtyqNEDtre9WrsPsXoX5pi3u5Nuc7NvzKbiy08nwOANQ54fPp
+yopk5uAGJAk=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 nydak+8bXB61cTgXtdsbmFgZYFh02rxXrOb04PfhW6Ko9C8yPfNKhmeL304SlJKCIml7o8CRw6gcpFCgqQB6AQ
+router-signature
+-----BEGIN SIGNATURE-----
+ZZCeROhi0ZzESRm8xjysDaGFXIFmqYY6B2I3/lbkBM6/TppqjDuT2DFrinvInLMq
+/QraSJnWc0Xv04GWxkhsLMcvrR5rWhgRwXFgphki7kNvtbzlnI1+UunrEPW4Cfn8
+x8BLLUzEnp51KDyOcspYb1U6ZXtDsrkzwkzgW+EwKWo=
+-----END SIGNATURE-----
+@downloaded-at 2016-09-03 12:34:28
+@source "10.0.0.3"
+router inaTorAuth2 10.0.0.3 5002 0 7002
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABj6sAfbNmqjdCdaEMsxVFknty7kZQrJoDIdn6+9OOs8yDo3oAQAgBAALeOGH
+GrrLTYBEpLNXimJLHpv1hMdrLH4j/hots5H0i++rkT2EwsXOZmKSCORz1pjD6ACZ
+vB9MHUvNlDkHb3d7NspQUma4oFj18Ry9XHe5gfWaE1ptNIo+GvwuPxXvSw4=
+-----END ED25519 CERT-----
+master-key-ed25519 C3jhhxq6y02ARKSzV4piSx6b9YTHayx+I/4aLbOR9Is
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:20:45
+fingerprint DB1C F491 EBD2 5EEE 70CE B873 535A CE90 1BDE 81D4
+uptime 11
+bandwidth 1073741824 1073741824 0
+extra-info-digest DF8D5BD0543DBDC25544AA5CC98F9CF64284E3F8 fhpmi5S347n40KGdQhCGH4camXneePd6qGsAUq05WI0
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAJEKWr3OsN9x1hdYh23utFB/WU+vB8O1DnGjIca5hu5+qfnA1nNuTCe0
+xMozTdvBrVwuBRaHRXt+oKv+253eiLdpztrKV4mLxoSVHMRljekNW+kYb7Kej4m6
+Ir74PMKdXry5ODr93lZ55//EGVnyN448CRczNm8lYqKr604KufO9AgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAMud3yzGC1qNNsDVh3blRUcKGLUBuGl/dTloBfRcqTXg4AUWQgUtNHt9
+iCFJuYaGFjqDOPsKZ2s/eT0DwFeDmSh7EnV0eJ2kwRHpURo2j+lmbe2Tg7ddbAaO
+hEXnBhZPKsVYgnfag+PYf8GHProthQ1BQBmWFS3fMiciCYnUV3+FAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+grcMQLiFhAbcHV9nYR78cs46a9IVhvozesdAbx4uIFmVnxXB5Mv6TTB5KAiJ4Squ
+Xe2NKxGvvKkZDvcDXwZZwgS2u7H9WrgnWKvlPuiM9/zT3KIWGm+9/S/U5OmvwFiQ
+SYnRUt2KPkh3NT2lBQiix1RfQBMpT8ms0NNOp+Y3ECk=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 0
+-----BEGIN ED25519 CERT-----
+AQoABj7dAQt44YcaustNgESks1eKYksem/WEx2ssfiP+Gi2zkfSLAMt3pzSU9RZL
+paKADETFIxriWd2+pn7a+XeLqsPo1P+Yu9L+fasvbxAadGbIfyGd0jw0TLdu4SYw
+/JYOCf37agI=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key XeFmGSIEcpYmX+9KXpPdWOk3KS1D9AwnDJKF17n3DiQ=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 bvJKwE5GnReC2hyqbPCLCfs+x8ILVfid6q0Eh5eV9fgH4t1xVA2Ph6TzKnblFbr5F5sjtwQhkPkee9dQWVrCDA
+router-signature
+-----BEGIN SIGNATURE-----
+XLrz4nAjALXbL4ku/F2CVMdxaEdsAe+2kW2HMCuVxLVHAKKZqwYGVBd9ijS0cswm
+nhk1Ypm3+b/1ACddHU6fCBGn3lE6Eu5V0cysKTkGTpauS/U3cHstDOP9pa3QxyxK
+n0A78ogJCgUkBb4U6vPZedpZYxO6WvHJtPCfFolqqDw=
+-----END SIGNATURE-----
+@downloaded-at 2016-09-03 12:34:28
+@source "10.0.0.3"
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:24:07
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest 3BEFC5514C1ADD40EE6CE1DCF21DD291F7CFA196 dTdV2dx6A8Ghot1+C/Th6PwMnLWajz8HBp3GFcj8cIE
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7dASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAADXsj++B1+QX
+g3Vdg8AXN2kNGcxVtyqNEDtre9WrsPsXoX5pi3u5Nuc7NvzKbiy08nwOANQ54fPp
+yopk5uAGJAk=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 EIvAzzq2q0fSxadj5RehPbN672QIcIpHgQLFuw2qAPs+adGLqiLFXWNjHbwjZHeaU7pvlWL7EyWz2mej/jzyDw
+router-signature
+-----BEGIN SIGNATURE-----
+SUmdP839Kg6hygzWdwqs+D1vfplZvl67B3CmcGFxL8E2ZwY1GPUtCV3BU6l7506C
+0Jt32tyRKMeEwpRSHvvAhiZZeQfsbtddSvq6Sh0hJoO8K6utUg9bgfo22DH5O8Cs
+So6Dl2OSN5SKtxhUGbDNvGQXNfB6bpfaOh3YcyyuR2Q=
+-----END SIGNATURE-----
+@downloaded-at 2016-09-03 12:34:28
+@source "10.0.0.3"
+router inaTorAuth3 10.0.0.4 5003 0 7003
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABj6sAR8FfBH98+/CZPpwKjeYtdSIHzmmhQhYsiD0uVaDWRrnAQAgBAB1wK+J
+GJxZdhROLn3Ccv97tWFramRkE0Jjmib8CPwPC8nrrhRJeHnjP6frORT32CwXfqos
+IKPLtGGu4ELZ3XSF/KSyTg+2ZLizdkYz1Esv/TsyUPZSS2zdiy4HIjVY8g8=
+-----END ED25519 CERT-----
+master-key-ed25519 dcCviRicWXYUTi59wnL/e7Vha2pkZBNCY5om/Aj8Dws
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:25:37
+fingerprint 9537 A533 8B41 7E6E DE36 E461 73B2 33D9 4995 EC22
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest 509A65E1CE27C86052FD8930EFA82A3DE759227D uZBKWYxw1YGlgJYkoPnoh8UfnLC5n22gI7LKBtt4tqE
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAOVfun5auuk+imAZgdH9nA5osINrlogwxafxmWOK4EMUcSdw4CiOifB1
+vHVR2vUEMlOAtfNws5wk63Vp9O6R9r/eZF2KnTiGddbdn6HdwBWXAUPqJoNSZzPx
+jzvDiqEZS4pqFXPGjDH+sq2/Fn7UIlWLL3ZXnu1sE1D/c0o1F+B/AgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL60ivD+AXSK1O4WB/u40XN6N2B0duDO/Jvl+9Sie+d5ujs94irJoQCu
+n7vqom8Tv4/1AkCpxfi39xHvYXsGc+adkyIYXx5Zn1ASToi/J3j5cihrh6tGv7nz
+pVHwRjNJrFLh5l5rFzKNzU2iXwrvTIOw2Os4zEyXvJiX3GfUZMBzAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+TvCt+postfpEPhGKLGXqkXBoApfP3YRKxT6R3OtBIQdoltoWDcXScovWnkxOOwLf
+1lKi4CUbpyEB3ud2ACL6JvNI2a+bFDE7PGIrgy6bsHAgXajKqSSF6udluoI9x7MT
+gQQ0zLAG+18sd+6PGEbdQCS8ONX58VnTpAYMZSxjU+8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7dAXXAr4kYnFl2FE4ufcJy/3u1YWtqZGQTQmOaJvwI/A8LADBxEjQDwBSh
+T2jE6UtFUsdN6sU6Hb1X6wvjKEF5gl0yUT64H/9M7cPUSO17tID+1p2TYJN6Pzdf
+0idXanuhOgg=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key Uy2Dd9BXaho/fWGvfykhd6AzUpkbcoQBcszy2pf1yRA=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 iQUqPVxzAsWWkbiRmNzcIT+zR/g7tAHoxhwxnIhgWywevhnTxkQpXaUaGI7wIpOuiHrm7LJWbO6KppBNkXR9Ag
+router-signature
+-----BEGIN SIGNATURE-----
+DRXuUajHXoCEUm74dHWGfmK/nFrIgTTjLMpEO28spAzIXkRbSw2xxi3wfAtSe7SB
+PdxVJ0SryAZ33Uh43wkJ9BW5yI7V2GpNh4rf1mw9DYA2mcU+xYzrFaXggzE1rzP4
+Y+3hWWhZ8ukKa568aGJabbfZOgK3TCKOsfozokqqsNs=
+-----END SIGNATURE-----
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:32:31
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest 29207E82F5BCA51863BFBF2BA73C9967A1CE29D3 X9r0xZZoIgxBI5p8qsqUA4owfmsb2mOCr7H6bEuzZoo
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7dASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAADXsj++B1+QX
+g3Vdg8AXN2kNGcxVtyqNEDtre9WrsPsXoX5pi3u5Nuc7NvzKbiy08nwOANQ54fPp
+yopk5uAGJAk=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 nKHaXbLWquKgM9CRlc1ChpHqCRCDlpWah9BTkm15jEUIDKdh5bYhSgIQDK0DUJvX1BKukxYDgLkQuNDWEK9uCg
+router-signature
+-----BEGIN SIGNATURE-----
+dIRIy6Qm+e/Jk8swwpXJj/NvbhUHGyVKzueUaA0kTjpN/lnV/yM7cgJHoq7luyOo
+WybQ+c72KGCRHv/ViBIGN4NxovAd+4BighMy1XQv2BpUz086KpMoqe28qs3Ltzq6
+POXYZxCr7EeewXSqJj7WtukA3IY4+52KR82e0gXM6fU=
+-----END SIGNATURE-----
+@uploaded-at 2016-09-03 12:32:33
+@source "10.0.0.1"
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:32:33
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest 9CF37E0B8D19332BD16B5B9E86F07922EA2E77B4 /+v2Fa4wrej5kDjKJWMzz+uiBKWO5yR8UUoYeCriF2s
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7dASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAADXsj++B1+QX
+g3Vdg8AXN2kNGcxVtyqNEDtre9WrsPsXoX5pi3u5Nuc7NvzKbiy08nwOANQ54fPp
+yopk5uAGJAk=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 8WuAOcxUFE/r0tXuH6qYhcyts8WO8mBVAerxwKjvb3acF/7UnvfSEao3kQU7401a/BsB4GNCW0wyiryDbJzfBg
+router-signature
+-----BEGIN SIGNATURE-----
+l7eT6FkjFLisgbD7AhiaS9k1LHR8tYZmBitecFMzPQGASQAYondZE1giDHLen8vP
+PgZ8UzQ1hHalXgdFZknt0yiX5jHIDngDueOg6fBL/+ob9hMoIf1LJyf4V2hyrajr
+j6akPURA8RiTgWW4tO6dNoRe4pYCEK0SJikyq90y4hA=
+-----END SIGNATURE-----
+@uploaded-at 2016-09-03 12:35:17
+@source "10.0.0.1"
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:35:16
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 163
+bandwidth 1073741824 1073741824 0
+extra-info-digest E90BF82FC5307A0CF803076764866D01189D18EA o4HPfZ6xjRb0aQz/CyaioVIhbFCbtkjA5mdN4Uey/dk
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7dASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAADXsj++B1+QX
+g3Vdg8AXN2kNGcxVtyqNEDtre9WrsPsXoX5pi3u5Nuc7NvzKbiy08nwOANQ54fPp
+yopk5uAGJAk=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 iAUJqBbR+Atij8dePNflJGe137NaHza33Hb516Wzh0HdKnOMNGmGIxLZRNhK/lb5YgI+1yrZGSK21PhOfX2PCQ
+router-signature
+-----BEGIN SIGNATURE-----
+mG26PBHC8e2iyik+jc/4q6wCLCCM/4UyUzX5OVJX5GATVDTfevtq8jFqrV3+8jkZ
+24s14ZYlZoKmGM4UxhxouLUhOYei9KYlyzRPHFsjfZkPM68WY7nmJfdCDhA38Szt
+yzE1mbku3CPvLiEvDhwVNIoOjZk/FW2kfEu9eQq/ax0=
+-----END SIGNATURE-----
+@downloaded-at 2016-09-03 12:39:03
+@source "10.0.0.4"
+router inaTorAuth3 10.0.0.4 5003 0 7003
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABj6sAR8FfBH98+/CZPpwKjeYtdSIHzmmhQhYsiD0uVaDWRrnAQAgBAB1wK+J
+GJxZdhROLn3Ccv97tWFramRkE0Jjmib8CPwPC8nrrhRJeHnjP6frORT32CwXfqos
+IKPLtGGu4ELZ3XSF/KSyTg+2ZLizdkYz1Esv/TsyUPZSS2zdiy4HIjVY8g8=
+-----END ED25519 CERT-----
+master-key-ed25519 dcCviRicWXYUTi59wnL/e7Vha2pkZBNCY5om/Aj8Dws
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:35:44
+fingerprint 9537 A533 8B41 7E6E DE36 E461 73B2 33D9 4995 EC22
+uptime 9
+bandwidth 1073741824 1073741824 0
+extra-info-digest 4F5A80B04EF7FCDE35608994DD86A59C8B27E27B loQ6C3WMJH5SqvFb8Y2BOLPpX+KutNN4GWDjeUrdfAg
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAOVfun5auuk+imAZgdH9nA5osINrlogwxafxmWOK4EMUcSdw4CiOifB1
+vHVR2vUEMlOAtfNws5wk63Vp9O6R9r/eZF2KnTiGddbdn6HdwBWXAUPqJoNSZzPx
+jzvDiqEZS4pqFXPGjDH+sq2/Fn7UIlWLL3ZXnu1sE1D/c0o1F+B/AgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL60ivD+AXSK1O4WB/u40XN6N2B0duDO/Jvl+9Sie+d5ujs94irJoQCu
+n7vqom8Tv4/1AkCpxfi39xHvYXsGc+adkyIYXx5Zn1ASToi/J3j5cihrh6tGv7nz
+pVHwRjNJrFLh5l5rFzKNzU2iXwrvTIOw2Os4zEyXvJiX3GfUZMBzAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+TvCt+postfpEPhGKLGXqkXBoApfP3YRKxT6R3OtBIQdoltoWDcXScovWnkxOOwLf
+1lKi4CUbpyEB3ud2ACL6JvNI2a+bFDE7PGIrgy6bsHAgXajKqSSF6udluoI9x7MT
+gQQ0zLAG+18sd+6PGEbdQCS8ONX58VnTpAYMZSxjU+8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7dAXXAr4kYnFl2FE4ufcJy/3u1YWtqZGQTQmOaJvwI/A8LADBxEjQDwBSh
+T2jE6UtFUsdN6sU6Hb1X6wvjKEF5gl0yUT64H/9M7cPUSO17tID+1p2TYJN6Pzdf
+0idXanuhOgg=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key Uy2Dd9BXaho/fWGvfykhd6AzUpkbcoQBcszy2pf1yRA=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 KhftxAfYkJsuRmrYMCgaTL+iilY3LqVNY2fHCK1/yJf2lYnMsMa1e7Fe7+G+A6x9TyjfFeD0Dsp0bpepckRjCQ
+router-signature
+-----BEGIN SIGNATURE-----
+muPDAyNBlePENb2sUTHdPoW1OXTUbXbAZEP1FAXt1+no4DPWR3hBghwB/MXCcFR4
+6RKYY4cwhLx+fP0gkAm5m/IlzcVnzChUYbbsGq6d34zCWbSNWR+seFONAJixk3c2
+83n6UI9VppknjUX57QBeqUKT0f8vqjrzT2l1wrWrwE8=
+-----END SIGNATURE-----
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:40:27
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest 0FFD898C75E1CC10D4A8295EF1373C341613B5FE +sPadyeEEFD2VpML0s/B96wmSGriZBIatmnZdXcoJxc
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7dASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAADXsj++B1+QX
+g3Vdg8AXN2kNGcxVtyqNEDtre9WrsPsXoX5pi3u5Nuc7NvzKbiy08nwOANQ54fPp
+yopk5uAGJAk=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 BUe6GM6C+euqgMVRU2MJyCpJ5M2NcxV6TuVwH9kqUY8ChRWFKICg9t1WEcmY4RYWgeYc3Ts+SRT+vY3JLHE0AA
+router-signature
+-----BEGIN SIGNATURE-----
+dbvhM02W7eYjfG7nVVI/x0UuTRDCUKK30xqzM0Zq3dlnaB3nft/0QjTtQzBVpsxw
+UMNAF507mzUDHEZ5/CVExlqIodIfqOLgZ+aB7fLTx4UaZQpdtpDCW228vNAK/G5b
+VjzQW8TtWoIlk0n+l4QHpEuRAa1kUtl8lspW5iMf0EM=
+-----END SIGNATURE-----
+@uploaded-at 2016-09-03 12:40:29
+@source "10.0.0.1"
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:40:28
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest 75D1BE0789B97DB6F17DE241EF2D10EBFA0B0099 eEuilKO61e2xFWC2pbI+G/LFGyQXo6go88skjQzNlzQ
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7dASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAADXsj++B1+QX
+g3Vdg8AXN2kNGcxVtyqNEDtre9WrsPsXoX5pi3u5Nuc7NvzKbiy08nwOANQ54fPp
+yopk5uAGJAk=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 yMODWtRCr0yNJr8cXgPfjyoUjOOQVWTiwbItim3Ol2kPLQrK/NaSYte7SnnjT3Zox13BylUBCDM6CarvHWstBw
+router-signature
+-----BEGIN SIGNATURE-----
+rmicKGs/o6FuFIYrMHA44QzSRiPxLCgTOwYXc+XLItX/+NPCs2729bUTGWxKbJeP
+k9VeNjn8IsOBgW3nf6P6vLouc85xu8QHZnA4C51EbgrT2o6mMrLvRuqInSNk/d2C
+d7DcxDBmUhEAZ8AOH86Y4OnDTK4lrZFZPhvXYUwX2Zs=
+-----END SIGNATURE-----
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:41:09
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest ED2FB81A9887E2B1F516A5DB3C7D140806D17529 foI4TVQ3i1CC0zlvcbARi5UqJyCVScohLnpVPi5GTHk
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7dASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAADXsj++B1+QX
+g3Vdg8AXN2kNGcxVtyqNEDtre9WrsPsXoX5pi3u5Nuc7NvzKbiy08nwOANQ54fPp
+yopk5uAGJAk=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 /ZKWRkA50agyf6CKknCVIyns5vqgqX2bCw/U+ePNzQGQcBGVxvowVi+g9O+nr0Fv39+ZNf2SLZXrJSIBKHKFBw
+router-signature
+-----BEGIN SIGNATURE-----
+iX4cgtWcnfA2avzI6EBH2SISnyx7eqvld/mpXQx/kHv+8+qtytCMKstFmkbbRNV4
+Rs9zSkTTI8q/XrLcSBYrxQqYh9wu70vQksHGyBFt69lut3Ia3AiNp0wj65ZOS3TV
+yU2+FnUO20qoY9p0r7Sjis+tjYob74Ir6Q9WEi75RsI=
+-----END SIGNATURE-----
+@uploaded-at 2016-09-03 12:41:11
+@source "10.0.0.1"
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:41:11
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest 3996E3F68981BE76ECDE7C6C6980D31C86EF42AA 6pluWyMXSkUB9shR3K78Vyzf5wcVblLkVmnyPtPha9c
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7dASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAADXsj++B1+QX
+g3Vdg8AXN2kNGcxVtyqNEDtre9WrsPsXoX5pi3u5Nuc7NvzKbiy08nwOANQ54fPp
+yopk5uAGJAk=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 BU8Bz9iMQuFt8QE6QTnjV3dbzB1415NmAG4nOnwQExjIHaoHeaBaKvguRLLmt0cQUUaWkvk9Xqcb4wxFeNuRBg
+router-signature
+-----BEGIN SIGNATURE-----
+MLs+0n0ofcgvdBVs+OQooH4qRP9/t6w80KBS3wpsi2X3FauVhYZb9CujvKEnsjL2
+z/3XY9z27chlJEx4/qW9ugWO+6HFj2GOy2MF+/jibYXQhqhfNmpEANiyK6Zg6jod
+PEokFPWWevLD/oItT4hn3jn7c3zdxVI8LbRYB/grSFo=
+-----END SIGNATURE-----
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:41:41
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest C27C63045F5BC2C2DD4BB6B3CA2453E0ED757358 XjpkJeT0UTUQ/Fy4FoiMcI3Gi7Wqe9ddsaPmoY5gUg0
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7dASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAADXsj++B1+QX
+g3Vdg8AXN2kNGcxVtyqNEDtre9WrsPsXoX5pi3u5Nuc7NvzKbiy08nwOANQ54fPp
+yopk5uAGJAk=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 EitvhqErWTUISEK4qhnJBBJh1VZMwE3JEtREWjiJ9/M7Xkz6Aq1mqbjQZv4hnLn2iRGTaT8QiGOxiwL60SCeCQ
+router-signature
+-----BEGIN SIGNATURE-----
+Nj1VagvuiR5XWwOqzVxvfrPtzOwiRimSQDJfliWmM9THSH8bdCm7T0ZSds7u0lnj
+pgPZn7MUA6N1GpbzSHV1p0FvFrGyFNiBPP5OHLujjEN8QoMT92pkNARcBwk0UkBO
+506GwwRzcm4cHVdPX8Aq8ZoePSW7ccgPUcz1v7AedgM=
+-----END SIGNATURE-----
+@uploaded-at 2016-09-03 12:41:42
+@source "10.0.0.1"
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:41:42
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest 91971D03740330F9DFD9ED7F67E85F2AA79769DA B1zxGe+drwieMLWb+hdZgdT106flFbhXZXXYZ70nPHM
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7dASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAADXsj++B1+QX
+g3Vdg8AXN2kNGcxVtyqNEDtre9WrsPsXoX5pi3u5Nuc7NvzKbiy08nwOANQ54fPp
+yopk5uAGJAk=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 F2D5eXEpnso6JdzFrWPcjYOiXDeoOx8ZzNH7xlzJbUJM1abwcF88NXOlDnNrI5q4+TqNmEsqGBR1qtjiAJNABQ
+router-signature
+-----BEGIN SIGNATURE-----
+awroVYrI7fQTWYNCTQZZqvmpx8YGOJYiW8feY2ZUL/OAkr1s6bDD37RzPsP5anJM
+I43oYzSmm+aWxvtkJ6kcXRqMyqFoQUz3OisJElBitH3+Ww6J3NAIODoqk4szCiWw
+dHXTcY9yX+Y0BNdzLY+LN78O3dgZq8tK2NpWuVgRIcM=
+-----END SIGNATURE-----
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:44:53
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest 32DF9ECA943D79EE53BF5F46B0D3D5B4C2BE2874 crNQxJt+nA/Fyfg+BAkG1Wzt5ZNZFGTUzEYUVZlDSUk
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7dASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAADXsj++B1+QX
+g3Vdg8AXN2kNGcxVtyqNEDtre9WrsPsXoX5pi3u5Nuc7NvzKbiy08nwOANQ54fPp
+yopk5uAGJAk=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 bkOzKDIp4Dmcq7Hg9UVmTYUP5SaVmBZR1Y5TLi0//W5PNaprOdoxw7KyGlLiBd2mhhZ2GbEY0jYdm5UhbAL3Dw
+router-signature
+-----BEGIN SIGNATURE-----
+l+8e7VlceFsf6GRKJNfNYxtLTmQ0x+gcPmS6xVrP0tGdQxb6+YUaSe7rraI+oQ3T
+ZM4TiD5Py4GGFaHr8aT7bZefwDSrOJ3ASYjARz7AEevTKyHofxdffz7axzeAzqVc
+lLotPyQORLll4DTwkoLclpTUGGs87dqaWPyeygi4sg4=
+-----END SIGNATURE-----
+@uploaded-at 2016-09-03 12:45:00
+@source "10.0.0.1"
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 12:45:00
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 6
+bandwidth 1073741824 1073741824 0
+extra-info-digest 7C88083DA60E6CFD135ADAA56CBCFF2FC59F21FD bJsYD/vCpbYlOSbE00+uHzs+n5/eriodEkJ4mBIzQ1E
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7dASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAADXsj++B1+QX
+g3Vdg8AXN2kNGcxVtyqNEDtre9WrsPsXoX5pi3u5Nuc7NvzKbiy08nwOANQ54fPp
+yopk5uAGJAk=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 GXi7KKJA3DBU2n7vwSlQLo6WGD+PGau7UywuRBBoRerjzdwm1vRoOzEvh7H7ouvfLIbmPLbrWA5hhhRZdtfiAA
+router-signature
+-----BEGIN SIGNATURE-----
+VQp/I1RiTk3s1M94myqqlXdLuO7ydiD8s+1Ws9XHOzTsf3a/DC5Cpmu24nyraDzM
+Hzzue/Qea/sO726LWWTOtXtdyrUdDj/bA4pbeVLx+Bmwz+FE8RYHeADahjZdH0Ie
+BS7sjCoApPoTn3sTEkTZ2GnnYT9dbH2ymmUIZTHp30s=
+-----END SIGNATURE-----
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 13:13:29
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest 148D8FA4F0ACFB69D12E24393FC819EB799520FC N3c0MF6NmWOoTw8YNzRdxtgv52Kz5R5X4ARVwK9f4dY
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7eASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAAAKDcyH3o2E8
+dKZ+61sQxSBhKotycH8/tMc6zndE3vLj3GPkIFP0XGV/iVJ3J1b0RxvpXDgp/k+v
+vbtpkRILEAA=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 2KgMHb5Mmx8p8+lWidSif+yp+Td0ttd4vdoy4ixEIY5+6izphVIOm7SZZoGK5+swF6gV33qfSxDxV9eqIST6Bw
+router-signature
+-----BEGIN SIGNATURE-----
+WCFno97ZPqU5tAe/eN8rXFL6dTwGL4lYsfyxER12seHs2RVJIckp+VDMWDY4cdtR
+0yRMx5/y9c/lxm+6qaz0NccR0wwVaVaUgPxMO9eWutPjJFXa7cuw4maFn8YgMDol
+FOCEtWpxSpo5nbNr+vao0dBkuVMifbua11MCy6lKQTo=
+-----END SIGNATURE-----
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 13:30:44
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest 423563366F5B47186DD8F94FCE70EC61DF8BB9DC q58YVkDxKpqiPe7bXUhKUIgMkV7qjDpKDuLyltgzsX8
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7eASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAAAKDcyH3o2E8
+dKZ+61sQxSBhKotycH8/tMc6zndE3vLj3GPkIFP0XGV/iVJ3J1b0RxvpXDgp/k+v
+vbtpkRILEAA=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 UUQzLpVuAnVgSs2gn7zAdKzilLY/mHpRLGipwHvBKKWeHNiVwRpmmnmc6QVl+RriiqG59OqlGX4S2DwHPHWwDA
+router-signature
+-----BEGIN SIGNATURE-----
+ZQ4rvWNeGXdq+t8zXJhsJwhSLcvIibJHLy6KwwcA5hT6T2vjVJSy5N+LkS+f7DLu
+jMbohPuGkpenbXyY9Z2aPCgg/3Md0GnmHwzZ1Eltom9hFgNVZ7B3p/WxIgmMdguC
+3o2zAw+OhZYr/fjtr2knv9YlDz/p741aA+kdL3Ws0nQ=
+-----END SIGNATURE-----
+@uploaded-at 2016-09-03 13:30:46
+@source "10.0.0.1"
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 13:30:45
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest F0117977EDDFFF817897727934633D7D05663FB6 5RWG8XEwedp4gDNuPPEkiK2q7piOuqQwxGN8MgPQ4ck
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7eASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAAAKDcyH3o2E8
+dKZ+61sQxSBhKotycH8/tMc6zndE3vLj3GPkIFP0XGV/iVJ3J1b0RxvpXDgp/k+v
+vbtpkRILEAA=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 qrLvITb4E4tyBgCmCU15DKTeOkOWNrAcAQ3EdHZDkJjdYH2HL/96pU8Tcd3EWrt2THEMAb+Yq0bL+DO/Jkp0CA
+router-signature
+-----BEGIN SIGNATURE-----
+TlFyAPszaB42j2dK9fRBBBPYrQrJqMpo5Smkc7cbNypVPpZKbfUjOIdpg8k2BwWS
+F7aSfTu1OrElACuDJJmafqSfBjtRHFxqx1O70eDmLg5oPZIctWJ3GmPKeM5MFcXe
+5yLsJc5VRNsM8SoUpCIaOMdcR4VOSwjrIRvCR9s10BQ=
+-----END SIGNATURE-----
+@uploaded-at 2016-09-03 13:34:22
+@source "10.0.0.1"
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 13:34:22
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 216
+bandwidth 1073741824 1073741824 0
+extra-info-digest 49990777BD6102175C6CFAA99062CE30B7EE40A3 LTsWuRNyU8dC6YEyxlhqAwMgGzUQi/zeOyvddphsQRQ
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7eASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAAAKDcyH3o2E8
+dKZ+61sQxSBhKotycH8/tMc6zndE3vLj3GPkIFP0XGV/iVJ3J1b0RxvpXDgp/k+v
+vbtpkRILEAA=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 bgXcsNnXXLKlEAvDhQ8VTW5f4zsrgyC2CUUMuf964J/NxwxqvEsxJKkNeKg7+yZ0xc2j2tQEUCOXFFEoosx3CA
+router-signature
+-----BEGIN SIGNATURE-----
+WvysaCj2Tk/WdvrA113rxnKJj2Yru8l0MEXEc7pyJb9j9CtktHVakCRgB75jW/QN
+7eJb70knulToDLgGjZSvb3z4Akmsn0CN8PfH+73sv0wRnNe1RzzbmhcuxJwFXD55
+ls1JxctnU/Jow2ZkbNTavYO/Is35nHTnCYE5gbcERao=
+-----END SIGNATURE-----
+router inaTorAuth1 10.0.0.1 5001 0 7001
+identity-ed25519
+-----BEGIN ED25519 CERT-----
+AQQABkC9Ac9m5pToDBi+vneh/cqg3t+dgeKV4YRTr2AplmvSKQGPAQAgBAAlDVG6
+zLYTD0Hll2IVuftPOtRiqy1dsFbAoJOWjjhWACH8muqsqo36weS491pEyp4bQH0a
+y641S+pEzEVKh2rFlFYQcd9gtw52Q25SuoGidG+N6tMYsmN6aRjciYlLEgI=
+-----END ED25519 CERT-----
+master-key-ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+platform Tor 0.2.7.6 on Windows 8
+protocols Link 1 2 Circuit 1
+published 2016-09-03 14:17:17
+fingerprint 594A 8EAB 2A2C D35F B48F 2D65 7E66 6AA9 C840 9F36
+uptime 0
+bandwidth 1073741824 1073741824 0
+extra-info-digest D95CEDD8F6151383C130DDDB6462010D5ACDA80A uI8f58cPiX+yWonMOyqZkcM4yLLQFxEH//n6q1Lo0f4
+caches-extra-info
+onion-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAK4mNcr0fjmWCf8UhyuvCD9N17irPa5LwZ5SLtQRakbMpBlzVPz81Pw3
++4t8INZv8+OQAq5CTL0P6NYscYGL3QO9Nl191PnXankTDNs05ZLJbd+ZW2wr3K8h
+LxZnqdN6T1Aa4m4zPkAK6By8GgVv2lXREOWHxEeE+O+n8k75im+JAgMBAAE=
+-----END RSA PUBLIC KEY-----
+signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIGJAoGBAL85taorNX06gq8hwrCV3IEo3KyKwdxUO6Vuf8w28CG2W1HTQFydlyt3
+Inn03gKHV8n34KBfKhYwJYVpYuNRdRkQZ5EKt29cs7wBKtJfUZ7gg2scXs2/rWkT
+VLlvUgYr5na4iSpiQkR74KFidstcolmnYG4xx0OIj40Th+3kU7OFAgMBAAE=
+-----END RSA PUBLIC KEY-----
+onion-key-crosscert
+-----BEGIN CROSSCERT-----
+LcckL99gGXC9Ria2/F1xBs+4yRmdMx+5eNYi7yZplIhQfs3TIF8fm8ED4cbRGEr1
+udpVMIXzQoASyc3RwxWXYUr4aPh/HqDVg1JFG5wvEOsabuMf5gn7YIAteK0GGFk1
+b8907kd2dnPj9Ufczf1qGL/vhRcU6dsMevhRIRyFiA8=
+-----END CROSSCERT-----
+ntor-onion-key-crosscert 1
+-----BEGIN ED25519 CERT-----
+AQoABj7fASUNUbrMthMPQeWXYhW5+0861GKrLV2wVsCgk5aOOFYAAFtbDy5GUen8
+DWoGmqWNrorJEwTwZGqoRVmufuDJoUMxSfIvT5sJZcY0a1KBQI/DolToksGSo3G2
+U7dFOK5oIAc=
+-----END ED25519 CERT-----
+hidden-service-dir
+contact auth0@test.test
+ntor-onion-key QrIK7HNRyY+2nqCLMp80DSKxPvoVcWx8slpe5EWwwGo=
+accept *:*
+ipv6-policy accept 1-65535
+router-sig-ed25519 z0sYfKPcQn9sNiKD8yjwuxHgx08VGpYKkFsXVQae8r4IQk7BCjfH8T09738Cm2v0N1KmKQFByLKAAjj6CpkcBg
+router-signature
+-----BEGIN SIGNATURE-----
+gMVN5mI+aRQFP8R87YaSVIU89q60jMgHDWphydhHv6LlZpKGnqAJMBjS6TiN1PLJ
+Xh5VuKCbd6tr710qlqyBvSxJRQ7e+Wasj4T9rVJOX+qkkCrXhiEklD2z8Igiin3V
+xp6b2xOFF5R3fJHXxKvpJXLP5uI2FXhcki0HD19pNBs=
+-----END SIGNATURE-----

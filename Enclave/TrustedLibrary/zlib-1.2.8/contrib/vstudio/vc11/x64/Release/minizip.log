@@ -1,0 +1,6 @@
+  minizip.c
+  zlibwapi.lib(crc32.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+zlibwapi.lib(deflate.obj) : error LNK2001: unresolved external symbol longest_match
+zlibwapi.lib(deflate.obj) : error LNK2001: unresolved external symbol match_init
+x64\Release\minizip.exe : fatal error LNK1120: 2 unresolved externals

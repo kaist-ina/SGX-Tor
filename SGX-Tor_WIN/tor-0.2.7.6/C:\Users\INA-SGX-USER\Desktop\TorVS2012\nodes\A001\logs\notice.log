@@ -1,0 +1,36 @@
+Nov 25 04:51:55.000 [notice] Tor 0.2.7.6 opening new log file.
+Nov 25 04:51:55.867 [notice] Tor v0.2.7.6 running on Linux with Libevent 2.0.21-stable, OpenSSL 1.0.1f and Zlib 1.2.8.
+Nov 25 04:51:55.867 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://www.torproject.org/download/download#warning
+Nov 25 04:51:55.867 [notice] Read configuration file "/home/maple/Downloads/TorVS2012/tor-0.2.7.6/../nodes/A001/torrc".
+Nov 25 04:51:55.870 [warn] Path for DataDirectory (C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\A001) is relative and will resolve to /home/maple/Downloads/TorVS2012/tor-0.2.7.6/C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\A001. Is this what you wanted?
+Nov 25 04:51:55.870 [warn] Path for PidFile (C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\A001\pid) is relative and will resolve to /home/maple/Downloads/TorVS2012/tor-0.2.7.6/C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\A001\pid. Is this what you wanted?
+Nov 25 04:51:55.870 [notice] Based on detected system memory, MaxMemInQueues is set to 8192 MB. You can override this by setting MaxMemInQueues by hand.
+Nov 25 04:51:55.870 [warn] You have used DirAuthority or AlternateDirAuthority to specify alternate directory authorities in your configuration. This is potentially dangerous: it can make you look different from all other Tor users, and hurt your anonymity. Even if you've specified the same authorities as Tor uses by default, the defaults could change in the future. Be sure you know what you're doing.
+Nov 25 04:51:55.870 [warn] TestingTorNetwork is set. This will make your node almost unusable in the public Tor network, and is therefore only advised if you are building a testing Tor network!
+Nov 25 04:51:55.870 [notice] Opening OR listener on 0.0.0.0:5001
+Nov 25 04:51:55.870 [notice] Opening Directory listener on 0.0.0.0:7001
+Nov 25 04:51:55.000 [warn] Your log may contain sensitive information - you disabled SafeLogging, and you're logging more than "notice". Don't log unless it serves an important reason. Overwrite the log afterwards.
+Nov 25 04:51:55.000 [notice] Not disabling debugger attaching for unprivileged users.
+Nov 25 04:51:55.000 [warn] Could not open "C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\A001/keys/authority_certificate": No such file or directory
+Nov 25 04:51:55.000 [warn] Signing key found, but no certificate found in C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\A001/keys/authority_certificate
+Nov 25 04:51:55.000 [err] We're configured as a V3 authority, but we were unable to load our v3 authority keys and certificate! Use tor-gencert to generate them. Dying.
+Nov 25 04:51:55.000 [warn] options_act(): Bug: Error initializing keys; exiting (on Tor 0.2.7.6 )
+Nov 25 04:51:55.000 [err] set_options(): Bug: Acting on config options left us in a broken state. Dying. (on Tor 0.2.7.6 )
+Nov 25 04:52:08.000 [notice] Tor 0.2.7.6 opening log file.
+Nov 25 04:52:08.242 [notice] Tor v0.2.7.6 running on Linux with Libevent 2.0.21-stable, OpenSSL 1.0.1f and Zlib 1.2.8.
+Nov 25 04:52:08.242 [notice] Tor can't help you if you use it wrong! Learn how to be safe at https://www.torproject.org/download/download#warning
+Nov 25 04:52:08.242 [notice] Read configuration file "/home/maple/Downloads/TorVS2012/tor-0.2.7.6/../nodes/A001/torrc".
+Nov 25 04:52:08.245 [warn] Path for DataDirectory (C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\A001) is relative and will resolve to /home/maple/Downloads/TorVS2012/tor-0.2.7.6/C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\A001. Is this what you wanted?
+Nov 25 04:52:08.245 [warn] Path for PidFile (C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\A001\pid) is relative and will resolve to /home/maple/Downloads/TorVS2012/tor-0.2.7.6/C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\A001\pid. Is this what you wanted?
+Nov 25 04:52:08.245 [notice] Based on detected system memory, MaxMemInQueues is set to 8192 MB. You can override this by setting MaxMemInQueues by hand.
+Nov 25 04:52:08.245 [warn] You have used DirAuthority or AlternateDirAuthority to specify alternate directory authorities in your configuration. This is potentially dangerous: it can make you look different from all other Tor users, and hurt your anonymity. Even if you've specified the same authorities as Tor uses by default, the defaults could change in the future. Be sure you know what you're doing.
+Nov 25 04:52:08.245 [warn] TestingTorNetwork is set. This will make your node almost unusable in the public Tor network, and is therefore only advised if you are building a testing Tor network!
+Nov 25 04:52:08.245 [notice] Opening OR listener on 0.0.0.0:5001
+Nov 25 04:52:08.245 [notice] Opening Directory listener on 0.0.0.0:7001
+Nov 25 04:52:08.000 [warn] Your log may contain sensitive information - you disabled SafeLogging, and you're logging more than "notice". Don't log unless it serves an important reason. Overwrite the log afterwards.
+Nov 25 04:52:08.000 [notice] Not disabling debugger attaching for unprivileged users.
+Nov 25 04:52:08.000 [warn] Could not open "C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\A001/keys/authority_certificate": No such file or directory
+Nov 25 04:52:08.000 [warn] Signing key found, but no certificate found in C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\A001/keys/authority_certificate
+Nov 25 04:52:08.000 [err] We're configured as a V3 authority, but we were unable to load our v3 authority keys and certificate! Use tor-gencert to generate them. Dying.
+Nov 25 04:52:08.000 [warn] options_act(): Bug: Error initializing keys; exiting (on Tor 0.2.7.6 )
+Nov 25 04:52:08.000 [err] set_options(): Bug: Acting on config options left us in a broken state. Dying. (on Tor 0.2.7.6 )

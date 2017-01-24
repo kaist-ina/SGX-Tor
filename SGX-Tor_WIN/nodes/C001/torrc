@@ -1,0 +1,23 @@
+TestingTorNetwork 1
+AssumeReachable 1
+
+DataDirectory C:\Users\INA\Desktop\TorVS2012\nodes\C001
+RunAsDaemon 1
+ConnLimit 60
+Nickname inaTorClient1
+ShutdownWaitLength 0
+PidFile C:\Users\INA\Desktop\TorVS2012\nodes\C001\pid
+Log info file C:\Users\INA\Desktop\TorVS2012\nodes\C001\logs\info.log
+Log notice file C:\Users\INA\Desktop\TorVS2012\nodes\C001\logs\notice.log
+ProtocolWarnings 1
+SafeLogging 0
+DisableDebuggerAttachment 0
+DirAuthority inaTorAuth1 orport=5001 no-v2 v3ident=5B9DF0A0A3981FF82F1549618F8716BF4B9AB9AA 10.0.0.1:7001 594A8EAB2A2CD35FB48F2D657E666AA9C8409F36
+DirAuthority inaTorAuth2 orport=5002 no-v2 v3ident=E77FEB4A6435EE6BD38BF692026660DAD98647F2 10.0.0.3:7002 DB1CF491EBD25EEE70CEB873535ACE901BDE81D4
+DirAuthority inaTorAuth3 orport=5003 no-v2 v3ident=D21B4ED7CD7E479DC061843EE08401A39DC5A124 10.0.0.4:7003 9537A5338B417E6EDE36E46173B233D94995EC22
+
+#RemoteAttestServer 10.0.0.1:8001
+#RemoteAttestServer 10.0.0.3:8001
+#RemoteAttestServer 10.0.0.4:8001
+
+SocksPort 9011

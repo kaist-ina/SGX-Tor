@@ -1,0 +1,307 @@
+  Creating untrusted proxy/bridge routines
+  address.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  addressmap.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  aes.c
+aes.c(19): fatal error C1083: Cannot open include file: 'openssl/opensslv.h': No such file or directory
+  backtrace.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  blinding.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\crypto_hash_sha512.h(2): fatal error C1083: Cannot open include file: 'openssl/sha.h': No such file or directory
+  buffers.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  channel.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  channeltls.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  circpathbias.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  circuitbuild.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  circuitlist.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  circuitmux.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  circuitmux_ewma.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  circuitstats.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  circuituse.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  command.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  compat.c
+compat.c(80): warning C4273: '_getwch' : inconsistent dll linkage
+          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\conio.h(83) : see previous definition of '_getwch'
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  compat_libevent.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\compat_libevent.h(19): fatal error C1083: Cannot open include file: 'event2/util.h': No such file or directory
+  compat_threads.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  compat_winthreads.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  Compiling...
+  config.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  confparse.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  connection.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  connection_edge.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  connection_or.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  container.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  control.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  cpuworker.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  crypto.c
+crypto.c(24): fatal error C1083: Cannot open include file: 'openssl/opensslv.h': No such file or directory
+  crypto_curve25519.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  crypto_ed25519.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  crypto_format.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  crypto_pwbox.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  crypto_s2k.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  csiphash.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  curve25519-donna.c
+  dircollate.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  directory.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  dirserv.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  dirvote.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  Compiling...
+  di_ops.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  dns.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  dnsserv.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  ed25519_cert.c
+ed25519_cert.c(228): warning C4028: formal parameter 2 different from declaration
+ed25519_cert.c(303): warning C4267: 'function' : conversion from 'size_t' to 'uint16_t', possible loss of data
+ed25519_cert.c(696): warning C4028: formal parameter 2 different from declaration
+  ed25519_tor.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\orconfig.h(698): warning C4005: 'inline' : macro redefinition
+          c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\ed25519-donna-portable.h(13) : see previous definition of 'inline'
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\ed25519-randombytes.h(83): fatal error C1083: Cannot open include file: 'openssl/rand.h': No such file or directory
+  entrynodes.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  ext_orport.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  fe_0.c
+  fe_1.c
+  fe_add.c
+  fe_cmov.c
+fe_cmov.c(42): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+  fe_copy.c
+  fe_frombytes.c
+  fe_invert.c
+  fe_isnegative.c
+  fe_isnonzero.c
+  fe_mul.c
+  fe_neg.c
+  fe_pow22523.c
+  fe_sq.c
+  Compiling...
+  fe_sq2.c
+  fe_sub.c
+  fe_tobytes.c
+  fp_pair.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  geoip.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  ge_add.c
+  ge_double_scalarmult.c
+  ge_frombytes.c
+  ge_madd.c
+  ge_msub.c
+  ge_p1p1_to_p2.c
+  ge_p1p1_to_p3.c
+  ge_p2_0.c
+  ge_p2_dbl.c
+  ge_p3_0.c
+  ge_p3_dbl.c
+  ge_p3_tobytes.c
+  ge_p3_to_cached.c
+  ge_p3_to_p2.c
+  ge_precomp_0.c
+  Compiling...
+  ge_scalarmult_base.c
+ge_scalarmult_base.c(23): warning C4244: 'return' : conversion from 'uint64_t' to 'unsigned char', possible loss of data
+  ge_sub.c
+  ge_tobytes.c
+  hibernate.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  keyconv.c
+  keypair.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\crypto_hash_sha512.h(2): fatal error C1083: Cannot open include file: 'openssl/sha.h': No such file or directory
+  keypin.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  link_handshake.c
+link_handshake.c(194): warning C4028: formal parameter 2 different from declaration
+link_handshake.c(503): warning C4028: formal parameter 2 different from declaration
+link_handshake.c(799): warning C4028: formal parameter 2 different from declaration
+link_handshake.c(1363): warning C4028: formal parameter 2 different from declaration
+link_handshake.c(1771): warning C4028: formal parameter 2 different from declaration
+  log.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  main.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  memarea.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  microdesc.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  networkstatus.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  nodelist.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  ntmain.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  onion.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  onion_fast.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  onion_ntor.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  onion_tap.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  open.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\crypto_hash_sha512.h(2): fatal error C1083: Cannot open include file: 'openssl/sha.h': No such file or directory
+  Compiling...
+  policies.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  procmon.c
+procmon.c : warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\compat_libevent.h(19): fatal error C1083: Cannot open include file: 'event2/util.h': No such file or directory
+  pwbox.c
+  reasons.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  relay.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  rendcache.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  rendclient.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  rendcommon.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  rendmid.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  rendservice.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  rephist.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  replaycache.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  router.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  routerkeys.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  routerlist.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  routerparse.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  routerset.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  sandbox.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  scheduler.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  sc_muladd.c
+sc_muladd.c(337): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(338): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(339): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(340): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(341): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(342): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(343): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(344): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(345): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(346): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(347): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(348): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(349): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(350): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(351): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(352): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(353): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(354): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(355): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(356): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(358): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(359): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(360): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(361): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(362): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(363): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(364): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(365): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(366): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_muladd.c(367): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+  Compiling...
+  sc_reduce.c
+sc_reduce.c(244): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(245): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(246): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(247): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(248): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(249): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(250): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(251): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(252): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(253): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(254): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(255): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(256): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(257): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(258): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(259): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(260): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(261): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(262): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(263): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(265): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(266): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(267): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(268): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(269): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(270): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(271): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(272): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(273): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+sc_reduce.c(274): warning C4244: '=' : conversion from 'int64_t' to 'unsigned char', possible loss of data
+  sign.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\crypto_hash_sha512.h(2): fatal error C1083: Cannot open include file: 'openssl/sha.h': No such file or directory
+  statefile.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  status.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  torcert.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  torgzip.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  TorSGX_u.c
+  tortls.c
+tortls.c(38): fatal error C1083: Cannot open include file: 'openssl/opensslv.h': No such file or directory
+  transports.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  trunnel.c
+  util.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  util_format.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  util_process.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space
+  workqueue.c
+c:\users\ina-sgx-user\desktop\torvs2012\torvs2012\torvs2012\util.h(69): fatal error C1060: compiler is out of heap space

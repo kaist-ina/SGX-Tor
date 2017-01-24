@@ -1,0 +1,34 @@
+ORPort 9001
+Nickname inaTorS14V3
+RelayBandwidthRate 1024 KB
+RelayBandwidthBurst 1024 KB
+ContactInfo Seongmin dallas1004@gmail.com
+ExitPolicy reject *:*
+DataDirectory C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\R003
+Log info file C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\R003\logs\info.log
+Log notice file C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\R003\logs\notice.log
+
+##TestingTorNetwork 1
+##AssumeReachable 1
+##
+##DataDirectory C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\R003
+##RunAsDaemon 1
+##ConnLimit 60
+##Nickname inaTorRelay2
+##ShutdownWaitLength 0
+##PidFile C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\R003\pid
+##Log info file C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\R003\logs\info.log
+##Log notice file C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\R003\logs\notice.log
+##ProtocolWarnings 1
+##SafeLogging 0
+##DisableDebuggerAttachment 0
+DirAuthority inaTorAuth1 orport=5001 no-v2 v3ident=5B9DF0A0A3981FF82F1549618F8716BF4B9AB9AA 10.0.0.1:7001 594A8EAB2A2CD35FB48F2D657E666AA9C8409F36
+##
+##SocksPort 0
+##OrPort 6002
+##Address 127.0.0.1
+##
+##ExitRelay 0
+##ExitPolicy accept *:*
+##ExitPolicy accept6 *:*
+##IPv6Exit 1

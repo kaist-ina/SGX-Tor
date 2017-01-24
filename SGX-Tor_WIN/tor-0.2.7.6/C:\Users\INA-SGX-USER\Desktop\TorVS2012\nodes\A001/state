@@ -1,0 +1,22 @@
+# Tor state file last generated on 2016-11-25 04:51:55 local time
+# Other times below are in UTC
+# You *do not* need to edit this file.
+
+BWHistoryReadEnds 2016-11-24 23:51:55
+BWHistoryReadInterval 14400
+BWHistoryReadValues 0
+BWHistoryReadMaxima 0
+BWHistoryWriteEnds 2016-11-24 23:51:55
+BWHistoryWriteInterval 14400
+BWHistoryWriteValues 0
+BWHistoryWriteMaxima 0
+BWHistoryDirReadEnds 2016-11-24 23:51:55
+BWHistoryDirReadInterval 14400
+BWHistoryDirReadValues 0
+BWHistoryDirReadMaxima 0
+BWHistoryDirWriteEnds 2016-11-24 23:51:55
+BWHistoryDirWriteInterval 14400
+BWHistoryDirWriteValues 0
+BWHistoryDirWriteMaxima 0
+TorVersion Tor 0.2.7.6
+LastWritten 2016-11-24 19:51:55

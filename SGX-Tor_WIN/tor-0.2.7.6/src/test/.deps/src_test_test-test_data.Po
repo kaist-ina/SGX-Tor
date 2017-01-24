@@ -1,0 +1,4 @@
+src/test/src_test_test-test_data.o: src/test/test_data.c \
+ /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

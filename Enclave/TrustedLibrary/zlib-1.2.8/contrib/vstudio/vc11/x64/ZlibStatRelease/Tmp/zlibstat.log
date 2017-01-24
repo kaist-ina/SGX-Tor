@@ -1,0 +1,21 @@
+  adler32.c
+  compress.c
+  crc32.c
+  deflate.c
+  gzclose.c
+  gzlib.c
+  gzread.c
+  gzwrite.c
+  infback.c
+  inffas8664.c
+  inffast.c
+  inflate.c
+  inftrees.c
+  ioapi.c
+  trees.c
+  uncompr.c
+  unzip.c
+  zip.c
+  zutil.c
+  Generating Code...
+  zlibstat.vcxproj -> C:\Users\INA-SGX-USER\Desktop\TorVS2012\zlib-1.2.8\contrib\vstudio\vc11\x64\ZlibStatRelease\zlibstat.lib

@@ -1,0 +1,226 @@
+network-status-version 3
+vote-status vote
+consensus-methods 13 14 15 16 17 18 19 20 21
+published 2016-09-03 13:34:21
+valid-after 2016-09-03 13:35:00
+fresh-until 2016-09-03 13:40:00
+valid-until 2016-09-03 13:50:00
+voting-delay 20 20
+known-flags Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+flag-thresholds stable-uptime=3526 stable-mtbf=0 fast-speed=0 guard-wfu=0.000% guard-tk=0 guard-bw-inc-exits=0 guard-bw-exc-exits=0 enough-mtbf=1 ignoring-advertised-bws=0
+params 
+dir-source inaTorAuth1 5B9DF0A0A3981FF82F1549618F8716BF4B9AB9AA 10.0.0.1 10.0.0.1 7001 5001
+contact auth0@test.test
+dir-key-certificate-version 3
+dir-address 127.0.0.1:7001
+fingerprint 5B9DF0A0A3981FF82F1549618F8716BF4B9AB9AA
+dir-key-published 2016-09-01 05:45:31
+dir-key-expires 2017-09-01 05:45:31
+dir-identity-key
+-----BEGIN RSA PUBLIC KEY-----
+MIIBigKCAYEAvmPVY+/iA2I2X2USHV/bDtjoV55uhDZWoeG1V8VH6bmSpkh3OVKy
+lvBnqG58tsdQdzX2zHwui3uspzIPQ12iOMkRqt4hgYCQ39NLtTu76JOprWS4PUry
+6PJDbj78bRZfSKvc0d0kJzxAKHV88z7XYd62VUpU3fuV7G4DyaUZ1eUS9W28NV/R
+9pqQqDKiPm6PeiZDxbHUHn/syuZSyqcya1EC7MTsz1h33Z1uE8AhBb9tVkij0+es
+xHRlchvEh54ohcO9aH/Kdax/1tl1FqDiCcS1HU+lUftWimwJltm6cY3gZ60ljBqT
+e42xKW5288hStS8V7Xd5J2zTaveLz5lW1wRcI8rlQFlr9BVZMVxTNPRnknpgCPFo
+xtr9Ees+Ba2z4HD4nTV37x9cPFI+9qZYiO0GpoeSLfo4VAudV5ldQTESiPLTcKeJ
+y+VWwUhPnJ/iEaM54UWrw4SH3hH3IYdqIUwBTfq4L7imqTMs7OpDqvxU5gQ6b4PY
+ZqGFAV2AZUafAgMBAAE=
+-----END RSA PUBLIC KEY-----
+dir-signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIIBCgKCAQEAwOkFX/Q0ClCAWZSBro5VSC7Ptn/0Mbktewoo7JdaY0WPIV04hcii
+ySZYH53CK1fROJtkuMItkx+RIheytgSB0jCeGg8o+gCW/ZJbkeg0PxzpsqNURCA7
+L0ouEeHYf9LbdWIt9fXVlXQKJ5bYTsqAzDIwTme3ydDBf3T10pzTcLd+4udnW7OA
+iHR20xa39nmgD5fXSDFWeXa298lGccRnwO4Fz4LtgBbB7FghhHHuV6w06cGiVKqj
+w8izKT0XJpucXhbUvIxkycOucuDpnMRcJbJji2pFAV+upsVD9HqQGG+FUoWty3Nz
+jLHGIYJ4WYYZXQY+SMpyglSNJu4BSHs7KwIDAQAB
+-----END RSA PUBLIC KEY-----
+dir-key-crosscert
+-----BEGIN ID SIGNATURE-----
+fTaAyiiln99VomwAvYrTUqCsZT6WaLN8gh9oEewXJQ5JhjU2BsiswN9esbKwBl68
+WHi2AMbtwETx9DcPxCGkyjpt/xvMP4YddRLD2mDf9nuRVh/vArT/F2dbu1ZtOjlB
+mPqaGyR93U0ju0+9c78s0KWnRsBLSuRvBBssDgOcjIb7SQtKD7Aj0jt8HsrBJwUk
+NNYkvqKaH1dQ8UhKkSefdM4jH1e0TVyXKK3dg7UyozXuXeghaTOseqa/gLVFFA9e
+NjqlYSVQjm/aP2M3dLpvae2WLgm37FaHny+Qe+P2dmkLHgORM/7fNXflzb/b4NYh
+b+wqlKi/xRTKtb3Fz4+cwg==
+-----END ID SIGNATURE-----
+dir-key-certification
+-----BEGIN SIGNATURE-----
+lSkw2j2G+6Pwnzm2+wTlM/SjduX9a6j9YakYHqoD1hYJ5G5qvDJ6uvU4rnK40caZ
+BXwZiV+Lgzk7oj6q/t68BYVMCvLTobPqBoBbLCbqc8qm1r3M2kCwQ2XZdoHCc5oS
+uTVreCHzBjKl6ungdJAFTgmdCV0ROuExi9UR8zPnGy+E+wcxj709eonLf4m7PxqA
+ue6JYQloep2/JoHFtS5THV8RqvyfCjxcPwNf7urvIa1cjZd4Li1eue4zJjaiTpuM
+qUpF3N+CEG8PfqIj8Zeq3wHkbQf9/XioD0irFsMflpda0POAqTcZelkFT1HHeRgV
+GygG0nJ9G9sp+U/VflbOcVtl/6ku7co8R1++7+p+gIv/WZVOEReqRdXWT1gyGT5D
+0/5EjukuAUC0dDkDaslcZF93KAh/91LN8uz7gow7d9g57QKJORoUazMpON8FtOgE
+GqlBfiFyqREBvLBVY98RI+3JWjCHqhAXbg2VO1MjI/eZD3OKa3vnq38WjnnS7p7Y
+-----END SIGNATURE-----
+r inaTorRelay1 JjgHYDWlzkgAB6w+IjgkgAM1hCM tnk4d3UvuiwwHRItpDqgKpB7C8Y 2016-09-03 08:05:47 127.0.0.1 6001 0
+s Exit Fast Guard Running Stable Valid
+v Tor 0.2.7.6
+w Bandwidth=0
+p accept 1-65535
+id ed25519 UUZee1jYSLdrdPQcXFEqs2R+aakbyfmcr049oaMDqAU
+m 13,14 sha256=9QQvGjoopUw8jMA+el6DZV006W4GSHShTc5pErj9ajs
+m 15 sha256=0UYEwWgi4sEYcxVEl91Cf6ZP9ePLm76YtWF538wMNMg
+m 16,17 sha256=hjwBzpUGVuhjso6GEV+cISkah4YNA+b/ut/3OdIDBCU
+m 18,19,20 sha256=nGu6B0J1W4Km4m7YHklL5cG/WrkebDlFDIRb+zdkGwk
+m 21 sha256=XLJPq8/ZkIk/ZU8fpAdNckzCzLBmWdXP7fGaJALlGUo
+r inaTorAuth1 WUqOqyos01+0jy1lfmZqqchAnzY 3YTaaE0AgSDD/Cl0aPCEMoNY71g 2016-09-03 13:30:45 10.0.0.1 5001 7001
+s Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0
+p accept 1-65535
+id ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+m 13,14 sha256=H+8rgNIAbWq5GoW37SZFJdSYQbPio+JbAyn3V5HnoRY
+m 15 sha256=TIpDihBv/lmUka9IwtmovQYQP5EuBJdYcGAEU1vypao
+m 16,17 sha256=zw8hA2Z7o+gd+4Ozk6lg5VRaUno4t+oSbGtX5wz7Om8
+m 18,19,20 sha256=iiOPUYL5eqCopl2wxxfhmWw96qCG5G0aMBzFf/3IXKo
+m 21 sha256=OsZRp8jxPcfnScDg7Tbg/DJ7x1mXUaoh/OLIAKPSADQ
+r inaTorAuth3 lTelM4tBfm7eNuRhc7Iz2UmV7CI BmmYL6+tDuwbK9Z/+AlKweu6RX0 2016-09-03 12:35:44 10.0.0.4 5003 7003
+s Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0
+p accept 1-65535
+id ed25519 dcCviRicWXYUTi59wnL/e7Vha2pkZBNCY5om/Aj8Dws
+m 13,14 sha256=S0gZZdLqt1pW2y45hTmuqPo39TCc3V/JDPqH9OGu2Zk
+m 15 sha256=EeV0YmVQwjFFSza6wsoQ+LnKc+2KUjHq8dRdMkA7iqk
+m 16,17 sha256=LfCHcmil2garmL6rZoSb3IJG+m92QM8Y1WX0T+WTNXI
+m 18,19,20 sha256=vjyzr3swFRKfyOv3QXnt82ElkJkVROnY6AOeX9crQEw
+m 21 sha256=g68md2NTa1tZ8o44DkgEgAWvJBJkA6HPWmvYifx06zw
+r inaTorAuth2 2xz0kevSXu5wzrhzU1rOkBvegdQ 07vLwkDjQzd0+WaxS76CGRbvS5k 2016-09-03 12:20:45 10.0.0.3 5002 7002
+s Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0
+p accept 1-65535
+id ed25519 C3jhhxq6y02ARKSzV4piSx6b9YTHayx+I/4aLbOR9Is
+m 13,14 sha256=/pZhz316nUnU2MIl4L3KIjMKl0tf/qKfJ235qCcGEXo
+m 15 sha256=F2wFR5hGe8wZzt7luTOgroEpPNBwn8IeJFX3yYHovEI
+m 16,17 sha256=gfDifXrrzjcUeS/ZUOx2QnMJe3rprpNhQdQdjyWghDk
+m 18,19,20 sha256=N2GLHRUKJxVEABCHiJGF4pbmM4RziqZjsVezlqDGOoI
+m 21 sha256=oX3EG4UbNmTjIwQfoWwuZfTLZXBir8x3jcKxNfZc30A
+directory-footer
+directory-signature 5B9DF0A0A3981FF82F1549618F8716BF4B9AB9AA 24D61CAE91B50AB84B85DD5A662D322DA00E8D1F
+-----BEGIN SIGNATURE-----
+UWVg+8caraFRTtEL2OvMGk83pjyuxBGKWcFEUbI5XLMa2S9QXmHG8SdNd0zzJGDT
+xNFJpJVpPFiDh+PHJWe9EhMjqDG/KAbHGh2VKIWTep4z+ng+988ZtW9xQDfKgF9/
+3pprcfiErqPR7Wv76BMqeDLLlN16NhiRd1bvp0v+CbXlAT6ha9QDE5q+DyQMx2E4
+0+TyCg/Slh+Y18XMrgWv0yu6oDBuBvgQbiwy6JCbCxNC7bTiKAzV6g41YDkw2b1k
+vfl0vz1JMYm0v5MJ6Tbb/T775YnwNJ9zE+1BZPu+PHsRzfkK1ubBA4nQO+9E0I08
+ihilg6yCCsRDx95POeFjRQ==
+-----END SIGNATURE-----
+network-status-version 3
+vote-status vote
+consensus-methods 13 14 15 16 17 18 19 20 21
+published 2016-09-03 13:34:21
+valid-after 2016-09-03 13:35:00
+fresh-until 2016-09-03 13:40:00
+valid-until 2016-09-03 13:50:00
+voting-delay 20 20
+known-flags Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+flag-thresholds stable-uptime=3526 stable-mtbf=0 fast-speed=0 guard-wfu=0.000% guard-tk=0 guard-bw-inc-exits=0 guard-bw-exc-exits=0 enough-mtbf=1 ignoring-advertised-bws=0
+params 
+dir-source inaTorAuth2 C050D6B003695DBF98CE1CF058F8C249F74B28E9 10.0.0.3 10.0.0.3 7002 5002
+contact auth0@test.test
+dir-key-certificate-version 3
+dir-address 127.0.0.1:7002
+fingerprint C050D6B003695DBF98CE1CF058F8C249F74B28E9
+dir-key-published 2016-09-01 10:28:35
+dir-key-expires 2017-09-01 10:28:35
+dir-identity-key
+-----BEGIN RSA PUBLIC KEY-----
+MIIBigKCAYEAmUSbHaKfYVorsjjaQWLxORqT0qTWupwW/ex22pnYfETfrzP/Apd1
+fXOGYacIVzal5PGxV1YfuV7t7OctudABVThDAM+NEJGY1G27K3oTJqDIxntiU6Ro
+yIpWb6z4YWaargaYwSDBvyFiM34rbV3Hd4ljhVWx4qJYFfDhvKBfLY6F1g4pUC6/
+0ozrkpH6Lq3w2VJl71zApVKu1QGjjNxGB1+1dV4DAPCAaacrs7s7dntlcYg/Q613
+8xMkVcshcpd4//rDpmblAWlfRwdnAoiQ/yNmICVPKD7Pyu3l1IDPw9h0dLzlY586
+/xZoRQSXO0nzV730Sj6wE+f7jLWZR8fCjn4j7msoWsi3YpTSbdX3SlJ4tuISxmk2
+7wV836XnCG0GSiIpw6HPnyAWqsKdeXvy67RweyrgxH21RrJ7d3hY2+fwDswsO+MB
+jkHMDrbXHSqYNoTxDFceg+hlC9LcZIv3pQ5YIS+XHhugktZS++MoNMFx3XaJKuXT
+DQNwHMfhpGztAgMBAAE=
+-----END RSA PUBLIC KEY-----
+dir-signing-key
+-----BEGIN RSA PUBLIC KEY-----
+MIIBCgKCAQEAwfJsFI5GsB2w5cRCrew2kkuSL4Gp15fQkAJ53R/TrmVqallV/1yG
+oYbFnnP4Ba9mv/i8aQORBHJcgtruDb0id33OcsEKz45eU5WLh353lvo22t0VqwAl
+ejbAQyY1jVIJaX+OFY+UnaJfouZNo8C1RWseGtGb2no4clrZd+qa/EELb6yNNTXs
++l+MOGTb7/YFiaz5f0gBc1Rao6ubpOHzxWiRJjUtvQn6Si0ooTZz52sRUKVQkj1H
+m+Vn1g+v3Ck4ma3IKlVsamROVd5iJVXJudowDMHtWhCpj9NvYeOIfYA02XI2UAhR
+dhWihKWBnFGwGTl6e8rz60Gusu24dD1GuwIDAQAB
+-----END RSA PUBLIC KEY-----
+dir-key-crosscert
+-----BEGIN ID SIGNATURE-----
+Q1YCbENWJXykx2PRzSZ72DncF1AX/c9vfhPMMlmP/lR+yDskbVMD2sYzg/IDhH/h
++taeufjfYoo/vl2XMKdrV+PkYCrDThCSJSSoKWvOXm2ashbWXuurIHziYf4ojdO/
+ypl8m7acp6eE0LyRqJ02+h2TlG3C/LzTa3ht475dcHEbQfJBaLVdjBvrxxpzmmmW
+ZDCwc+BG6ZkGdis0y/Kt6Zopb40byiSE+O0TW8Zj2MSgYdmQJuJlLJvjPqqPwFf1
+wu5uR/n9AdGGd3bLZ3GKze4l/zKu4z6dLWyBvm0gEVbyWjz6sbcGLM71v5XOsN/O
+RZdmY4pY4KyeoraoqMEGZQ==
+-----END ID SIGNATURE-----
+dir-key-certification
+-----BEGIN SIGNATURE-----
+gjbPc1oa49qNf0AklxzpNCYjfPXmUAl6OLNkaEMubi6gZV2gOY5Jk1l5qxzJV/TZ
+ors7uoVrq5ZW+sp79XxcFLeVjwD/0fwF+KYOJdKugBCKKlQO4ETAngGf0pFq4B4N
+rGEiwETcegZqEF9CNkUoOccyRCJbNxqcWEbC2vlVtUOKlUC/VupFQcLL1yJso95Z
+tbO0RpmNngu4uvHdqsQvlTj1GG6g5uxGbks52K9v1roXoLCj7+F30QLZjTKPmpf8
+CDko0k/oFhkk+Rq7YXGWW2KaVK7XQ8wfZoBJuIWH9rrDExrjo2tuGcMR3p1D7mgu
+9l6BNdV+1ax6+WZO3JIOu+ANRTPSzj2oRvTHKtzYffV0rAYmoPuCYkKEy9AYSp07
+Xh6quF1Jo5+TMrrlMXhg3ya909zjTGa60xbRdypTi0NKXWV1k74/6VQ7OC14i8Rh
+kOhjbDC1eR9NtVAA+5gBOMr1FWFX5+v3GwbARswI82aRQUbEMHCoJMCKQmst7Roh
+-----END SIGNATURE-----
+r inaTorRelay1 JjgHYDWlzkgAB6w+IjgkgAM1hCM tnk4d3UvuiwwHRItpDqgKpB7C8Y 2016-09-03 08:05:47 127.0.0.1 6001 0
+s Exit Fast Guard Running Stable Valid
+v Tor 0.2.7.6
+w Bandwidth=0
+p accept 1-65535
+id ed25519 UUZee1jYSLdrdPQcXFEqs2R+aakbyfmcr049oaMDqAU
+m 13,14 sha256=9QQvGjoopUw8jMA+el6DZV006W4GSHShTc5pErj9ajs
+m 15 sha256=0UYEwWgi4sEYcxVEl91Cf6ZP9ePLm76YtWF538wMNMg
+m 16,17 sha256=hjwBzpUGVuhjso6GEV+cISkah4YNA+b/ut/3OdIDBCU
+m 18,19,20 sha256=nGu6B0J1W4Km4m7YHklL5cG/WrkebDlFDIRb+zdkGwk
+m 21 sha256=XLJPq8/ZkIk/ZU8fpAdNckzCzLBmWdXP7fGaJALlGUo
+r inaTorAuth1 WUqOqyos01+0jy1lfmZqqchAnzY 3YTaaE0AgSDD/Cl0aPCEMoNY71g 2016-09-03 13:30:45 10.0.0.1 5001 7001
+s Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0
+p accept 1-65535
+id ed25519 JQ1Rusy2Ew9B5ZdiFbn7TzrUYqstXbBWwKCTlo44VgA
+m 13,14 sha256=H+8rgNIAbWq5GoW37SZFJdSYQbPio+JbAyn3V5HnoRY
+m 15 sha256=TIpDihBv/lmUka9IwtmovQYQP5EuBJdYcGAEU1vypao
+m 16,17 sha256=zw8hA2Z7o+gd+4Ozk6lg5VRaUno4t+oSbGtX5wz7Om8
+m 18,19,20 sha256=iiOPUYL5eqCopl2wxxfhmWw96qCG5G0aMBzFf/3IXKo
+m 21 sha256=OsZRp8jxPcfnScDg7Tbg/DJ7x1mXUaoh/OLIAKPSADQ
+r inaTorAuth3 lTelM4tBfm7eNuRhc7Iz2UmV7CI BmmYL6+tDuwbK9Z/+AlKweu6RX0 2016-09-03 12:35:44 10.0.0.4 5003 7003
+s Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0
+p accept 1-65535
+id ed25519 dcCviRicWXYUTi59wnL/e7Vha2pkZBNCY5om/Aj8Dws
+m 13,14 sha256=S0gZZdLqt1pW2y45hTmuqPo39TCc3V/JDPqH9OGu2Zk
+m 15 sha256=EeV0YmVQwjFFSza6wsoQ+LnKc+2KUjHq8dRdMkA7iqk
+m 16,17 sha256=LfCHcmil2garmL6rZoSb3IJG+m92QM8Y1WX0T+WTNXI
+m 18,19,20 sha256=vjyzr3swFRKfyOv3QXnt82ElkJkVROnY6AOeX9crQEw
+m 21 sha256=g68md2NTa1tZ8o44DkgEgAWvJBJkA6HPWmvYifx06zw
+r inaTorAuth2 2xz0kevSXu5wzrhzU1rOkBvegdQ 07vLwkDjQzd0+WaxS76CGRbvS5k 2016-09-03 12:20:45 10.0.0.3 5002 7002
+s Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0
+p accept 1-65535
+id ed25519 C3jhhxq6y02ARKSzV4piSx6b9YTHayx+I/4aLbOR9Is
+m 13,14 sha256=/pZhz316nUnU2MIl4L3KIjMKl0tf/qKfJ235qCcGEXo
+m 15 sha256=F2wFR5hGe8wZzt7luTOgroEpPNBwn8IeJFX3yYHovEI
+m 16,17 sha256=gfDifXrrzjcUeS/ZUOx2QnMJe3rprpNhQdQdjyWghDk
+m 18,19,20 sha256=N2GLHRUKJxVEABCHiJGF4pbmM4RziqZjsVezlqDGOoI
+m 21 sha256=oX3EG4UbNmTjIwQfoWwuZfTLZXBir8x3jcKxNfZc30A
+directory-footer
+directory-signature C050D6B003695DBF98CE1CF058F8C249F74B28E9 DF508936E7A0AA7E79066CA3254FB738A45D2A14
+-----BEGIN SIGNATURE-----
+QB9T5TeC1IRGaRfleLkhI/s3hwHsy4DDkmICCZOPzvdg7thMU3O2UqYIXAbB3MXB
+dkdfvtpxDfcPzaE2gW/EMB+MQ+O3nHgONSPiQAnw5T7INID07oCxOctpf+oPNnEb
+sKrq6K5EtLHGC3G1AV2DiQ8m5iadlNqxE+0r3lR72vdBu4KGJMfIH2M3Xp4Q36+4
+2l17eAOMeeq3roUXJKP9PQv8lPqxcllmWGkd8VrgXwBk07LJOtspi/jIHsFXG/3R
+00fox3TNCnK8ff5ef4ZdXtnsaii2RBw6Z4h3VqcJvZ9zxmAbFA6yXSdZPLMjDdbY
+n6NnzN19Ft98KM+I8vHOXw==
+-----END SIGNATURE-----

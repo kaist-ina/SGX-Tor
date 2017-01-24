@@ -1,0 +1,174 @@
+./bufferevent.c:bufferevent_suspend_read(struct bufferevent *bufev, bufferevent_suspend_flags what)
+./bufferevent.c:bufferevent_unsuspend_read(struct bufferevent *bufev, bufferevent_suspend_flags what)
+./bufferevent.c:		bufferevent_wm_suspend_read(bufev);
+./bufferevent.c:		bufferevent_wm_unsuspend_read(bufev);
+./bufferevent.c:bufferevent_read(struct bufferevent *bufev, void *data, size_t size)
+./bufferevent.c:				bufferevent_wm_suspend_read(bufev);
+./bufferevent.c:				bufferevent_wm_unsuspend_read(bufev);
+./bufferevent.c:			bufferevent_wm_unsuspend_read(bufev);
+./ChangeLog: o Move SSL rate-limit enforcement into bytes_to_read() (96c562f)
+./ChangeLog: o Allow evbuffer_read() to split across more than 2 iovecs (e470ad3)
+./ChangeLog: o Replace some read()/write() instances with send()/recv() to work properly on win32.
+./WIN32-Code/event2/event-config.h:extern int sgx_read(int fd, const void *buf, int n);
+./WIN32-Code/event2/event-config.h://extern __uint64_t sgx_beginthread(void (*fn)(void *), int num, void *port, int port_len);
+./WIN32-Code/event2/event-config.h:extern unsigned long long sgx_beginthread(void (*fn)(void *), int num, void *port, int port_len);
+./event_iocp.c:		ev_uintptr_t th = sgx_beginthread(loop, 0, port, sizeof(struct event_iocp_port));
+./event_iocp.c://		ev_uintptr_t th = _beginthread(loop, 0, port);
+./bufferevent_ratelim.c:				bufferevent_suspend_read(&bev->bev,
+./bufferevent_ratelim.c:			bufferevent_suspend_read(&bev->bev, BEV_SUSPEND_BW);
+./bufferevent_ratelim.c:			bufferevent_unsuspend_read(&bev->bev, BEV_SUSPEND_BW);
+./bufferevent_ratelim.c:			bufferevent_suspend_read(&bev->bev,
+./bufferevent_ratelim.c:			bufferevent_unsuspend_read(&bev->bev, BEV_SUSPEND_BW);
+./bufferevent_ratelim.c:			bufferevent_unsuspend_read(&bev->bev,
+./bufferevent_ratelim.c:			bufferevent_unsuspend_read(bev, BEV_SUSPEND_BW);
+./bufferevent_ratelim.c:		bufferevent_unsuspend_read(bev, BEV_SUSPEND_BW);
+./bufferevent_ratelim.c:		bufferevent_suspend_read(bev, BEV_SUSPEND_BW);
+./bufferevent_ratelim.c:		bufferevent_suspend_read(bev, BEV_SUSPEND_BW_GROUP);
+./bufferevent_ratelim.c:		bufferevent_unsuspend_read(bev, BEV_SUSPEND_BW_GROUP);
+./bufferevent_ratelim.c:bufferevent_get_max_to_read(struct bufferevent *bev)
+./bufferevent_ratelim.c:		bufferevent_suspend_read(bev, BEV_SUSPEND_BW);
+./bufferevent_ratelim.c:		bufferevent_unsuspend_read(bev, BEV_SUSPEND_BW);
+./bufferevent_ratelim.c:bufferevent_rate_limit_group_decrement_read(
+./configure:	read(fd[0], buf, sizeof(buf));
+./configure:				cch = fread(buf, sizeof(buf), 1, fpC);
+./event.c://	r = read(fd, (void*) &msg, sizeof(msg));
+./event.c:	r = sgx_read(fd, (void*) &msg, sizeof(msg));
+./event.c://	while (read(fd, (char*)buf, sizeof(buf)) > 0)
+./event.c:	while (sgx_read(fd, (char*)buf, sizeof(buf)) > 0)
+./bufferevent-internal.h:void bufferevent_suspend_read(struct bufferevent *bufev, bufferevent_suspend_flags what);
+./bufferevent-internal.h:void bufferevent_unsuspend_read(struct bufferevent *bufev, bufferevent_suspend_flags what);
+./bufferevent-internal.h:#define bufferevent_wm_suspend_read(b) \
+./bufferevent-internal.h:	bufferevent_suspend_read((b), BEV_SUSPEND_WM)
+./bufferevent-internal.h:#define bufferevent_wm_unsuspend_read(b) \
+./bufferevent-internal.h:	bufferevent_unsuspend_read((b), BEV_SUSPEND_WM)
+./iocp-internal.h:    evbuffer_commit_read() must be called in the completion callback.
+./iocp-internal.h:int evbuffer_launch_read(struct evbuffer *buf, size_t n, struct event_overlapped *ol);
+./iocp-internal.h:void evbuffer_commit_read(struct evbuffer *, ev_ssize_t);
+./bufferevent_openssl.c:bio_bufferevent_read(BIO *b, char *out, int outlen)
+./bufferevent_openssl.c:		BIO_set_retry_read(b);
+./bufferevent_openssl.c:		bufferevent_unsuspend_read(bev_ssl->underlying,
+./bufferevent_openssl.c:		bufferevent_suspend_read(bev_ssl->underlying,
+./bufferevent_openssl.c:	    BIO_number_read(SSL_get_rbio(bev_ssl->ssl));
+./bufferevent_openssl.c:	unsigned long num_r = BIO_number_read(SSL_get_rbio(bev_ssl->ssl));
+./bufferevent_openssl.c:do_read(struct bufferevent_openssl *bev_ssl, int n_to_read) {
+./bufferevent_openssl.c:		r = SSL_read(bev_ssl->ssl, space[i].iov_base, space[i].iov_len);
+./bufferevent_openssl.c:bytes_to_read(struct bufferevent_openssl *bev)
+./bufferevent_openssl.c:	n_to_read = bytes_to_read(bev_ssl);
+./bufferevent_openssl.c:		r = do_read(bev_ssl, n_to_read);
+./bufferevent_openssl.c:			n_to_read = bytes_to_read(bev_ssl);
+./bufferevent_openssl.c:		r = do_read(bev_ssl, 1024); /* XXXX 1024 is a hack */
+./bufferevent_openssl.c:			bufferevent_unsuspend_read(bev_ssl->underlying,
+./bufferevent_openssl.c:			bufferevent_suspend_read(underlying,
+./.tags:basic_thread	.\test\regress_thread.c	/^basic_thread(void *arg)$/;"	f	file:
+./.tags:bev_async_add_read	.\bufferevent_async.c	/^bev_async_add_read(struct bufferevent_async *beva)$/;"	f	file:
+./.tags:bev_async_del_read	.\bufferevent_async.c	/^bev_async_del_read(struct bufferevent_async *beva)$/;"	f	file:
+./.tags:bio_bufferevent_read	.\bufferevent_openssl.c	/^bio_bufferevent_read(BIO *b, char *out, int outlen)$/;"	f	file:
+./.tags:bufferevent_get_max_to_read	.\bufferevent_ratelim.c	/^bufferevent_get_max_to_read(struct bufferevent *bev)$/;"	f
+./.tags:bufferevent_rate_limit_group_decrement_read	.\bufferevent_ratelim.c	/^bufferevent_rate_limit_group_decrement_read($/;"	f
+./.tags:bufferevent_read	.\bufferevent.c	/^bufferevent_read(struct bufferevent *bufev, void *data, size_t size)$/;"	f
+./.tags:bufferevent_suspend_read	.\bufferevent.c	/^bufferevent_suspend_read(struct bufferevent *bufev, bufferevent_suspend_flags what)$/;"	f
+./.tags:bufferevent_unsuspend_read	.\bufferevent.c	/^bufferevent_unsuspend_read(struct bufferevent *bufev, bufferevent_suspend_flags what)$/;"	f
+./.tags:bytes_to_read	.\bufferevent_openssl.c	/^bytes_to_read(struct bufferevent_openssl *bev)$/;"	f	file:
+./.tags:do_read	.\bufferevent_openssl.c	/^do_read(struct bufferevent_openssl *bev_ssl, int n_to_read) {$/;"	f	file:
+./.tags:evbuffer_commit_read	.\buffer_iocp.c	/^evbuffer_commit_read(struct evbuffer *evbuf, ev_ssize_t nBytes)$/;"	f
+./.tags:evbuffer_launch_read	.\buffer_iocp.c	/^evbuffer_launch_read(struct evbuffer *buf, size_t at_most,$/;"	f
+./.tags:evbuffer_read	.\buffer.c	/^evbuffer_read(struct evbuffer *buf, evutil_socket_t fd, int howmuch)$/;"	f
+./.tags:evhttp_handle_chunked_read	.\http.c	/^evhttp_handle_chunked_read(struct evhttp_request *req, struct evbuffer *buf)$/;"	f	file:
+./.tags:evhttp_start_read	.\http.c	/^evhttp_start_read(struct evhttp_connection *evcon)$/;"	f
+./.tags:fifo_read	.\sample\event-test.c	/^fifo_read(evutil_socket_t fd, short event, void *arg)$/;"	f	file:
+./.tags:nameserver_read	.\evdns.c	/^nameserver_read(struct nameserver *ns) {$/;"	f	file:
+./.tags:server_port_read	.\evdns.c	/^server_port_read(struct evdns_server_port *s) {$/;"	f	file:
+./.tags:test_simpleread	.\test\regress.c	/^test_simpleread(void)$/;"	f	file:
+./.tags:upcast_read	.\bufferevent_async.c	/^upcast_read(struct event_overlapped *eo)$/;"	f	file:
+./buffer.c:evbuffer_read(struct evbuffer *buf, evutil_socket_t fd, int howmuch)
+./buffer.c:	n = read(fd, p, howmuch);
+./buffer.c:	n = read((int)fd, v[0].iov_base, (unsigned int)v[0].iov_len);
+./buffer.c:		n = read((int)fd, v[1].iov_base, (unsigned int)v[1].iov_len);
+./evutil.c:	while ((r = sgx_read(fd, mem+read_so_far, N_TO_READ(st.st_size - read_so_far))) > 0) {
+./evutil.c://	while ((r = read(fd, mem+read_so_far, N_TO_READ(st.st_size - read_so_far))) > 0) {
+./ratelim-internal.h:#define ev_token_bucket_decrement_read(b,n)	\
+./arc4random.c:		result = read(fd, buf+numread, count-numread);
+./arc4random.c:		n = read(fd, buf, sizeof(buf));
+./evdns.c:nameserver_read(struct nameserver *ns) {
+./evdns.c:server_port_read(struct evdns_server_port *s) {
+./evdns.c:		nameserver_read(ns);
+./evdns.c:		server_port_read(port);
+./bufferevent_async.c:upcast_read(struct event_overlapped *eo)
+./bufferevent_async.c:bev_async_del_read(struct bufferevent_async *beva)
+./bufferevent_async.c:bev_async_add_read(struct bufferevent_async *beva)
+./bufferevent_async.c:		bev_async_del_read(beva);
+./bufferevent_async.c:			bev_async_del_read(beva);
+./bufferevent_async.c:		bev_async_del_read(beva);
+./bufferevent_async.c:	if (evbuffer_launch_read(bev->input, at_most, &beva->read_overlapped)) {
+./bufferevent_async.c:		bev_async_add_read(beva);
+./bufferevent_async.c:		bev_async_del_read(bev_async);
+./bufferevent_async.c:	bev_async_del_read(bev_async);
+./bufferevent_async.c:	struct bufferevent_async *bev_a = upcast_read(eo);
+./bufferevent_async.c:	evbuffer_commit_read(bev->input, nbytes);
+./bufferevent_filter.c:	bufferevent_suspend_read(underlying, BEV_SUSPEND_FILT_READ);
+./bufferevent_filter.c:			bufferevent_unsuspend_read(bevf->underlying,
+./bufferevent_filter.c:		bufferevent_unsuspend_read(bevf->underlying,
+./bufferevent_filter.c:		bufferevent_suspend_read(bevf->underlying,
+./http.c:evhttp_handle_chunked_read(struct evhttp_request *req, struct evbuffer *buf)
+./http.c:		switch (evhttp_handle_chunked_read(req, buf)) {
+./http.c:	evhttp_start_read(evcon);
+./http.c:			evhttp_start_read(evcon);
+./http.c:evhttp_start_read(struct evhttp_connection *evcon)
+./http.c:	evhttp_start_read(evcon);
+./include/event2/event.h:  socket, you would call bufferevent_read() and bufferevent_write().
+./include/event2/bufferevent.h:  The bufferevent_read() function is used to read data from the input buffer.
+./include/event2/bufferevent.h:size_t bufferevent_read(struct bufferevent *bufev, void *data, size_t size);
+./include/event2/bufferevent.h:ev_ssize_t bufferevent_get_max_to_read(struct bufferevent *bev);
+./include/event2/bufferevent.h:int bufferevent_rate_limit_group_decrement_read(
+./include/event2/buffer.h:  @see evbuffer_read()
+./include/event2/buffer.h:  @see evbuffer_read()
+./include/event2/buffer.h:int evbuffer_read(struct evbuffer *buffer, evutil_socket_t fd, int howmuch);
+./buffer_iocp.c:evbuffer_commit_read(struct evbuffer *evbuf, ev_ssize_t nBytes)
+./buffer_iocp.c:evbuffer_launch_read(struct evbuffer *buf, size_t at_most,
+./http-internal.h:void evhttp_start_read(struct evhttp_connection *);
+./sample/event-test.c:fifo_read(evutil_socket_t fd, short event, void *arg)
+./sample/event-test.c:	len = read(fd, buf, sizeof(buf) - 1);
+./bufferevent_sock.c:			bufferevent_wm_suspend_read(bufev);
+./bufferevent_sock.c:	res = evbuffer_read(input, fd, (int)howmuch); /* XXXX evbuffer_read would do better to take and return ev_ssize_t */
+./bufferevent_sock.c:	bufferevent_unsuspend_read(bev, BEV_SUSPEND_LOOKUP);
+./bufferevent_sock.c:	bufferevent_suspend_read(bev, BEV_SUSPEND_LOOKUP);
+./bufferevent_sock.c:		bufferevent_unsuspend_read(bev, BEV_SUSPEND_LOOKUP);
+./.tags_sorted_by_file:evbuffer_read	buffer.c	/^evbuffer_read(struct evbuffer *buf, evutil_socket_t fd, int howmuch)$/;"	f
+./.tags_sorted_by_file:evbuffer_commit_read	buffer_iocp.c	/^evbuffer_commit_read(struct evbuffer *evbuf, ev_ssize_t nBytes)$/;"	f
+./.tags_sorted_by_file:evbuffer_launch_read	buffer_iocp.c	/^evbuffer_launch_read(struct evbuffer *buf, size_t at_most,$/;"	f
+./.tags_sorted_by_file:bufferevent_read	bufferevent.c	/^bufferevent_read(struct bufferevent *bufev, void *data, size_t size)$/;"	f
+./.tags_sorted_by_file:bufferevent_suspend_read	bufferevent.c	/^bufferevent_suspend_read(struct bufferevent *bufev, bufferevent_suspend_flags what)$/;"	f
+./.tags_sorted_by_file:bufferevent_unsuspend_read	bufferevent.c	/^bufferevent_unsuspend_read(struct bufferevent *bufev, bufferevent_suspend_flags what)$/;"	f
+./.tags_sorted_by_file:bev_async_add_read	bufferevent_async.c	/^bev_async_add_read(struct bufferevent_async *beva)$/;"	f	file:
+./.tags_sorted_by_file:bev_async_del_read	bufferevent_async.c	/^bev_async_del_read(struct bufferevent_async *beva)$/;"	f	file:
+./.tags_sorted_by_file:upcast_read	bufferevent_async.c	/^upcast_read(struct event_overlapped *eo)$/;"	f	file:
+./.tags_sorted_by_file:bio_bufferevent_read	bufferevent_openssl.c	/^bio_bufferevent_read(BIO *b, char *out, int outlen)$/;"	f	file:
+./.tags_sorted_by_file:bytes_to_read	bufferevent_openssl.c	/^bytes_to_read(struct bufferevent_openssl *bev)$/;"	f	file:
+./.tags_sorted_by_file:do_read	bufferevent_openssl.c	/^do_read(struct bufferevent_openssl *bev_ssl, int n_to_read) {$/;"	f	file:
+./.tags_sorted_by_file:bufferevent_get_max_to_read	bufferevent_ratelim.c	/^bufferevent_get_max_to_read(struct bufferevent *bev)$/;"	f
+./.tags_sorted_by_file:bufferevent_rate_limit_group_decrement_read	bufferevent_ratelim.c	/^bufferevent_rate_limit_group_decrement_read($/;"	f
+./.tags_sorted_by_file:nameserver_read	evdns.c	/^nameserver_read(struct nameserver *ns) {$/;"	f	file:
+./.tags_sorted_by_file:server_port_read	evdns.c	/^server_port_read(struct evdns_server_port *s) {$/;"	f	file:
+./.tags_sorted_by_file:evhttp_handle_chunked_read	http.c	/^evhttp_handle_chunked_read(struct evhttp_request *req, struct evbuffer *buf)$/;"	f	file:
+./.tags_sorted_by_file:evhttp_start_read	http.c	/^evhttp_start_read(struct evhttp_connection *evcon)$/;"	f
+./.tags_sorted_by_file:fifo_read	sample\event-test.c	/^fifo_read(evutil_socket_t fd, short event, void *arg)$/;"	f	file:
+./.tags_sorted_by_file:test_simpleread	test\regress.c	/^test_simpleread(void)$/;"	f	file:
+./.tags_sorted_by_file:basic_thread	test\regress_thread.c	/^basic_thread(void *arg)$/;"	f	file:
+./configure.ac:	read(fd[[0]], buf, sizeof(buf));
+./configure.ac:				cch = fread(buf, sizeof(buf), 1, fpC);
+./test/regress_thread.c:basic_thread(void *arg)
+./test/regress_bufferevent.c:		n = bufferevent_read(bev, buf, sizeof(buf)-1);
+./test/tinytest.c:		r = (int)read(outcome_pipe[0], b, 1);
+./test/regress.c:#define read(fd,buf,len) sgx_recv((fd),(buf),(int)(len),0)
+./test/regress.c:	len = read(fd, buf, sizeof(buf));
+./test/regress.c:	len = read(fd, buf, sizeof(buf));
+./test/regress.c:	len = read(fd, rbuf + roff, sizeof(rbuf) - roff);
+./test/regress.c:	len = read(fd, buf, sizeof(buf));
+./test/regress.c:test_simpleread(void)
+./test/regress.c:	if (read(fd, buf, sizeof(buf)) < 0) {
+./test/regress.c:	len = read(fd, buf, sizeof(buf));
+./test/regress_iocp.c:	evbuffer_commit_read(rbuf, nbytes);
+./test/regress_iocp.c:	tt_assert(!evbuffer_launch_read(rbuf, 2048, &rol));
+./test/regress_iocp.c:	n = bufferevent_read(bea2, buf, sizeof(buf)-1);
+./test/regress_buffer.c:	tt_int_op(evbuffer_read(src, pair[1], (int)strlen(data)), ==, datalen);
+./test/test-changelist.c:	timer->thread = GetCurrentThread();

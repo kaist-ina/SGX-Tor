@@ -1,0 +1,29 @@
+  Microsoft (R) Macro Assembler Version 11.00.61030.0
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+   Assembling: match686.asm
+   Assembling: inffas32.asm
+  Microsoft (R) Macro Assembler Version 11.00.61030.0
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  adler32.c
+  compress.c
+  crc32.c
+  deflate.c
+  gzclose.c
+  gzlib.c
+  gzread.c
+  gzwrite.c
+  infback.c
+  inffast.c
+  inflate.c
+  inftrees.c
+  ioapi.c
+  iowin32.c
+  trees.c
+  uncompr.c
+  zutil.c
+  unzip.c
+  zip.c
+LINK : warning LNK4068: /MACHINE not specified; defaulting to X86
+  zlibvc.vcxproj -> C:\Users\INA-SGX-USER\Desktop\TorVS2012\zlib-1.2.8\contrib\vstudio\vc11\x86\ZlibDllRelease\zlibwapi.lib

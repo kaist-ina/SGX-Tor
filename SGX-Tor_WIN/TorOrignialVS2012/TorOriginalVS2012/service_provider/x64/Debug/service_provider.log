@@ -1,0 +1,25 @@
+﻿Build started 2016-09-01 오전 12:48:47.
+     1>Project "C:\Users\INA-SGX-USER\Desktop\TorVS2012\TorOrignialVS2012\TorOriginalVS2012\service_provider\service_provider.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I..\sample_libcrypto /I"C:\Program Files (x86)\Intel\IntelSGXSDK\include" /I"C:\Program Files (x86)\Intel\IntelSGXSDK\include\epid" /I"C:\Program Files (x86)\Intel\IntelSGXSDK\include\ippcp" /Zi /nologo /W4 /WX /Od /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D SERVICE_PROVIDER_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt dllmain.cpp
+         dllmain.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I..\sample_libcrypto /I"C:\Program Files (x86)\Intel\IntelSGXSDK\include" /I"C:\Program Files (x86)\Intel\IntelSGXSDK\include\epid" /I"C:\Program Files (x86)\Intel\IntelSGXSDK\include\ippcp" /Zi /nologo /W4 /WX /Od /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D SERVICE_PROVIDER_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt ecp.cpp ias_ra.cpp network_ra.cpp service_provider.cpp
+         service_provider.cpp
+         network_ra.cpp
+         ias_ra.cpp
+         ecp.cpp
+         Default key derivation function is used.
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\INA-SGX-USER\Desktop\TorVS2012\TorOrignialVS2012\TorOriginalVS2012\x64\Debug\service_provider.dll" /INCREMENTAL /NOLOGO /LIBPATH:..\sample_libcrypto /LIBPATH:"C:\Program Files (x86)\Intel\IntelSGXSDK\\bin\x64\Debug" /WX sample_libcrypto.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libcmtd /DEF:"service_provider.def" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\INA-SGX-USER\Desktop\TorVS2012\TorOrignialVS2012\TorOriginalVS2012\x64\Debug\service_provider.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\INA-SGX-USER\Desktop\TorVS2012\TorOrignialVS2012\TorOriginalVS2012\x64\Debug\service_provider.lib" /MACHINE:X64 /DLL x64\Debug\dllmain.obj
+         x64\Debug\ecp.obj
+         x64\Debug\ias_ra.obj
+         x64\Debug\network_ra.obj
+         x64\Debug\service_provider.obj
+            Creating library C:\Users\INA-SGX-USER\Desktop\TorVS2012\TorOrignialVS2012\TorOriginalVS2012\x64\Debug\service_provider.lib and object C:\Users\INA-SGX-USER\Desktop\TorVS2012\TorOrignialVS2012\TorOriginalVS2012\x64\Debug\service_provider.exp
+         service_provider.vcxproj -> C:\Users\INA-SGX-USER\Desktop\TorVS2012\TorOrignialVS2012\TorOriginalVS2012\x64\Debug\service_provider.dll
+     1>Done Building Project "C:\Users\INA-SGX-USER\Desktop\TorVS2012\TorOrignialVS2012\TorOriginalVS2012\service_provider\service_provider.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.76
