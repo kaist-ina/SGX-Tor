@@ -4733,7 +4733,8 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
 
 if test "$GCC" = "yes" ; then
         # Enable many gcc warnings by default...
-        CFLAGS="$CFLAGS -Wall"
+        CFLAGS="$CFLAGS -Wall -fPIC"
+#        CFLAGS="$CFLAGS -Wall"
 	# And disable the strict-aliasing optimization, since it breaks
 	# our sockaddr-handling code in strange ways.
 	if test x$have_gcc295 = xyes; then
