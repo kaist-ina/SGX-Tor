@@ -7,9 +7,7 @@ This project will be published in NSDI'17.
 
 Build and run
 ------------
-
 ## Linux environment
-
 ### Install Intel SGX SDK for Linux:
 - See `(rootdir)/linux-driver/README.md` and `(rootdir)/linux-sdk/README.md`
 
@@ -19,7 +17,7 @@ $ cd (rootdir)/Enclave/TrustedLibrary/LibEvent_SGX
 $ ./configure
 $ make 
 $ cd (rootdir)/Enclave/TrustedLibrary/OpenSSL_SGX
-$ ./config -fPIC
+$ ./config -fPIC no-hw no-shared no-asm no-engine no-idea no-dso no-stdio no-posix-api no-ui no-sctp -DGETPID_IS_MEANINGLESSa no-dgram
 $ make
 $ cd (rootdir)/Enclave/TrustedLibrary/zlib-1.2.8
 $ make

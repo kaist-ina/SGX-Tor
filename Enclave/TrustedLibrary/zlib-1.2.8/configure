@@ -720,6 +720,8 @@ EOF
   fi
 fi
 
+CFLAGS="$CFLAGS -fPIC"
+
 # see if we can hide zlib internal symbols that are linked between separate source files
 if test "$gcc" -eq 1; then
   echo >> configure.log

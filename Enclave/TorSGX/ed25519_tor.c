@@ -340,5 +340,5 @@ ed25519_donna_pubkey_from_curve25519_pubkey(unsigned char *out,
   return 0;
 }
 
-#include "test-internals.c"
+//#include "test-internals.c"
 
