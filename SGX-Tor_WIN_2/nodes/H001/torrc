@@ -1,0 +1,7 @@
+PidFile C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\H001\pid
+Log info file C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\H001\logs\info.log
+Log notice file C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\H001\logs\notice.log
+
+DataDirectory C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\H001
+HiddenServiceDir C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\H001
+HiddenServicePort 80 127.0.0.1:8000

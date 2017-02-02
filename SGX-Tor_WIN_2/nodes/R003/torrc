@@ -1,0 +1,14 @@
+ORPort 9001
+Nickname inaTorSGXTest
+RelayBandwidthRate 1024 MB
+RelayBandwidthBurst 1024 MB
+ContactInfo Seongmin dallas1004@gmail.com
+ExitPolicy reject *:*
+DataDirectory C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\R003
+Log info file C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\R003\logs\info.log
+Log notice file C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\R003\logs\notice.log
+
+### SGX will be die due to out of memory if below option is not set to 0 ###
+TestingEnableCellStatsEvent 0
+CellStatistics 0
+############################################################################

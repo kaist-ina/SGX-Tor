@@ -1,0 +1,7 @@
+start sublimetext2 "C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\001\torrc"
+start sublimetext2 "C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\002\torrc"
+start sublimetext2 "C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\003\torrc"
+start sublimetext2 "C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\004\torrc"
+start sublimetext2 "C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\005\torrc"
+start sublimetext2 "C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\006\torrc"
+start sublimetext2 "C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\001\torrc"

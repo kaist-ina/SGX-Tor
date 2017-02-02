@@ -1,0 +1,1 @@
+start python ina_set_fingerprint.py

@@ -1,0 +1,652 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Prerelease|Win32">
+      <Configuration>Prerelease</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Prerelease|x64">
+      <Configuration>Prerelease</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Simulation|Win32">
+      <Configuration>Simulation</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Simulation|x64">
+      <Configuration>Simulation</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="address.c" />
+    <ClCompile Include="addressmap.c" />
+    <ClCompile Include="aes.c" />
+    <ClCompile Include="backtrace.c" />
+    <ClCompile Include="blinding.c" />
+    <ClCompile Include="buffers.c" />
+    <ClCompile Include="channel.c" />
+    <ClCompile Include="channeltls.c" />
+    <ClCompile Include="circpathbias.c" />
+    <ClCompile Include="circuitbuild.c" />
+    <ClCompile Include="circuitlist.c" />
+    <ClCompile Include="circuitmux.c" />
+    <ClCompile Include="circuitmux_ewma.c" />
+    <ClCompile Include="circuitstats.c" />
+    <ClCompile Include="circuituse.c" />
+    <ClCompile Include="command.c" />
+    <ClCompile Include="compat.c" />
+    <ClCompile Include="compat_libevent.c" />
+    <ClCompile Include="compat_threads.c" />
+    <ClCompile Include="compat_winthreads.c" />
+    <ClCompile Include="config.c" />
+    <ClCompile Include="confparse.c" />
+    <ClCompile Include="connection.c" />
+    <ClCompile Include="connection_edge.c" />
+    <ClCompile Include="connection_or.c" />
+    <ClCompile Include="container.c" />
+    <ClCompile Include="control.c" />
+    <ClCompile Include="cpuworker.c" />
+    <ClCompile Include="crypto.c" />
+    <ClCompile Include="crypto_curve25519.c" />
+    <ClCompile Include="crypto_ed25519.c" />
+    <ClCompile Include="crypto_format.c" />
+    <ClCompile Include="crypto_pwbox.c" />
+    <ClCompile Include="crypto_s2k.c" />
+    <ClCompile Include="csiphash.c" />
+    <ClCompile Include="curve25519-donna.c" />
+    <ClCompile Include="dircollate.c" />
+    <ClCompile Include="directory.c" />
+    <ClCompile Include="dirserv.c" />
+    <ClCompile Include="dirvote.c" />
+    <ClCompile Include="di_ops.c" />
+    <ClCompile Include="dns.c" />
+    <ClCompile Include="dnsserv.c" />
+    <ClCompile Include="ed25519_cert.c" />
+    <ClCompile Include="ed25519_tor.c" />
+    <ClCompile Include="entrynodes.c" />
+    <ClCompile Include="ext_orport.c" />
+    <ClCompile Include="fe_0.c" />
+    <ClCompile Include="fe_1.c" />
+    <ClCompile Include="fe_add.c" />
+    <ClCompile Include="fe_cmov.c" />
+    <ClCompile Include="fe_copy.c" />
+    <ClCompile Include="fe_frombytes.c" />
+    <ClCompile Include="fe_invert.c" />
+    <ClCompile Include="fe_isnegative.c" />
+    <ClCompile Include="fe_isnonzero.c" />
+    <ClCompile Include="fe_mul.c" />
+    <ClCompile Include="fe_neg.c" />
+    <ClCompile Include="fe_pow22523.c" />
+    <ClCompile Include="fe_sq.c" />
+    <ClCompile Include="fe_sq2.c" />
+    <ClCompile Include="fe_sub.c" />
+    <ClCompile Include="fe_tobytes.c" />
+    <ClCompile Include="fp_pair.c" />
+    <ClCompile Include="geoip.c" />
+    <ClCompile Include="ge_add.c" />
+    <ClCompile Include="ge_double_scalarmult.c" />
+    <ClCompile Include="ge_frombytes.c" />
+    <ClCompile Include="ge_madd.c" />
+    <ClCompile Include="ge_msub.c" />
+    <ClCompile Include="ge_p1p1_to_p2.c" />
+    <ClCompile Include="ge_p1p1_to_p3.c" />
+    <ClCompile Include="ge_p2_0.c" />
+    <ClCompile Include="ge_p2_dbl.c" />
+    <ClCompile Include="ge_p3_0.c" />
+    <ClCompile Include="ge_p3_dbl.c" />
+    <ClCompile Include="ge_p3_tobytes.c" />
+    <ClCompile Include="ge_p3_to_cached.c" />
+    <ClCompile Include="ge_p3_to_p2.c" />
+    <ClCompile Include="ge_precomp_0.c" />
+    <ClCompile Include="ge_scalarmult_base.c" />
+    <ClCompile Include="ge_sub.c" />
+    <ClCompile Include="ge_tobytes.c" />
+    <ClCompile Include="hibernate.c" />
+    <ClCompile Include="keyconv.c" />
+    <ClCompile Include="keypair.c" />
+    <ClCompile Include="keypin.c" />
+    <ClCompile Include="link_handshake.c" />
+    <ClCompile Include="log.c" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="memarea.c" />
+    <ClCompile Include="microdesc.c" />
+    <ClCompile Include="networkstatus.c" />
+    <ClCompile Include="nodelist.c" />
+    <ClCompile Include="ntmain.c" />
+    <ClCompile Include="onion.c" />
+    <ClCompile Include="onion_fast.c" />
+    <ClCompile Include="onion_ntor.c" />
+    <ClCompile Include="onion_tap.c" />
+    <ClCompile Include="open.c" />
+    <ClCompile Include="policies.c" />
+    <ClCompile Include="procmon.c" />
+    <ClCompile Include="pwbox.c" />
+    <ClCompile Include="reasons.c" />
+    <ClCompile Include="relay.c" />
+    <ClCompile Include="rendcache.c" />
+    <ClCompile Include="rendclient.c" />
+    <ClCompile Include="rendcommon.c" />
+    <ClCompile Include="rendmid.c" />
+    <ClCompile Include="rendservice.c" />
+    <ClCompile Include="rephist.c" />
+    <ClCompile Include="replaycache.c" />
+    <ClCompile Include="router.c" />
+    <ClCompile Include="routerkeys.c" />
+    <ClCompile Include="routerlist.c" />
+    <ClCompile Include="routerparse.c" />
+    <ClCompile Include="routerset.c" />
+    <ClCompile Include="sandbox.c" />
+    <ClCompile Include="scheduler.c" />
+    <ClCompile Include="sc_muladd.c" />
+    <ClCompile Include="sc_reduce.c" />
+    <ClCompile Include="sign.c" />
+    <ClCompile Include="statefile.c" />
+    <ClCompile Include="status.c" />
+    <ClCompile Include="torcert.c" />
+    <ClCompile Include="torgzip.c" />
+    <ClCompile Include="TorSGX_u.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Prerelease|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Simulation|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Simulation|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Prerelease|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="tortls.c" />
+    <ClCompile Include="tor_main.cpp" />
+    <ClCompile Include="transports.c" />
+    <ClCompile Include="trunnel.c" />
+    <ClCompile Include="util.c" />
+    <ClCompile Include="util_format.c" />
+    <ClCompile Include="util_process.c" />
+    <ClCompile Include="workqueue.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\TorSGX\TorSGX.edl">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(SGXSDKInstallPath)\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\TorSGX\TorSGX.edl" --search-path ".\..\TorSGX%3b$(SGXSDKInstallPath)\include"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Creating untrusted proxy/bridge routines</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)%(Filename)_u.h;$(ProjectDir)%(Filename)_u.c;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Prerelease|x64'">"$(SGXSDKInstallPath)\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\TorSGX\TorSGX.edl" --search-path ".\..\TorSGX%3b$(SGXSDKInstallPath)\include"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Prerelease|x64'">Creating untrusted proxy/bridge routines</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Prerelease|x64'">$(ProjectDir)%(Filename)_u.h;$(ProjectDir)%(Filename)_u.c;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Simulation|x64'">"$(SGXSDKInstallPath)\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\TorSGX\TorSGX.edl" --search-path ".\..\TorSGX%3b$(SGXSDKInstallPath)\include"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Simulation|x64'">Creating untrusted proxy/bridge routines</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Simulation|x64'">$(ProjectDir)%(Filename)_u.h;$(ProjectDir)%(Filename)_u.c;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Simulation|Win32'">"$(SGXSDKInstallPath)\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\TorSGX\TorSGX.edl" --search-path ".\..\TorSGX%3b$(SGXSDKInstallPath)\include"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Simulation|Win32'">Creating untrusted proxy/bridge routines</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Simulation|Win32'">$(ProjectDir)%(Filename)_u.h;$(ProjectDir)%(Filename)_u.c;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Prerelease|Win32'">"$(SGXSDKInstallPath)\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\TorSGX\TorSGX.edl" --search-path ".\..\TorSGX%3b$(SGXSDKInstallPath)\include"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Prerelease|Win32'">Creating untrusted proxy/bridge routines</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Prerelease|Win32'">$(ProjectDir)%(Filename)_u.h;$(ProjectDir)%(Filename)_u.c;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(SGXSDKInstallPath)\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\TorSGX\TorSGX.edl" --search-path ".\..\TorSGX%3b$(SGXSDKInstallPath)\include"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Creating untrusted proxy/bridge routines</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)%(Filename)_u.h;$(ProjectDir)%(Filename)_u.c;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(SGXSDKInstallPath)\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\TorSGX\TorSGX.edl" --search-path ".\..\TorSGX%3b$(SGXSDKInstallPath)\include"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Creating untrusted proxy/bridge routines</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)%(Filename)_u.h;$(ProjectDir)%(Filename)_u.c;%(Outputs)</Outputs>
+    </CustomBuild>
+    <None Include="ciphers.inc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="address.h" />
+    <ClInclude Include="addressmap.h" />
+    <ClInclude Include="aes.h" />
+    <ClInclude Include="api.h" />
+    <ClInclude Include="backtrace.h" />
+    <ClInclude Include="base.h" />
+    <ClInclude Include="base2.h" />
+    <ClInclude Include="buffers.h" />
+    <ClInclude Include="channel.h" />
+    <ClInclude Include="channeltls.h" />
+    <ClInclude Include="circpathbias.h" />
+    <ClInclude Include="circuitbuild.h" />
+    <ClInclude Include="circuitlist.h" />
+    <ClInclude Include="circuitmux.h" />
+    <ClInclude Include="circuitmux_ewma.h" />
+    <ClInclude Include="circuitstats.h" />
+    <ClInclude Include="circuituse.h" />
+    <ClInclude Include="command.h" />
+    <ClInclude Include="compat.h" />
+    <ClInclude Include="compat_libevent.h" />
+    <ClInclude Include="compat_threads.h" />
+    <ClInclude Include="config.h" />
+    <ClInclude Include="confparse.h" />
+    <ClInclude Include="connection.h" />
+    <ClInclude Include="connection_edge.h" />
+    <ClInclude Include="connection_or.h" />
+    <ClInclude Include="container.h" />
+    <ClInclude Include="control.h" />
+    <ClInclude Include="cpuworker.h" />
+    <ClInclude Include="crypto.h" />
+    <ClInclude Include="crypto_curve25519.h" />
+    <ClInclude Include="crypto_ed25519.h" />
+    <ClInclude Include="crypto_format.h" />
+    <ClInclude Include="crypto_hash_sha512.h" />
+    <ClInclude Include="crypto_int32.h" />
+    <ClInclude Include="crypto_int64.h" />
+    <ClInclude Include="crypto_pwbox.h" />
+    <ClInclude Include="crypto_s2k.h" />
+    <ClInclude Include="crypto_sign.h" />
+    <ClInclude Include="crypto_uint32.h" />
+    <ClInclude Include="crypto_uint64.h" />
+    <ClInclude Include="crypto_verify_32.h" />
+    <ClInclude Include="curve25519-donna-32bit.h" />
+    <ClInclude Include="curve25519-donna-64bit.h" />
+    <ClInclude Include="curve25519-donna-helpers.h" />
+    <ClInclude Include="curve25519-donna-sse2.h" />
+    <ClInclude Include="d.h" />
+    <ClInclude Include="d2.h" />
+    <ClInclude Include="dircollate.h" />
+    <ClInclude Include="directory.h" />
+    <ClInclude Include="dirserv.h" />
+    <ClInclude Include="dirvote.h" />
+    <ClInclude Include="di_ops.h" />
+    <ClInclude Include="dns.h" />
+    <ClInclude Include="dnsserv.h" />
+    <ClInclude Include="dns_structs.h" />
+    <ClInclude Include="ed25519-donna-32bit-sse2.h" />
+    <ClInclude Include="ed25519-donna-32bit-tables.h" />
+    <ClInclude Include="ed25519-donna-64bit-sse2.h" />
+    <ClInclude Include="ed25519-donna-64bit-tables.h" />
+    <ClInclude Include="ed25519-donna-64bit-x86-32bit.h" />
+    <ClInclude Include="ed25519-donna-64bit-x86.h" />
+    <ClInclude Include="ed25519-donna-basepoint-table.h" />
+    <ClInclude Include="ed25519-donna-batchverify.h" />
+    <ClInclude Include="ed25519-donna-impl-base.h" />
+    <ClInclude Include="ed25519-donna-impl-sse2.h" />
+    <ClInclude Include="ed25519-donna-portable-identify.h" />
+    <ClInclude Include="ed25519-donna-portable.h" />
+    <ClInclude Include="ed25519-donna.h" />
+    <ClInclude Include="ed25519-hash-custom.h" />
+    <ClInclude Include="ed25519-hash.h" />
+    <ClInclude Include="ed25519-randombytes-custom.h" />
+    <ClInclude Include="ed25519-randombytes.h" />
+    <ClInclude Include="ed25519.h" />
+    <ClInclude Include="ed25519_cert.h" />
+    <ClInclude Include="ed25519_donna_tor.h" />
+    <ClInclude Include="ed25519_ref10.h" />
+    <ClInclude Include="entrynodes.h" />
+    <ClInclude Include="eventdns.h" />
+    <ClInclude Include="eventdns_tor.h" />
+    <ClInclude Include="ext_orport.h" />
+    <ClInclude Include="fe.h" />
+    <ClInclude Include="fp_pair.h" />
+    <ClInclude Include="ge.h" />
+    <ClInclude Include="geoip.h" />
+    <ClInclude Include="ge_add.h" />
+    <ClInclude Include="ge_madd.h" />
+    <ClInclude Include="ge_msub.h" />
+    <ClInclude Include="ge_p2_dbl.h" />
+    <ClInclude Include="ge_sub.h" />
+    <ClInclude Include="hibernate.h" />
+    <ClInclude Include="ht.h" />
+    <ClInclude Include="keypin.h" />
+    <ClInclude Include="link_handshake.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="memarea.h" />
+    <ClInclude Include="microdesc.h" />
+    <ClInclude Include="modm-donna-32bit.h" />
+    <ClInclude Include="modm-donna-64bit.h" />
+    <ClInclude Include="networkstatus.h" />
+    <ClInclude Include="nodelist.h" />
+    <ClInclude Include="ntmain.h" />
+    <ClInclude Include="onion.h" />
+    <ClInclude Include="onion_fast.h" />
+    <ClInclude Include="onion_ntor.h" />
+    <ClInclude Include="onion_tap.h" />
+    <ClInclude Include="or.h" />
+    <ClInclude Include="orconfig.h" />
+    <ClInclude Include="policies.h" />
+    <ClInclude Include="pow22523.h" />
+    <ClInclude Include="pow225521.h" />
+    <ClInclude Include="procmon.h" />
+    <ClInclude Include="pwbox.h" />
+    <ClInclude Include="randombytes.h" />
+    <ClInclude Include="reasons.h" />
+    <ClInclude Include="regression.h" />
+    <ClInclude Include="relay.h" />
+    <ClInclude Include="rendcache.h" />
+    <ClInclude Include="rendclient.h" />
+    <ClInclude Include="rendcommon.h" />
+    <ClInclude Include="rendmid.h" />
+    <ClInclude Include="rendservice.h" />
+    <ClInclude Include="rephist.h" />
+    <ClInclude Include="replaycache.h" />
+    <ClInclude Include="router.h" />
+    <ClInclude Include="routerkeys.h" />
+    <ClInclude Include="routerlist.h" />
+    <ClInclude Include="routerparse.h" />
+    <ClInclude Include="routerset.h" />
+    <ClInclude Include="sandbox.h" />
+    <ClInclude Include="sc.h" />
+    <ClInclude Include="scheduler.h" />
+    <ClInclude Include="siphash.h" />
+    <ClInclude Include="sqrtm1.h" />
+    <ClInclude Include="statefile.h" />
+    <ClInclude Include="status.h" />
+    <ClInclude Include="test-ticks.h" />
+    <ClInclude Include="testsupport.h" />
+    <ClInclude Include="tinytest.h" />
+    <ClInclude Include="tinytest_macros.h" />
+    <ClInclude Include="torcert.h" />
+    <ClInclude Include="torgzip.h" />
+    <ClInclude Include="torint.h" />
+    <ClInclude Include="torlog.h" />
+    <ClInclude Include="TorSGX_u.h" />
+    <ClInclude Include="tortls.h" />
+    <ClInclude Include="tor_queue.h" />
+    <ClInclude Include="transports.h" />
+    <ClInclude Include="trunnel-impl.h" />
+    <ClInclude Include="trunnel-local.h" />
+    <ClInclude Include="trunnel.h" />
+    <ClInclude Include="util.h" />
+    <ClInclude Include="util_format.h" />
+    <ClInclude Include="util_process.h" />
+    <ClInclude Include="workqueue.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3A209545-E6D4-46D0-A478-C3B53CDD606B}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>TorVS2012</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Simulation|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Simulation|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prerelease|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prerelease|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Simulation|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Simulation|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Prerelease|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Prerelease|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Simulation|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Simulation|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prerelease|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prerelease|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SGXSDKInstallPath)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SGXSDKInstallPath)\bin\$(Platform)\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sgx_urts.lib;sgx_uae_service.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Simulation|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SGXSDKInstallPath)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SGXSDKInstallPath)\bin\$(Platform)\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sgx_urts_sim.lib;sgx_uae_service_sim.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SGXSDKInstallPath)\include;$(ProjectDir)\..\..\zlib-1.2.8;$(ProjectDir)\..\..\OpenSSL_APP\include;$(ProjectDir)\..\..\LibEvent_APP\WIN32-Code;$(ProjectDir)\..\..\LibEvent_APP\include;$(ProjectDir)\..\..\LibEvent_APP;$(SolutionDir)\service_provider;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>Default</CompileAs>
+      <AdditionalOptions>-DED25519_SUFFIX=_donna</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SGXSDKInstallPath)\bin\$(Platform)\Debug;$(ProjectDir)\..\..\LibEvent_APP;$(ProjectDir)\..\..\zlib-1.2.8\contrib\vstudio\vc11\x64\ZlibDllRelease;$(ProjectDir)\..\..\OpenSSL_APP\out32;$(SolutionDir)\x64\Debug;$(SolutionDir)\sample_libcrypto;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libeay32.lib;ssleay32.lib;zlibwapi.lib;libevent.lib;libevent_core.lib;libevent_extras.lib;service_provider.lib;sgx_ukey_exchange.lib;sgx_urts.lib;sgx_uae_service.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>libcmt.lib;msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Simulation|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SGXSDKInstallPath)\include;C:\Users\INA-SGX-USER\Desktop\TorVS2012\libevent-2.0.22-stable\include;C:\Users\INA-SGX-USER\Desktop\TorVS2012\libevent-2.0.22-stable\WIN32-Code;C:\Users\INA-SGX-USER\Desktop\TorVS2012\libevent-2.0.22-stable;C:\Users\INA-SGX-USER\Desktop\TorVS2012\zlib-1.2.8;C:\Users\INA-SGX-USER\Desktop\TorVS2012\OpenSSL_no_stdio\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsC</CompileAs>
+      <AdditionalOptions>-DED25519_SUFFIX=_donna</AdditionalOptions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SGXSDKInstallPath)\bin\$(Platform)\Debug;C:\Users\INA-SGX-USER\Desktop\TorVS2012\libevent-2.0.22-stable;C:\Users\INA-SGX-USER\Desktop\TorVS2012\zlib-1.2.8\contrib\vstudio\vc11\x64\ZlibDllRelease;C:\Users\INA-SGX-USER\Desktop\TorVS2012\OpenSSL_no_stdio\out32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libeay32.lib;ssleay32.lib;libevent.lib;libevent_core.lib;libevent_extras.lib;zlibwapi.lib;sgx_urts_sim.lib;sgx_uae_service_sim.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SGXSDKInstallPath)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SGXSDKInstallPath)\bin\$(Platform)\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sgx_urts.lib;sgx_uae_service.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Prerelease|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>EDEBUG;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SGXSDKInstallPath)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SGXSDKInstallPath)\bin\$(Platform)\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sgx_urts.lib;sgx_uae_service.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SGXSDKInstallPath)\include;$(ProjectDir)\..\..\zlib-1.2.8;$(ProjectDir)\..\..\OpenSSL_APP\include;$(ProjectDir)\..\..\LibEvent_APP\WIN32-Code;$(ProjectDir)\..\..\LibEvent_APP\include;$(ProjectDir)\..\..\LibEvent_APP;$(SolutionDir)\service_provider;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-DED25519_SUFFIX=_donna</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>false</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SGXSDKInstallPath)\bin\$(Platform)\Release;$(ProjectDir)\..\..\LibEvent_APP;$(ProjectDir)\..\..\zlib-1.2.8\contrib\vstudio\vc11\x64\ZlibDllRelease;$(ProjectDir)\..\..\OpenSSL_APP\out32;$(SolutionDir)\x64\Release;$(SolutionDir)\sample_libcrypto;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libeay32.lib;ssleay32.lib;zlibwapi.lib;libevent.lib;libevent_core.lib;libevent_extras.lib;service_provider.lib;sgx_ukey_exchange.lib;sgx_urts.lib;sgx_uae_service.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>libcmt.lib;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Prerelease|x64'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>EDEBUG;WIN32;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SGXSDKInstallPath)\include;$(ProjectDir)\..\..\zlib-1.2.8;$(ProjectDir)\..\..\OpenSSL_APP\include;$(ProjectDir)\..\..\LibEvent_APP\WIN32-Code;$(ProjectDir)\..\..\LibEvent_APP\include;$(ProjectDir)\..\..\LibEvent_APP;$(SolutionDir)\service_provider;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>-DED25519_SUFFIX=_donna</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SGXSDKInstallPath)\bin\$(Platform)\Release;$(ProjectDir)\..\..\LibEvent_APP;$(ProjectDir)\..\..\zlib-1.2.8\contrib\vstudio\vc11\x64\ZlibDllRelease;$(ProjectDir)\..\..\OpenSSL_APP\out32;$(SolutionDir)\sample_libcrypto;$(SolutionDir)\x64\Prerelease;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libeay32.lib;ssleay32.lib;zlibwapi.lib;libevent.lib;libevent_core.lib;libevent_extras.lib;service_provider.lib;sgx_urts.lib;sgx_uae_service.lib;sgx_ukey_exchange.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>libcmt.lib;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

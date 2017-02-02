@@ -1,0 +1,62 @@
+network-status-version 3 microdesc
+vote-status consensus
+consensus-method 21
+valid-after 2016-09-21 20:05:00
+fresh-until 2016-09-21 20:10:00
+valid-until 2016-09-21 20:20:00
+voting-delay 20 20
+client-versions 
+server-versions 
+known-flags Authority Exit Fast Guard HSDir Running Stable V2Dir Valid
+dir-source inaTorAuth2 89A5E09A2AA217D3717A48495CA600C5E4D2A6D8 10.0.0.7 10.0.0.7 7002 5002
+contact auth0@test.test
+vote-digest B28CA736A53ADA5CB9617CB66A44BF1BBF9835D9
+dir-source inaTorAuth1 B6E3B661643C9E290C3BAFF45443AF32A2F23D8F 10.0.0.6 10.0.0.6 7001 5001
+contact auth0@test.test
+vote-digest 3EFF800EA704823418D33E70970B09D3A9C4CC94
+dir-source inaTorAuth3 E23503C7630E43BA9C2F80FA603534170662A63C 10.0.0.8 10.0.0.8 7003 5003
+contact auth0@test.test
+vote-digest 7DEB99224395B50575C4742AA5AB1CBFE8F6C080
+r inaTorAuth2 SgG2OHMYXxyQxZsJhXNgdLK9arI 2016-09-21 19:50:37 10.0.0.7 5002 7002
+m YHFbIESMPketTifNtqHo5cDGGx1w+HBftKP9nnlaUuk
+s Authority Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r inaTorAuth1 WUqOqyos01+0jy1lfmZqqchAnzY 2016-09-21 19:53:18 10.0.0.6 5001 7001
+m RY074m3ORrvj1UGPHFMnCLlfAoaTpn5E7LG4kqCk1mw
+s Authority Fast Guard HSDir Running Stable V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+r inaTorAuth3 vvP85KWMFwibbeX+1EXzlq3GwAc 2016-09-21 20:00:25 10.0.0.8 5003 7003
+m var38fZduZ1QVks1+oyfQMWkd2ZlHc1cKfk8tIBlF+g
+s Authority Fast Guard Running V2Dir Valid
+v Tor 0.2.7.6
+w Bandwidth=0 Unmeasured=1
+directory-footer
+directory-signature sha256 89A5E09A2AA217D3717A48495CA600C5E4D2A6D8 E5CD0D76BE3024C680DB11B1DBEBC89AA14FFD77
+-----BEGIN SIGNATURE-----
+y4fZiqpkxLziPLVji5JWWdVLDlTLgs4G7JRzbdBU17wKLX9TrWE4o9ggnPkMREFB
+LmA9rBw/FAkyikVcriUGWpPsJmG5CosaBYom4OXyS7qx8z39tgl/9mqxOMlS9r5S
+jtcUeu5Gqv51AYjKPV73I2Niwrj5h6T4lZQBLgnN2dgX/sIVHDuDz3n+LRl9f8dE
+Eg98o2X00/1vRuoHGtWJyE5/oU4mjQrJhXzae09YvToqGGcHAAuwPXmYnD8+9Zfd
+vlxtK1ryLimEvqmQT05kW1hoSAKh0IBwTM3MPd1DxyUUs2O82fE9QK6uoxIRfIYF
+LIBqHZ9fxLLJZJ5sDi2NIA==
+-----END SIGNATURE-----
+directory-signature sha256 B6E3B661643C9E290C3BAFF45443AF32A2F23D8F 7AED2D2EB525E3C6AFFAA5446BC0185311E4287C
+-----BEGIN SIGNATURE-----
+nNaAVQYyojir/lTkAnB2yNeEq+2AvWQXGKcpY46RPpCrWqJX03RxEt/4q+ZjgpDd
+ZTrkAR121JF3d+lyBrXD6L0kqjO04lKdWFK6lZN6XIWhOEsDBHSbCrQRHGpXw8tB
+ogkrJAIwSokTy0ri5JW23QxtxHWfPEIu8fFKCyZ+Q6/RBAKZgL5F/85dnHytuZq2
+mqL6Btn9Iz+6Wu9nmHKmbJUULSb8aibESPJ+lZWRvivLLaUjC7N4aMt7FfI1g1dr
+O1jARB9/dlnfSzi0dlmCJAs3H8PCeOmTwlgJF9yxiMwllO89kgc3kimN5l14GAFR
+vrmtjhMFQU2N5NQt4txkqw==
+-----END SIGNATURE-----
+directory-signature sha256 E23503C7630E43BA9C2F80FA603534170662A63C 84CE03AF5142FCCEFA6F62CBFB7BBE68A732CBEC
+-----BEGIN SIGNATURE-----
+JJOl2e5r1XAIz7nH5uQH/uF+40F6EfaNFiN1mgXSigpyr8zW2pEhn9334IPH8es9
+1+pI7Z+7tq4shQ5040sq7ezLH2i1j4/hyEewsm3bEWt/PxgRJe919Dd0z8RAOwqN
+0f1VvKHMZiPT64BhDmuj1/6qzgQhImud9Lwn2a4tP94Pz3yg1ACMbfk/OzwNVgeO
+pjf7dbc9iJw4xvVP6J6Gx1SANnbf8cF4V3uV5RWf65NdTU2JH4h9eTY+ykmKIcgt
+RRuIIG63TJRjwf0ffTkkUKxj1fva8lvv3pykUx8wkHCoohya/chJXEmpxmKMd9GU
+0mJVrSUFqpfHh2u4Rl1vtA==
+-----END SIGNATURE-----

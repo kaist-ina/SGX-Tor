@@ -1,0 +1,1 @@
+nmake -f ms\nt.mak clean
