@@ -24,8 +24,8 @@ ALL_OBJS=$(CORE_OBJS) $(WIN_OBJS) $(EXTRA_OBJS)
 STATIC_LIBS=libevent_core.lib libevent_extras.lib libevent.lib
 
 
-all: static_libs tests
-
+all: static_libs 
+#all: static_libs tests
 static_libs: $(STATIC_LIBS)
 
 libevent_core.lib: $(CORE_OBJS) $(WIN_OBJS)
