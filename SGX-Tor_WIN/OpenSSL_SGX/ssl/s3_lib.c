@@ -4840,7 +4840,7 @@ static int ssl3_read_internal(SSL *s, void *buf, int len, int peek)
         ssl3_renegotiate_check(s);
     s->s3->in_read_app_data = 1;
     ret =
-        s->method->ssl_read_bytes(s, SSL3_RT_APPLICATION_DATA, NULL, buf, len,
+        s->method->ucheck_ssl_read_bytes(s, SSL3_RT_APPLICATION_DATA, NULL, buf, len,
                                   peek);
     if ((ret == -1) && (s->s3->in_read_app_data == 2)) {
         /*
@@ -4852,7 +4852,7 @@ static int ssl3_read_internal(SSL *s, void *buf, int len, int peek)
          */
         s->in_handshake++;
         ret =
-            s->method->ssl_read_bytes(s, SSL3_RT_APPLICATION_DATA, NULL, buf,
+          s->method->ucheck_ssl_read_bytes(s, SSL3_RT_APPLICATION_DATA, NULL, buf,
                                       len, peek);
         s->in_handshake--;
     } else

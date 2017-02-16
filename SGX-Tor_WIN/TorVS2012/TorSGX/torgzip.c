@@ -171,7 +171,7 @@ tor_gzip_compress(char **out, size_t *out_len,
     goto err;
   }
 
-  stream = real_tor_malloc_zero(sizeof(struct z_stream_s));
+  stream = tor_malloc_zero(sizeof(struct z_stream_s));
   stream->zalloc = Z_NULL;
   stream->zfree = Z_NULL;
   stream->opaque = NULL;
@@ -190,7 +190,7 @@ tor_gzip_compress(char **out, size_t *out_len,
   /* Guess 50% compression. */
   out_size = in_len / 2;
   if (out_size < 1024) out_size = 1024;
-	*out = real_tor_malloc(out_size);
+	*out = tor_malloc(out_size);
   stream->next_out = (unsigned char*)*out;
   stream->avail_out = (unsigned int)out_size;
 
@@ -211,7 +211,7 @@ tor_gzip_compress(char **out, size_t *out_len,
           log_warn(LD_GENERAL, "Size overflow in compression.");
           goto err;
         }
-				*out = real_tor_realloc(*out, out_size);
+				*out = tor_realloc(*out, out_size);
         stream->next_out = (unsigned char*)(*out + offset);
         if (out_size - offset > UINT_MAX) {
           log_warn(LD_BUG,  "Ran over unsigned int limit of zlib while "
@@ -239,13 +239,13 @@ tor_gzip_compress(char **out, size_t *out_len,
 #endif
   if (((size_t)stream->total_out) > out_size + 4097) {
     /* If we're wasting more than 4k, don't. */
-		*out = real_tor_realloc(*out, stream->total_out + 1);
+		*out = tor_realloc(*out, stream->total_out + 1);
   }
   if (deflateEnd(stream)!=Z_OK) {
     log_warn(LD_BUG, "Error freeing gzip structures");
     goto err;
   }
-	real_tor_free(stream);
+	tor_free(stream);
 
   if (is_compression_bomb(*out_len, in_len)) {
     log_warn(LD_BUG, "We compressed something and got an insanely high "
@@ -257,9 +257,9 @@ tor_gzip_compress(char **out, size_t *out_len,
  err:
   if (stream) {
     deflateEnd(stream);
-		real_tor_free(stream);
+		tor_free(stream);
   }
-	real_tor_free(*out);
+	tor_free(*out);
   return -1;
 }
 
@@ -299,7 +299,7 @@ tor_gzip_uncompress(char **out, size_t *out_len,
 
   *out = NULL;
 
-	stream = real_tor_malloc_zero(sizeof(struct z_stream_s));
+	stream = tor_malloc_zero(sizeof(struct z_stream_s));
   stream->zalloc = Z_NULL;
   stream->zfree = Z_NULL;
   stream->opaque = NULL;
@@ -318,7 +318,7 @@ tor_gzip_uncompress(char **out, size_t *out_len,
   if (out_size >= SIZE_T_CEILING || out_size > UINT_MAX)
     goto err;
 
-	*out = real_tor_malloc(out_size);
+	*out = tor_malloc(out_size);
   stream->next_out = (unsigned char*)*out;
   stream->avail_out = (unsigned int)out_size;
 
@@ -368,7 +368,7 @@ tor_gzip_uncompress(char **out, size_t *out_len,
           log_warn(LD_BUG, "Hit SIZE_T_CEILING limit while uncompressing.");
           goto err;
         }
-				*out = real_tor_realloc(*out, out_size);
+				*out = tor_realloc(*out, out_size);
         stream->next_out = (unsigned char*)(*out + offset);
         if (out_size - offset > UINT_MAX) {
           log_warn(LD_BUG,  "Ran over unsigned int limit of zlib while "
@@ -386,7 +386,7 @@ tor_gzip_uncompress(char **out, size_t *out_len,
  done:
   *out_len = stream->next_out - (unsigned char*)*out;
   r = inflateEnd(stream);
-	real_tor_free(stream);
+	tor_free(stream);
   if (r != Z_OK) {
     log_warn(LD_BUG, "Error freeing gzip structures");
     goto err;
@@ -394,17 +394,17 @@ tor_gzip_uncompress(char **out, size_t *out_len,
 
   /* NUL-terminate output. */
   if (out_size == *out_len)
-		*out = real_tor_realloc(*out, out_size + 1);
+		*out = tor_realloc(*out, out_size + 1);
   (*out)[*out_len] = '\0';
 
   return 0;
  err:
   if (stream) {
     inflateEnd(stream);
-		real_tor_free(stream);
+		tor_free(stream);
   }
   if (*out) {
-		real_tor_free(*out);
+		tor_free(*out);
   }
   return -1;
 }
@@ -463,7 +463,7 @@ tor_zlib_new(int compress, compress_method_t method,
    compression_level = HIGH_COMPRESSION;
  }
 
- out = real_tor_malloc_zero(sizeof(tor_zlib_state_t));
+ out = tor_malloc_zero(sizeof(tor_zlib_state_t));
  out->stream.zalloc = Z_NULL;
  out->stream.zfree = Z_NULL;
  out->stream.opaque = NULL;
@@ -486,7 +486,7 @@ tor_zlib_new(int compress, compress_method_t method,
  return out;
 
  err:
- real_tor_free(out);
+ tor_free(out);
  return NULL;
 }
 
@@ -567,7 +567,7 @@ tor_zlib_free(tor_zlib_state_t *state)
   else
     inflateEnd(&state->stream);
 
-	real_tor_free(state);
+	tor_free(state);
 }
 
 /** Return an approximate number of bytes used in RAM to hold a state with

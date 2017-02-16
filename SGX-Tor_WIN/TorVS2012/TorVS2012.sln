@@ -1,6 +1,8 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TorVS2012", "TorVS2012\TorVS2012.vcxproj", "{3A209545-E6D4-46D0-A478-C3B53CDD606B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TorSGX", "TorSGX\TorSGX.vcxproj", "{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}"
@@ -68,14 +70,14 @@ Global
 		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Prerelease|Win32.ActiveCfg = Prerelease|Win32
 		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Prerelease|Win32.Build.0 = Prerelease|Win32
 		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Prerelease|Win32.Deploy.0 = Prerelease|Win32
-		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Prerelease|x64.ActiveCfg = Prerelease|Win32
+		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Prerelease|x64.ActiveCfg = Prerelease|x64
 		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Release|Mixed Platforms.ActiveCfg = Release|Win32
 		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Release|Mixed Platforms.Deploy.0 = Release|Win32
 		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Release|Win32.ActiveCfg = Release|Win32
 		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Release|Win32.Build.0 = Release|Win32
 		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Release|Win32.Deploy.0 = Release|Win32
-		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Release|x64.ActiveCfg = Release|Win32
+		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Release|x64.ActiveCfg = Release|x64
 		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Simulation|Mixed Platforms.ActiveCfg = Simulation|Win32
 		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Simulation|Mixed Platforms.Build.0 = Simulation|Win32
 		{DA5AA498-5D3B-4FFC-85D1-74E7A067FE08}.Simulation|Mixed Platforms.Deploy.0 = Simulation|Win32

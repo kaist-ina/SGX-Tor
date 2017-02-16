@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -14,7 +14,7 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Generated Files">
-      <UniqueIdentifier>{3d1a79a4-eb90-48a0-838d-5a8dcae9155c}</UniqueIdentifier>
+      <UniqueIdentifier>{e72bc7c2-085d-48cb-a812-ea74cd6ef5c4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -417,11 +417,11 @@
     <ClCompile Include="tor_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TorSGX_u.c">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="compat_winthreads.c">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TorSGX_u.c">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

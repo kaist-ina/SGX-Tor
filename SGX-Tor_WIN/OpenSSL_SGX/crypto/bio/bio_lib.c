@@ -216,6 +216,36 @@ int BIO_read(BIO *b, void *out, int outl)
     return (i);
 }
 
+int ucheck_BIO_read(BIO *b, void *out, int outl)
+{
+    int i;
+    long (*cb) (BIO *, int, const char *, int, long, long);
+
+    if ((b == NULL) || (b->method == NULL) || (b->method->bread == NULL)) {
+        BIOerr(BIO_F_BIO_READ, BIO_R_UNSUPPORTED_METHOD);
+        return (-2);
+    }
+
+    cb = b->callback;
+    if ((cb != NULL) &&
+        ((i = (int)cb(b, BIO_CB_READ, out, outl, 0L, 1L)) <= 0))
+        return (i);
+
+    if (!b->init) {
+        BIOerr(BIO_F_BIO_READ, BIO_R_UNINITIALIZED);
+        return (-2);
+    }
+
+    i = b->method->ucheck_bread(b, out, outl);
+
+    if (i > 0)
+        b->num_read += (uint64_t)i;
+
+    if (cb != NULL)
+        i = (int)cb(b, BIO_CB_READ | BIO_CB_RETURN, out, outl, 0L, (long)i);
+    return (i);
+}
+
 int BIO_write(BIO *b, const void *in, int inl)
 {
     int i;

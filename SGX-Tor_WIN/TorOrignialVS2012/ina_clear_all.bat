@@ -112,3 +112,17 @@ erase ..\nodes\C001\lock
 erase ..\nodes\C001\pid
 erase ..\nodes\C001\state
 erase /Q ..\nodes\C001\keys\*
+
+erase ..\nodes\H001\logs\notice.log
+erase ..\nodes\H001\logs\info.log
+erase ..\nodes\H001\cached-certs
+erase ..\nodes\H001\cached-consensus
+erase ..\nodes\H001\cached-descriptors
+erase ..\nodes\H001\cached-descriptors.new
+erase ..\nodes\H001\cached-microdesc-consensus
+erase ..\nodes\H001\cached-microdescs.new
+erase ..\nodes\H001\lock
+erase ..\nodes\H001\private_key
+erase ..\nodes\H001\pid
+erase ..\nodes\H001\state
+erase /Q ..\nodes\H001\keys\*

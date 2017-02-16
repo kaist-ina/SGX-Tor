@@ -1,5 +1,11 @@
 TestingTorNetwork 1
 AssumeReachable 1
+CountPrivateBandwidth 0
+
+### SGX will be die due to out of memory if below option is not set to 0 ###
+TestingEnableCellStatsEvent 0
+CellStatistics 0
+############################################################################
 
 DataDirectory C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\R001
 RunAsDaemon 1
