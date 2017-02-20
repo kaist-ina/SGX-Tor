@@ -167,6 +167,7 @@ typedef enum _status_t
 
 extern sgx_status_t SGXAPI sgx_read_rand(unsigned char *rand, size_t length_in_bytes);
 extern int sgx_recv(int fd, char *out, int out_len, int flags);
+extern int sgx_ucheck_recv(int fd, char *out, int out_len, int flags);
 extern int sgx_send(int fd, char *in, int in_len, int flags);
 extern int sgx_close(int fd);
 extern int sgx_shutdown(int fd);

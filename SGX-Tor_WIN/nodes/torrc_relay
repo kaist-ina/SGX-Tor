@@ -208,3 +208,8 @@ RelayBandwidthRate 1024 KB
 RelayBandwidthBurst 1024 KB
 ContactInfo Seongmin dallas1004@gmail.com
 ExitPolicy reject *:*
+
+### SGX will be die due to out of memory if below option is not set to 0 ###
+TestingEnableCellStatsEvent 0
+CellStatistics 0
+############################################################################

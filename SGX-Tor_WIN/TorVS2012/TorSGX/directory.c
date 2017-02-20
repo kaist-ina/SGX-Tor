@@ -1630,7 +1630,7 @@ connection_dir_client_reached_eof(dir_connection_t *conn)
                           &compression, &reason) < 0) {
     log_warn(LD_HTTP,"Unparseable headers (server '%s:%d'). Closing.",
              conn->base_.address, conn->base_.port);
-    real_tor_free(body); real_tor_free(headers);
+    tor_free(body); tor_free(headers);
     return -1;
   }
   if (!reason) reason = tor_strdup("[no reason given]");
@@ -1696,7 +1696,7 @@ connection_dir_client_reached_eof(dir_connection_t *conn)
     if ((ds = router_get_fallback_dirserver_by_digest(id_digest)))
       ds->fake_status.last_dir_503_at = now;
 
-		real_tor_free(body); real_tor_free(headers); tor_free(reason);
+		tor_free(body); tor_free(headers); tor_free(reason);
     return -1;
   }
 
@@ -1748,11 +1748,11 @@ connection_dir_client_reached_eof(dir_connection_t *conn)
       log_fn(LOG_PROTOCOL_WARN, LD_HTTP,
              "Unable to decompress HTTP body (server '%s:%d').",
              conn->base_.address, conn->base_.port);
-			real_tor_free(body); real_tor_free(headers); tor_free(reason);
+			tor_free(body); tor_free(headers); tor_free(reason);
       return -1;
     }
     if (new_body) {
-      real_tor_free(body);
+      tor_free(body);
       body = new_body;
       body_len = new_len;
       was_compressed = 1;
@@ -1769,7 +1769,7 @@ connection_dir_client_reached_eof(dir_connection_t *conn)
           "'%s:%d' while fetching consensus directory.",
            status_code, escaped(reason), conn->base_.address,
            conn->base_.port);
-			real_tor_free(body); real_tor_free(headers); tor_free(reason);
+			tor_free(body); tor_free(headers); tor_free(reason);
       networkstatus_consensus_download_failed(status_code, flavname);
       return -1;
     }
@@ -1780,7 +1780,7 @@ connection_dir_client_reached_eof(dir_connection_t *conn)
              "Unable to load %s consensus directory downloaded from "
              "server '%s:%d'. I'll try again soon.",
              flavname, conn->base_.address, conn->base_.port);
-			real_tor_free(body); real_tor_free(headers); tor_free(reason);
+			tor_free(body); tor_free(headers); tor_free(reason);
       networkstatus_consensus_download_failed(0, flavname);
       return -1;
     }
@@ -1800,7 +1800,7 @@ connection_dir_client_reached_eof(dir_connection_t *conn)
            status_code, escaped(reason), conn->base_.address,
            conn->base_.port, conn->requested_resource);
       connection_dir_download_cert_failed(conn, status_code);
-			real_tor_free(body); real_tor_free(headers); tor_free(reason);
+			tor_free(body); tor_free(headers); tor_free(reason);
       return -1;
     }
     log_info(LD_DIR,"Received authority certificates (size %d) from server "
@@ -1846,7 +1846,7 @@ connection_dir_client_reached_eof(dir_connection_t *conn)
              "'%s:%d' while fetching \"/tor/status-vote/next/%s.z\".",
              status_code, escaped(reason), conn->base_.address,
              conn->base_.port, conn->requested_resource);
-			real_tor_free(body); real_tor_free(headers); tor_free(reason);
+			tor_free(body); tor_free(headers); tor_free(reason);
       return -1;
     }
     dirvote_add_vote(body, &msg, &st);
@@ -1866,7 +1866,7 @@ connection_dir_client_reached_eof(dir_connection_t *conn)
         "\"/tor/status-vote/next/consensus-signatures.z\".",
              status_code, escaped(reason), conn->base_.address,
              conn->base_.port);
-			real_tor_free(body); real_tor_free(headers); tor_free(reason);
+			tor_free(body); tor_free(headers); tor_free(reason);
       return -1;
     }
     if (dirvote_add_signatures(body, conn->base_.address, &msg)<0) {
@@ -1913,7 +1913,7 @@ connection_dir_client_reached_eof(dir_connection_t *conn)
         SMARTLIST_FOREACH(which, char *, cp, tor_free(cp));
         smartlist_free(which);
       }
-			real_tor_free(body); real_tor_free(headers); tor_free(reason);
+			tor_free(body); tor_free(headers); tor_free(reason);
       return dir_okay ? 0 : -1;
     }
     /* Learn the routers, assuming we requested by fingerprint or "all"
@@ -1978,7 +1978,7 @@ connection_dir_client_reached_eof(dir_connection_t *conn)
       dir_microdesc_download_failed(which, status_code);
       SMARTLIST_FOREACH(which, char *, cp, tor_free(cp));
       smartlist_free(which);
-			real_tor_free(body); real_tor_free(headers); tor_free(reason);
+			tor_free(body); tor_free(headers); tor_free(reason);
       return 0;
     } else {
       smartlist_t *mds;
@@ -2215,7 +2215,7 @@ connection_dir_client_reached_eof(dir_connection_t *conn)
     }
   }
   note_client_request(conn->base_.purpose, was_compressed, orig_len);
-	real_tor_free(body); real_tor_free(headers); tor_free(reason);
+	tor_free(body); tor_free(headers); tor_free(reason);
   return 0;
 }
 
@@ -3383,7 +3383,7 @@ directory_handle_command(dir_connection_t *conn)
     r = -1;
   }
 
-	real_tor_free(headers); real_tor_free(body);
+	tor_free(headers); tor_free(body);
   return r;
 }
 

@@ -272,7 +272,7 @@ trusted_dirs_reload_certs(void)
   r = trusted_dirs_load_certs_from_string(
         contents,
         TRUSTED_DIRS_CERTS_SRC_FROM_STORE, 1);
-  real_tor_free(contents);
+  tor_free(contents);
   return r;
 }
 
@@ -1239,7 +1239,7 @@ router_reload_router_list_impl(desc_store_t *store)
       router_load_routers_from_string(contents, NULL, SAVED_IN_JOURNAL,
                                       NULL, 0, NULL);
     store->journal_len = (size_t) st.st_size;
-    real_tor_free(contents);
+    tor_free(contents);
   }
 
   tor_free(fname);

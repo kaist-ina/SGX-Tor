@@ -2644,7 +2644,10 @@ channel_flush_from_first_active_circuit, (channel_t *chan, int max))
 
       if (get_options()->TestingEnableCellStatsEvent) {
         uint8_t command = packed_cell_get_command(cell, chan->wide_circ_ids);
-
+        // SGX: must not be in here! (Out of Memory will be occur!
+        printf("SGX: must not be in here! (Out of Memory will be occur in long running)\n");
+        printf("Set TestingEnableCellStatsEvent 0\n");
+        abort();
         testing_cell_stats_entry_t *ent =
           tor_malloc_zero(sizeof(testing_cell_stats_entry_t));
         ent->command = command;

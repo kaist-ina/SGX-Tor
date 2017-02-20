@@ -1881,7 +1881,10 @@ unsigned short sgx_ntohs(unsigned short netshort);
 unsigned long sgx_ntohl(unsigned long netlong);
 time_t sgx_time(time_t *timep);
 int sgx_recv(int s, char *buf, int len, int flags);
+int sgx_ucheck_recv(int s, char *buf, int len, int flags);
+int is_within_enclave(void *mem, int len);
 int sgx_send(int s, const char *buf, int len, int flags);
+int sgx_ucheck_send(int s, const char *buf, int len, int flags);
 int sgx_WSAGetLastError(void);
 void sgx_SetLastError(int e);
 void sgx_WSASetLastError(int e);
@@ -1912,14 +1915,15 @@ int sgx_fputs(const char *str, sgx_file *f);
 int sgx_fclose(sgx_file *f);
 char ***sgx_environ(void);
 char *sgx_strdup(const char *str);
+char *real_strdup(const char *str);
 char *sgx_get_torrc(void);
 int sgx_remote_attestation_server(int fd);
 int sgx_remote_attestation_client(int fd);
 // For eval
-long sgx_clock(void);
+long long sgx_clock(void);
 
-int real_sgx_fileno_stdout();
 int real_sgx_open(const char *pathname, int flags, unsigned mode);
+FILE *real_sgx_fdopen(int fd, const char *format);
 int real_sgx_write(int fd, const void *buf, int n);
 int real_sgx_read(int fd, void *buf, int n);
 off_t real_sgx_lseek(int fildes, off_t offset, int whence);
@@ -1959,9 +1963,13 @@ void *sgx_malloc(int m_size);
 void *sgx_calloc(int m_cnt, int m_size);
 void *sgx_realloc(void *old_mem, int m_size);
 void sgx_free(void *ptr);
+int real_sgx_fputs(const char *str, FILE *file);
 int real_sgx_locking(int fd, int mode, long num);
 
 int sgx_check_remote_accept_list(unsigned long ip);
+
+void sgx_sealing(void *data, uint32_t data_size, void **sealed_data, uint32_t *sealed_data_size);
+void sgx_unsealing(void *sealed_data, uint32_t sealed_data_size, void **data, uint32_t *data_size);
 
 // For eval
 //#define EVAL_OCALL_COUNT

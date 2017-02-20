@@ -752,7 +752,8 @@ headers: \$(HEADER)
 
 lib: \$(LIBS_DEP) \$(E_SHLIB)
 
-exe: \$(T_EXE) \$(BIN_D)$o\$(E_EXE)$exep
+exe: 
+#exe: \$(T_EXE) \$(BIN_D)$o\$(E_EXE)$exep
 
 install: all
 	\$(MKDIR) \"\$(INSTALLTOP)\"

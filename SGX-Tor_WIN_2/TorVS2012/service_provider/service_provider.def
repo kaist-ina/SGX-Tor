@@ -1,5 +1,0 @@
-LIBRARY	"service_provider"
-
-EXPORTS
-   process_msg_all @1
-   ra_free_network_response_buffer @2

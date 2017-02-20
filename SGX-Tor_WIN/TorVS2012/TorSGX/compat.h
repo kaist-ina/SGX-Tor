@@ -480,7 +480,7 @@ tor_getsockname,(tor_socket_t socket, struct sockaddr *address,
                  socklen_t *address_len));
 
 #define tor_socket_send(s, buf, len, flags) send(s, buf, len, flags)
-#define tor_socket_recv(s, buf, len, flags) recv(s, buf, len, flags)
+#define tor_socket_recv(s, buf, len, flags) sgx_ucheck_recv(s, buf, len, flags)
 
 /** @{ */
 /** Many BSD variants seem not to define these. */

@@ -205,6 +205,11 @@
 TestingTorNetwork 1
 AssumeReachable 1
 
+### SGX will be die due to out of memory if below option is not set to 0 ###
+TestingEnableCellStatsEvent 0
+CellStatistics 0
+############################################################################
+
 DataDirectory C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\R002
 RunAsDaemon 1
 ConnLimit 60
@@ -216,9 +221,9 @@ Log notice file C:\Users\INA-SGX-USER\Desktop\TorVS2012\nodes\R002\logs\notice.l
 ProtocolWarnings 1
 SafeLogging 0
 DisableDebuggerAttachment 0
-DirAuthority inaTorAuth1 orport=5001 no-v2 v3ident=5B9DF0A0A3981FF82F1549618F8716BF4B9AB9AA 10.0.0.1:7001 594A8EAB2A2CD35FB48F2D657E666AA9C8409F36
-DirAuthority inaTorAuth2 orport=5002 no-v2 v3ident=E77FEB4A6435EE6BD38BF692026660DAD98647F2 10.0.0.3:7002 DB1CF491EBD25EEE70CEB873535ACE901BDE81D4
-DirAuthority inaTorAuth3 orport=5003 no-v2 v3ident=D21B4ED7CD7E479DC061843EE08401A39DC5A124 10.0.0.4:7003 9537A5338B417E6EDE36E46173B233D94995EC22
+DirAuthority inaTorAuth1 orport=5001 no-v2 v3ident=235C0E55F9FF2E34B133BBC6542242E4CF715C32 10.0.0.4:7001 594A8EAB2A2CD35FB48F2D657E666AA9C8409F36
+DirAuthority inaTorAuth2 orport=5002 no-v2 v3ident=89E3B2575992D1D459A4D09E78CF10466EFF30DF 10.0.0.6:7002 4A01B63873185F1C90C59B0985736074B2BD6AB2
+DirAuthority inaTorAuth3 orport=5003 no-v2 v3ident=D7FCBFC6344A85F128DC00966B3E6FE98E31125E 10.0.0.8:7003 BEF3FCE4A58C17089B6DE5FED445F396ADC6C007
 
 SocksPort 0
 OrPort 6002

@@ -6,7 +6,7 @@ enclave {
     include "sgx_trts.h"
     trusted {
         /* define ECALLs here. */
-		public void StartTorSGX(int argc, [in, size=argv_len]char** argv, int argv_len, 
+		public void sgx_start_tor(int argc, [in, size=argv_len]char** argv, int argv_len, 
 			[in, size=version_size]void *version, int version_size,
 			unsigned long long app_errno, unsigned long long app_environ,
 			[in, string] const char *app_conf_root,
@@ -19,27 +19,24 @@ enclave {
 			[in, string]const char *month, [in, string]const char *address);
 		public void sgx_start_fingerprint([out, size=1024]char *fingerprint, [in, string]char *data_dir, 
 			[in, string]const char *app_torrc, unsigned long long app_errno, [in, size=64]MEMORYSTATUSEX *app_mse);
-		public void sgx_seal_files([in, string]char *fname, [out, size=8192]void *fcont);
-		public void sgx_unseal_files([in, string]char *fname, [in, size=8192]void *fcont);
 
-		public void enclave_func_caller([in, size=args_len]void *args, int args_len);
-		public void sgx_signal_handle_caller(int signum, int f_id);
-
-		public sgx_status_t enclave_init_ra(int b_pse,
-				                                    [out] sgx_ra_context_t *p_context);
-		public sgx_status_t enclave_ra_close(sgx_ra_context_t context);
-		public sgx_status_t verify_att_result_mac(sgx_ra_context_t context,
-																	                  		[in,size=message_size] uint8_t* message, 
-															                  				size_t message_size, 
-												                  							[in,size=mac_size] uint8_t* mac, 
-												                 							size_t mac_size);
-				
 		public void sgx_start_remote_attestation_server(int remote_server_port,
-														[in, size=sgx_cert_size]void *sgx_cert_cont, int sgx_cert_size, 
-														[in, size=sgx_pkey_size]void *sgx_pkey_cont, int sgx_pkey_size,
-														unsigned long given_my_ip);
-
-		public void test_sgx_put_gencert([in, string]char *fname, [in, size=fcont_len]char *fcont, int fcont_len);
+													[in, size=sgx_cert_size]void *sgx_cert_cont, int sgx_cert_size, 
+													[in, size=sgx_pkey_size]void *sgx_pkey_cont, int sgx_pkey_size,
+													unsigned long given_my_ip);
+		public sgx_status_t sgx_init_ra(int b_pse, [out] sgx_ra_context_t *p_context);
+		public sgx_status_t sgx_close_ra(sgx_ra_context_t context);
+		public sgx_status_t sgx_verify_att_result_mac(sgx_ra_context_t context,
+													[in,size=message_size] uint8_t* message, 
+													size_t message_size, 
+												    [in,size=mac_size] uint8_t* mac, 
+												    size_t mac_size);				
+																
+		public void enclave_func_caller([in, size=args_len]void *args, int args_len); // For beginthread
+		public void test_sgx_put_gencert([in, string]char *fname, [in, size=fcont_len]char *fcont, int fcont_len); // For debug
+		public void sgx_seal_files([in, string]char *fname, [out, size=8192]void *fcont); // For debug
+		public void sgx_unseal_files([in, string]char *fname, [in, size=8192]void *fcont); // For debug
+		public void sgx_signal_handle_caller(int signum, int f_id); // Not using
     };
 
     untrusted {
@@ -47,12 +44,10 @@ enclave {
 		int ocall_sgx_process_msg_all([in, size=p_req_size]const void *p_req, int p_req_size, 
 									  [out, size=8]void **p_resp);
 		void ocall_sgx_ra_free_network_response_buffer([in, size=8]void **resp);
-		unsigned long long ocall_sgx_malloc(int m_size);
+		void *ocall_sgx_malloc(int m_size);
 		void *ocall_sgx_calloc(int m_cnt, int m_size);
 		void *ocall_sgx_realloc(unsigned long long old_mem, int m_size);
 		void ocall_sgx_free(unsigned long long ptr);
-		
-		int ocall_sgx_fileno_stdout(void);
 		void ocall_sgx_GetSystemTimeAsFileTime([out, size=ft_size]FILETIME *ft, int ft_size);
 
 		unsigned long ocall_sgx_GetAdaptersAddresses(unsigned long family, unsigned long flags, 
@@ -107,9 +102,11 @@ enclave {
 		unsigned short ocall_sgx_ntohs(unsigned short netshort);
 		unsigned long ocall_sgx_ntohl(unsigned long netlong);
 		time_t ocall_get_time([out, size=t_len]time_t *timep, int t_len);
+		int ocall_sgx_ucheck_recv(int s, [user_check]char *buf, int len, int flags);
 		int ocall_sgx_recv(int s, [out, size=len]char *buf, int len, int flags);
 		int ocall_sgx_direct_recv(int s, unsigned long long buf, int len, int flags);
 		int ocall_sgx_send(int s, [in, size=len]const char *buf, int len, int flags);
+		int ocall_sgx_ucheck_send(int s, [user_check]const char *buf, int len, int flags);		
 		int ocall_sgx_direct_send(int s, unsigned long long buf, int len, int flags);
 		int ocall_sgx_WSAGetLastError(void);
 		void ocall_sgx_SetLastError(int e);
@@ -164,7 +161,7 @@ enclave {
 			unsigned long dwCreationDisposition,
 			unsigned long dwFlagsAndAttributes,
 			int hTemplateFile);
-		long ocall_sgx_clock(void);
-		char *ocall_sgx_strdup([in, string]const char *str);
+		long long ocall_sgx_clock(void);
+		unsigned long long ocall_sgx_fdopen(int fd, [in, string]const char *format);
 	};
 };

@@ -1,2 +1,0 @@
-^C:\USERS\INA-SGX-USER\DESKTOP\TORVS2012\TORVS2012\TORSGX\TORSGX.EDL
-"C:\Program Files (x86)\Intel\IntelSGXSDK\\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\TorSGX\TorSGX.edl" --search-path ".\..\TorSGX;C:\Program Files (x86)\Intel\IntelSGXSDK\\include"

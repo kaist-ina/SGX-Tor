@@ -410,7 +410,10 @@ int real_start_writing_to_file(const char *fname, int open_flags, int mode,
 
 sgx_file *start_writing_to_stdio_file(const char *fname, int open_flags, int mode,
                                   open_file_t **data_out);
+FILE *real_start_writing_to_stdio_file(const char *fname, int open_flags, int mode,
+                                  real_open_file_t **data_out);
 sgx_file *fdopen_file(open_file_t *file_data);
+FILE *real_fdopen_file(real_open_file_t *file_data);
 
 int finish_writing_to_file(open_file_t *file_data);
 int real_finish_writing_to_file(real_open_file_t *file_data);

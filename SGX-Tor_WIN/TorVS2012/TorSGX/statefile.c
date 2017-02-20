@@ -366,7 +366,7 @@ or_state_load(void)
   } else if (badstate && contents) {
     or_state_save_broken(fname);
 
-    real_tor_free(contents);
+    tor_free(contents);
     config_free(&state_format, new_state);
 
     new_state = or_state_new();
@@ -387,7 +387,7 @@ or_state_load(void)
 
  done:
   tor_free(fname);
-  real_tor_free(contents);
+  tor_free(contents);
   if (new_state)
     config_free(&state_format, new_state);
 

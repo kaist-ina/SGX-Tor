@@ -31,10 +31,10 @@
 MOCK_IMPL(smartlist_t *,
 smartlist_new,(void))
 {
-  smartlist_t *sl = real_tor_malloc(sizeof(smartlist_t));
+  smartlist_t *sl = tor_malloc(sizeof(smartlist_t));
   sl->num_used = 0;
   sl->capacity = SMARTLIST_DEFAULT_CAPACITY;
-  sl->list = real_tor_calloc(sizeof(void *), sl->capacity);
+  sl->list = tor_calloc(sizeof(void *), sl->capacity);
   return sl;
 }
 
@@ -46,8 +46,8 @@ smartlist_free,(smartlist_t *sl))
 {
   if (!sl)
     return;
-  real_tor_free(sl->list);
-  real_tor_free(sl);
+  tor_free(sl->list);
+  tor_free(sl);
 }
 
 /** Remove all elements from the list.
@@ -83,7 +83,7 @@ smartlist_ensure_capacity(smartlist_t *sl, int size)
         higher *= 2;
     }
     sl->capacity = higher;
-		sl->list = real_tor_reallocarray(sl->list, sizeof(void *),
+		sl->list = tor_reallocarray(sl->list, sizeof(void *),
                                 ((size_t)sl->capacity));
   }
 #undef ASSERT_CAPACITY

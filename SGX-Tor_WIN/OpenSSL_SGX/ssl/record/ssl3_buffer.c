@@ -139,6 +139,12 @@ void SSL3_BUFFER_release(SSL3_BUFFER *b)
     b->buf = NULL;
 }
 
+void ucheck_SSL3_BUFFER_release(SSL3_BUFFER *b)
+{
+  sgx_free(b->buf);
+  b->buf = NULL;
+}
+
 int ssl3_setup_read_buffer(SSL *s)
 {
     unsigned char *p;
@@ -180,6 +186,49 @@ int ssl3_setup_read_buffer(SSL *s)
     SSLerr(SSL_F_SSL3_SETUP_READ_BUFFER, ERR_R_MALLOC_FAILURE);
     return 0;
 }
+
+int ucheck_ssl3_setup_read_buffer(SSL *s)
+{
+  unsigned char *p;
+  size_t len, align = 0, headerlen;
+  SSL3_BUFFER *b;
+
+  b = RECORD_LAYER_get_rbuf(&s->rlayer);
+
+  if (SSL_version(s) == DTLS1_VERSION || SSL_version(s) == DTLS1_BAD_VER)
+    headerlen = DTLS1_RT_HEADER_LENGTH;
+  else
+    headerlen = SSL3_RT_HEADER_LENGTH;
+
+#if defined(SSL3_ALIGN_PAYLOAD) && SSL3_ALIGN_PAYLOAD!=0
+  align = (-SSL3_RT_HEADER_LENGTH) & (SSL3_ALIGN_PAYLOAD - 1);
+#endif
+
+  if (b->buf == NULL) {
+    len = SSL3_RT_MAX_PLAIN_LENGTH
+      + SSL3_RT_MAX_ENCRYPTED_OVERHEAD + headerlen + align;
+    if (s->options & SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER) {
+      s->s3->init_extra = 1;
+      len += SSL3_RT_MAX_EXTRA;
+    }
+#ifndef OPENSSL_NO_COMP
+    if (ssl_allow_compression(s))
+      len += SSL3_RT_MAX_COMPRESSED_OVERHEAD;
+#endif
+    if ((p = sgx_malloc(len)) == NULL)
+      goto err;
+    b->buf = p;
+    b->len = len;
+  }
+
+  RECORD_LAYER_set_packet(&s->rlayer, &(b->buf[0]));
+  return 1;
+
+err:
+  SSLerr(SSL_F_SSL3_SETUP_READ_BUFFER, ERR_R_MALLOC_FAILURE);
+  return 0;
+}
+
 
 int ssl3_setup_write_buffer(SSL *s)
 {
@@ -249,4 +298,14 @@ int ssl3_release_read_buffer(SSL *s)
     OPENSSL_free(b->buf);
     b->buf = NULL;
     return 1;
+}
+
+int ucheck_ssl3_release_read_buffer(SSL *s)
+{
+  SSL3_BUFFER *b;
+
+  b = RECORD_LAYER_get_rbuf(&s->rlayer);
+  sgx_free(b->buf);
+  b->buf = NULL;
+  return 1;
 }

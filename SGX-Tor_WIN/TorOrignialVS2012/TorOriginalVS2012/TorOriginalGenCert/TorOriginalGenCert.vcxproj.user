@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>--create-identity-key -i C:/Users\\INA-SGX-USER\\Desktop\\TorVS2012\\nodes\\001\\keys\\authority_identity_key -s C:\\Users\\INA-SGX-USER\\Desktop\\TorVS2012\\node\\keys\\authority_signing_key -c C:\\Users\\INA-SGX-USER\\Desktop\\TorVS2012\\node\\keys\\authority_certificate -m 12 -a 127.0.0.1:7001</LocalDebuggerCommandArguments>
-    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerWorkingDirectory>$(OutDir)</LocalDebuggerWorkingDirectory>
-  </PropertyGroup>
-</Project>

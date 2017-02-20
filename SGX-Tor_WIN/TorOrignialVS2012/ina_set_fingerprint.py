@@ -2,14 +2,14 @@ import sys, os
 
 cert_list = []
 fing_list = []
-ip_list = ["10.0.0.1", "10.0.0.3", "10.0.0.4"]
+ip_list = ["10.0.0.4", "10.0.0.6", "10.0.0.8"]
 
 for i in range(1,4):
 
 	cert_finger = ""
 	fing_finger = ""
 	try:
-		f = open("C:/Users/INA-SGX-USER/Desktop/TorVS2012/nodes/A00"+str(i)+"/keys/authority_certificate", 'r')
+		f = open("../nodes/A00"+str(i)+"/keys/authority_certificate", 'r')
 		while True:
 			line = f.readline()
 			if line.find("fingerprint") != -1:
@@ -18,7 +18,7 @@ for i in range(1,4):
 				break
 		f.close()
 
-		f = open("C:/Users/INA-SGX-USER/Desktop/TorVS2012/nodes/A00"+str(i)+"/fingerprint", 'r')
+		f = open("../nodes/A00"+str(i)+"/fingerprint", 'r')
 		line = f.readline()
 		fing_finger = line.split(' ')[1][:-1]
 		print "Found fingerprint in nodes/A00"+str(i)+"/fingerprint: " + fing_finger
@@ -45,7 +45,7 @@ print "\nOpen torrc and write fingerprints...\n"
 
 def change_dirauth(torrc_alpha, torrc_num):
 	newlines = []
-	torrc_name = "C:/Users/INA-SGX-USER/Desktop/TorVS2012/nodes/"+torrc_alpha+"00"+str(torrc_num)+"/torrc"
+	torrc_name = "../nodes/"+torrc_alpha+"00"+str(torrc_num)+"/torrc"
 	torrc_num += 1
 	if torrc_num > 4:
 		torrc_num = 1

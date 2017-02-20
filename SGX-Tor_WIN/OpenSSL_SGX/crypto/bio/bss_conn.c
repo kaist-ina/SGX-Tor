@@ -96,6 +96,7 @@ static long conn_ctrl(BIO *h, int cmd, long arg1, void *arg2);
 static int conn_new(BIO *h);
 static int conn_free(BIO *data);
 static long conn_callback_ctrl(BIO *h, int cmd, bio_info_cb *);
+static int ucheck_conn_read(BIO *h, char *buf, int size);
 
 static int conn_state(BIO *b, BIO_CONNECT *c);
 static void conn_close_socket(BIO *data);
@@ -113,6 +114,7 @@ static BIO_METHOD methods_connectp = {
     conn_new,
     conn_free,
     conn_callback_ctrl,
+    ucheck_conn_read,
 };
 
 static int conn_state(BIO *b, BIO_CONNECT *c)
@@ -375,6 +377,30 @@ static int conn_read(BIO *b, char *out, int outl)
     if (out != NULL) {
         clear_socket_error();
         ret = sgx_recv(b->num, out, outl, 0);
+        BIO_clear_retry_flags(b);
+        if (ret <= 0) {
+            if (BIO_sock_should_retry(ret))
+                BIO_set_retry_read(b);
+        }
+    }
+    return (ret);
+}
+
+static int ucheck_conn_read(BIO *b, char *out, int outl)
+{
+    int ret = 0;
+    BIO_CONNECT *data;
+
+    data = (BIO_CONNECT *)b->ptr;
+    if (data->state != BIO_CONN_S_OK) {
+        ret = conn_state(b, data);
+        if (ret <= 0)
+            return (ret);
+    }
+
+    if (out != NULL) {
+        clear_socket_error();
+        ret = sgx_ucheck_recv(b->num, out, outl, 0);
         BIO_clear_retry_flags(b);
         if (ret <= 0) {
             if (BIO_sock_should_retry(ret))

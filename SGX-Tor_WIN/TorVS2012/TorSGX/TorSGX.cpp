@@ -42,11 +42,13 @@ SYSTEM_INFO *out_info = NULL;
 map<string, int> sgx_fileNMap;
 map<int, sgx_file*> sgx_fileFMap;
 int max_fd = 3;
+bool is_pse_available = false;
 
 // For eval
 //#define EVAL_OCALL_COUNT
 //#define EVAL_REMOTE_ATTEST_COUNT
 //#define EVAL_REMOTE_ATTEST_TIME
+//#define EVAL_REMOTE_ATTEST_MODULE_TIME
 
 #ifdef EVAL_REMOTE_ATTEST_COUNT
 //bool is_remote_attest_start; // need modification!
@@ -57,8 +59,8 @@ int recv_byte;
 #endif
 
 #ifdef EVAL_REMOTE_ATTEST_TIME
-long start_time, end_time;
-double diff;
+unsigned long long start_time, end_time;
+unsigned long long diff, total_diff;
 bool is_remote_attest_start;
 #endif
 
@@ -66,7 +68,7 @@ bool is_remote_attest_start;
 int ocall_num;
 #endif
 
-void StartTorSGX(int argc, char **argv, int argv_len, 
+void sgx_start_tor(int argc, char **argv, int argv_len, 
 								 void *version, int version_size, 
 								 unsigned long long  app_errno, unsigned long long app_environ,
 								 const char *app_conf_root, const char *app_torrc, const char *app_system_dir,
@@ -97,6 +99,13 @@ void StartTorSGX(int argc, char **argv, int argv_len,
 		out_info = (SYSTEM_INFO *)calloc(1, sizeof(SYSTEM_INFO));
 		memcpy(out_info, app_info, sizeof(SYSTEM_INFO));
 	}	
+
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = sgx_create_pse_session()) != SGX_SUCCESS) {
+		printf("Error, sgx_create_pse_session failed: %X\n", sgx_retv);
+    is_pse_available = false;
+	}
+
 
 	printf("out_environ = %p\n", out_environ);
 	printf("conf_root = %s\n", conf_root);
@@ -171,6 +180,88 @@ void sgx_unseal_files(char *fname, void *fcont)
 	//printf("Unseal %s: %s\n", fname, new_file->content);
 }
 
+uint32_t s_total_data_size = 0;
+uint32_t u_total_data_size = 0;
+
+void sgx_sealing(void *data, uint32_t data_size, void **sealed_data, uint32_t *sealed_data_size)
+{
+  sgx_status_t retv;
+  int is_need_free = 0;
+  *sealed_data_size = sgx_calc_sealed_data_size(0, data_size);
+  *sealed_data = calloc(1, *sealed_data_size);
+  if (*sealed_data == NULL) {
+    printf("Error sgx_sealing: Out of memory!\n");
+    abort();
+  }
+  if (!sgx_is_within_enclave(data, data_size)) {
+    void *enclave_data = calloc(1, data_size);
+    if (enclave_data == NULL) {
+      printf("Error sgx_sealing: Out of memory!\n");
+      abort();
+    }
+    memcpy(enclave_data, data, data_size);
+    data = enclave_data;
+    is_need_free = 1;
+  }
+  if ((retv = sgx_seal_data(0, NULL, data_size, (const uint8_t *)data, *sealed_data_size, (sgx_sealed_data_t *)*sealed_data)) != SGX_SUCCESS) {
+    printf("Error sgx_seal_data! retv = %d\n", retv);
+    abort();
+  }
+
+  if (is_need_free) {
+    free(data);
+  }
+}
+
+void sgx_unsealing(void *sealed_data, uint32_t sealed_data_size, void **data, uint32_t *data_size)
+{
+  sgx_status_t retv;
+  int is_need_free = 0;
+  *data = calloc(1, sealed_data_size);
+  if (*data == NULL) {
+    printf("Error sgx_unsealing: Out of memory!\n");
+    abort();
+  }
+  if (!sgx_is_within_enclave(sealed_data, sealed_data_size)) {
+    void *enclave_data = calloc(1, sealed_data_size);
+    if (enclave_data == NULL) {
+      printf("Error sgx_unsealing: Out of memory!\n");
+      abort();
+    }
+    memcpy(enclave_data, sealed_data, sealed_data_size);
+    sealed_data = enclave_data;
+    is_need_free = 1;
+  }
+  *data_size = sealed_data_size;
+  if ((retv = sgx_unseal_data((const sgx_sealed_data_t *)sealed_data, NULL, 0, (uint8_t *)*data, data_size)) != SGX_SUCCESS) {
+    printf("Error sgx_unseal_data! retv = %d\n", retv);
+    abort();
+  }
+  *data = realloc(*data, *data_size);
+
+  if (is_need_free) {
+    free(sealed_data);
+  }
+}
+
+int is_within_enclave(void *mem, int len)
+{
+  int retv = 0;
+  if (sgx_is_within_enclave(mem, len)) {
+    printf("The memory is within encalve!\n");
+    retv = 1;
+  }
+  else if (sgx_is_outside_enclave(mem, len)) {
+    printf("The memory is outside enclave\n");
+    retv = 0;
+  }
+  else {
+    printf("The memory is mixed!\n");
+    retv = -1;
+  }
+  return retv;
+}
+
 // Just for debug SGX-Tor, to run faster
 void test_sgx_put_gencert(char *fname, char *fcont, int fcont_len)
 {
@@ -235,6 +326,9 @@ int RECV(int s, void *msg, int size)
 int set_cert_key_stuff(SSL_CTX *ctx, X509 *cert, EVP_PKEY *key,	STACK_OF(X509) *chain, int build_chain)
 {
 	int chflags = chain ? SSL_BUILD_CHAIN_FLAG_CHECK : 0;
+
+  SSL_CTX_set_ecdh_auto(ctx, 1);
+
 	if (cert == NULL)
 		return 1;
 	if (SSL_CTX_use_certificate(ctx, cert) <= 0) {
@@ -386,7 +480,7 @@ int get_sigrl(ra_samp_request_header_t * p_msg1_full)
 		ret = 0;
 	}
 	else{
-		printf("Invalid EPID\n");
+		//printf("Invalid EPID\n");
 		ret = -1;
 	}
 	SSL_free(ssl);
@@ -397,17 +491,17 @@ int get_sigrl(ra_samp_request_header_t * p_msg1_full)
 int sgx_process_msg_all(const ra_samp_request_header_t *p_req, int p_req_size, ra_samp_response_header_t **p_resp, uint32_t p_resp_size) {
 	int ret = -1;
 	sgx_status_t sgx_retv;
-	ra_samp_response_header_t *tmp_resp;
+	ra_samp_response_header_t *tmp_resp = NULL;
 	if ((sgx_retv = ocall_sgx_process_msg_all(&ret, (void *)p_req, p_req_size, (void **)&tmp_resp)) != SGX_SUCCESS)	{
 		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
 		abort();
 		return -1;
 	}
-	if (p_resp_size != 0) {
+  if (tmp_resp && p_resp_size != 0) {
 		*p_resp = (ra_samp_response_header_t *)calloc(1, p_resp_size);
 		memcpy(*p_resp, tmp_resp, p_resp_size);
 	}
-	if ((sgx_retv = ocall_sgx_ra_free_network_response_buffer((void **)&tmp_resp)) != SGX_SUCCESS)	{
+  if (tmp_resp && (sgx_retv = ocall_sgx_ra_free_network_response_buffer((void **)&tmp_resp)) != SGX_SUCCESS)	{
 		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
 		abort();
 		return -1;
@@ -424,7 +518,7 @@ void build_msg2(ra_samp_request_header_t *p_msg1_full, uint32_t msg1_full_size, 
 	}
 	ret = sgx_process_msg_all(p_msg1_full, msg1_full_size, p_msg2_full_return, msg2_size);
 	if (ret != 0) {
-		puts("Error, process_msg_all for msg0 failed.");
+		puts("Error, process_msg_all for msg1 failed.");
 		abort();
 	}
 	if (TYPE_RA_MSG2 != (*p_msg2_full_return)->type) {
@@ -456,6 +550,12 @@ void base64_encode(const byte* in, size_t in_len,
 	BIO_free_all(buff);
 }
 
+const sample_measurement_t MRENCLAVE = 
+{
+  0x98, 0xa2, 0xe4, 0x18, 0x51, 0x63, 0x71, 0x4b, 0x68, 0x54, 0x06, 0x17, 0x83, 0x1a, 0x20, 0x5d, 0x6c, 0x3b, 0x5a, 0xb2, 0xf4, 0x9d, 0xfe, 0xdd, 0x65, 0x8b, 0x16, 0xf6, 0x32, 0x43, 0x90, 0xb3
+};
+
+
 int post_quote(ra_samp_request_header_t * p_msg3_full)
 {
 	SSL * ssl;
@@ -473,6 +573,23 @@ int post_quote(ra_samp_request_header_t * p_msg3_full)
 	memset(send_buf, 0, sizeof(send_buf));
 	memset(recv_buf, 0, sizeof(recv_buf));
 	memset(isvEnclaveQuote, 0, sizeof(isvEnclaveQuote));
+
+
+  int mrenclave_len = sizeof(sample_measurement_t);
+  for (int i = 0; i<mrenclave_len; i++)
+  {
+    if (MRENCLAVE[i] != p_quote->report_body.mr_enclave[i]) {
+      printf("\nMRENCLAVE not match!\n");
+      printf("Correct MRENCLAVE = ");
+      for (int j = 0; j < mrenclave_len; j++)
+        printf("0x%02x, ", MRENCLAVE[j]);
+      printf("\nClient's MRENCLAVE = ");
+      for (int j = 0; j < mrenclave_len; j++)
+        printf("0x%02x, ", p_quote->report_body.mr_enclave[j]);
+      return -1;
+    }
+  }
+  printf("\mrenclave_len = %d\n", mrenclave_len);
 
 	base64_encode((const byte *)p_quote, quote_size, &base64str, &base64strlen);
 	memset(send_buf, 0, sizeof(send_buf));
@@ -500,11 +617,11 @@ int post_quote(ra_samp_request_header_t * p_msg3_full)
 	}
 	//printf("QUOTE response = %s\n", recv_buf);
 	if (strstr(recv_buf, "201 Created") != NULL) {
-		//printf("Remote attestation success!\n");
+		//printf("QUOTE verify success!\n");
 		ret = 0;
 	}
 	else{
-		printf("Invalid EPID\n");
+		//printf("Invalid QUOTE\n");
 		ret = -1;
 	}
 	SSL_free(ssl);
@@ -512,7 +629,7 @@ int post_quote(ra_samp_request_header_t * p_msg3_full)
 	return ret;
 }
 
-void build_msg4(ra_samp_request_header_t *p_msg3_full, uint32_t msg3_full_size, ra_samp_response_header_t **p_att_result_msg_full_return, uint32_t att_result_msg_size)
+int build_msg4(ra_samp_request_header_t *p_msg3_full, uint32_t msg3_full_size, ra_samp_response_header_t **p_att_result_msg_full_return, uint32_t att_result_msg_size)
 {
 	int ret;
 	sample_ra_msg3_t *p_msg3 = (sample_ra_msg3_t*)((uint8_t*)p_msg3_full + sizeof(ra_samp_request_header_t));
@@ -520,13 +637,43 @@ void build_msg4(ra_samp_request_header_t *p_msg3_full, uint32_t msg3_full_size, 
 	sgx_status_t sgx_retv;
 	ret = sgx_process_msg_all(p_msg3_full, msg3_full_size, p_att_result_msg_full_return, att_result_msg_size);
 	if(ret != 0) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
+		//printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    return -1;
 	}
+  return 0;
 	//printf("build msg4 complete \n");
 }
 
 int remote_attest_server_port = -1;
+
+int sgx_check_remote_accept_list(unsigned long ip)
+{
+  int found = -1, cnt = 1;
+  unsigned long cur_ip;
+  if (remote_attest_server_port == -1) {
+    // Remote attestation not set. Return true
+    return 0;
+  }
+  sgx_thread_mutex_lock(&remote_mutex);
+  if (remote_accept_list.empty()) {
+    printf("Remote accept list is empty!\n");
+  }
+  else {
+    printf("Searching IP = %u.%u.%u.%u\n", ip & 0xFF, (ip >> 8) & 0xFF, (ip >> 16) & 0xFF, (ip >> 24) & 0xFF);
+    list<unsigned long *>::iterator iter;
+    for (iter = remote_accept_list.begin(); iter != remote_accept_list.end(); iter++) {
+      cur_ip = **iter;
+      printf("IP list[%d] = %u.%u.%u.%u\n", cnt++, cur_ip & 0xFF, (cur_ip >> 8) & 0xFF, (cur_ip >> 16) & 0xFF, (cur_ip >> 24) & 0xFF);
+      if (cur_ip == ip) {
+        printf("Found in remote accept list!\n");
+        found = 0;
+        break;
+      }
+    }
+  }
+  sgx_thread_mutex_unlock(&remote_mutex);
+  return found;
+}
 
 void sgx_start_remote_attestation_server(int remote_server_port, void *sgx_cert_cont, int sgx_cert_size, 
 	void *sgx_pkey_cont, int sgx_pkey_size, unsigned long given_my_ip)
@@ -583,9 +730,9 @@ void sgx_start_remote_attestation_server(int remote_server_port, void *sgx_cert_
 	while (1) {
 		client_addr_size = sizeof(struct sockaddr_in);
 		memset(&client_addr, 0, sizeof(client_addr));
-		client_fd = sgx_accept(server_fd, (sockaddr *)&client_addr, &client_addr_size);		
-		printf("Server Remote Attestation Start!\n");
-		printf("Client %d is accepted!\n", ntohs(client_addr.sin_port));
+		client_fd = sgx_accept(server_fd, (sockaddr *)&client_addr, &client_addr_size);
+    //printf("Server Remote Attestation Start!\n");
+		//printf("Client %d is accepted!\n", ntohs(client_addr.sin_port));
 #ifdef EVAL_REMOTE_ATTEST_COUNT
 		is_remote_attest_start = true;
 		send_cnt = 0;
@@ -596,25 +743,29 @@ void sgx_start_remote_attestation_server(int remote_server_port, void *sgx_cert_
 #ifdef EVAL_REMOTE_ATTEST_TIME
 		is_remote_attest_start = true;
 		diff = 0;
+    total_diff = 0;
 		start_time = sgx_clock();
 #endif
 		uint32_t msg0_full_size = sizeof(ra_samp_request_header_t)+sizeof(uint32_t);
 		p_msg0_full = (ra_samp_request_header_t*)calloc(1, msg0_full_size);
 		RECV(client_fd, p_msg0_full, msg0_full_size);
 		ret = sgx_process_msg_all(p_msg0_full, msg0_full_size, &p_msg0_resp_full, 0);
-		if (ret != 0)
-		{
-			printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-			abort();
-		}
 		if (ret != 0) {
-			puts("Error, process_msg_all for msg0 failed.");
+			//puts("Error, process_msg_all for msg0 failed.");
 			is_ok = -1;
 			SEND(client_fd, &is_ok, sizeof(int));
 			goto err;
 		}
 		else {
 			//printf("\nMSG0 Verified!\n");
+#ifdef EVAL_REMOTE_ATTEST_TIME
+      end_time = sgx_clock();
+      diff += (end_time - start_time);
+      total_diff += diff;
+      printf("Processing MSG0 time = %ld ", diff);
+      diff = 0;
+      start_time = sgx_clock();
+#endif
 			is_ok = 1234;
 			SEND(client_fd, &is_ok, sizeof(int));
 		}
@@ -626,13 +777,20 @@ void sgx_start_remote_attestation_server(int remote_server_port, void *sgx_cert_
 		
 		ret = get_sigrl(p_msg1_full);
 		if (ret != 0) {
-			puts("Error, process_msg_all for msg1 failed.");
+			//puts("Error, process_msg_all for msg1 failed.");
 			is_ok = -1;
 			SEND(client_fd, &is_ok, sizeof(int));
 			goto err;
 		}
 		else {
-			//printf("\nMSG1 Verified!\n");
+#ifdef EVAL_REMOTE_ATTEST_TIME
+      end_time = sgx_clock();
+      diff += (end_time - start_time);
+      total_diff += diff;
+      printf("Processing MSG1 time = %ld ", diff);
+      diff = 0;
+      start_time = sgx_clock();
+#endif
 			is_ok = 1234;
 			SEND(client_fd, &is_ok, sizeof(int));
 		}
@@ -642,6 +800,14 @@ void sgx_start_remote_attestation_server(int remote_server_port, void *sgx_cert_
 		build_msg2(p_msg1_full, msg1_full_size, &p_msg2_full, msg2_full_size);
 		SEND(client_fd, &msg2_full_size, sizeof(uint32_t));
 		SEND(client_fd, p_msg2_full, msg2_full_size);
+#ifdef EVAL_REMOTE_ATTEST_TIME
+    end_time = sgx_clock();
+    diff += (end_time - start_time);
+    total_diff += diff;
+    printf("Processing MSG2 time = %ld ", diff);
+    diff = 0;
+    start_time = sgx_clock();
+#endif
 
 		uint32_t msg3_size = 0;
 		RECV(client_fd, &msg3_size, sizeof(uint32_t));
@@ -650,22 +816,54 @@ void sgx_start_remote_attestation_server(int remote_server_port, void *sgx_cert_
 		RECV(client_fd, p_msg3_full, sizeof(ra_samp_request_header_t)+msg3_size);
 		ret = post_quote(p_msg3_full);
 		if (ret != 0){
-			printf("invalid quote \n");
+      //puts("Error, post_quote for p_msg3_full failed.");
 			is_ok = -1;
 			SEND(client_fd, &is_ok, sizeof(int));
 			goto err;
 		}
 		else {
-			//printf("MSG4 Verified!\n");
-			is_ok = 1234;
-			SEND(client_fd, &is_ok, sizeof(int));
+			//printf("MSG3 Verified!\n");
+#ifdef EVAL_REMOTE_ATTEST_TIME
+      end_time = sgx_clock();
+      diff += (end_time - start_time);
+      total_diff += diff;
+      printf("Processing MSG3 time = %ld ", diff);
+      diff = 0;
+      start_time = sgx_clock();
+#endif
 		}
 
 		uint32_t att_result_msg_size = sizeof(sample_ra_att_result_msg_t);
 		uint32_t msg4_size = att_result_msg_size + sizeof(ra_samp_response_header_t)+8;
-		build_msg4(p_msg3_full, msg3_full_size, &p_att_result_msg_full, att_result_msg_size);
+    ret = build_msg4(p_msg3_full, msg3_full_size, &p_att_result_msg_full, att_result_msg_size);
+    if (ret != 0){
+      //puts("Error, post_quote for p_msg3_full failed.");
+      is_ok = -1;
+      SEND(client_fd, &is_ok, sizeof(int));
+      goto err;
+    }
+    else {
+      //printf("MSG3 Verified!\n");
+#ifdef EVAL_REMOTE_ATTEST_TIME
+      end_time = sgx_clock();
+      diff += (end_time - start_time);
+      total_diff += diff;
+      printf("Processing MSG3 time = %ld ", diff);
+      diff = 0;
+      start_time = sgx_clock();
+#endif
+      is_ok = 1234;
+      SEND(client_fd, &is_ok, sizeof(int));
+    }
 		SEND(client_fd, p_att_result_msg_full, msg4_size);
-
+#ifdef EVAL_REMOTE_ATTEST_TIME
+    end_time = sgx_clock();
+    diff += (end_time - start_time);
+    total_diff += diff;
+    printf("Processing MSG4 time = %ld ", diff);
+    diff = 0;
+    start_time = sgx_clock();
+#endif
 		// Append to accept list if success
 		accept_ip = (unsigned long *)calloc(1, sizeof(unsigned long));
 		memcpy(accept_ip, &client_addr.sin_addr.s_addr, sizeof(unsigned long));
@@ -673,6 +871,119 @@ void sgx_start_remote_attestation_server(int remote_server_port, void *sgx_cert_
 		sgx_thread_mutex_lock(&remote_mutex);
 		remote_accept_list.push_back(accept_ip);
 		sgx_thread_mutex_unlock(&remote_mutex);
+
+
+#ifdef EVAL_REMOTE_ATTEST_MODULE_TIME
+    printf("\nProcessing MSG0 time\n");
+    total_diff = 0;
+    for (int i = 0; i < 5; i++) {
+      diff = 0;
+      sgx_free(p_msg0_resp_full);
+      start_time = sgx_clock();
+      uint32_t msg0_full_size = sizeof(ra_samp_request_header_t)+sizeof(uint32_t);
+      //p_msg0_full = (ra_samp_request_header_t*)calloc(1, msg0_full_size);
+      //RECV(client_fd, p_msg0_full, msg0_full_size);
+      ret = sgx_process_msg_all(p_msg0_full, msg0_full_size, &p_msg0_resp_full, 0);
+      if (ret != 0)	{
+        printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+        abort();
+      }
+      if (ret != 0) {
+        puts("Error, process_msg_all for msg0 failed.");
+        is_ok = -1;
+        goto err;
+      }
+      end_time = sgx_clock();
+      diff += (end_time - start_time);
+      total_diff += diff;
+      printf("%ld ", diff);
+      diff = 0;
+    }
+    printf("Average time = %ld\n", total_diff / 100);
+    printf("\nProcessing MSG1 time\n");
+    total_diff = 0;
+    for (int i = 0; i < 5; i++) {
+      diff = 0;
+      if (g_ctx != NULL) {
+        SSL_CTX_free(g_ctx);
+        g_ctx = NULL;
+      }
+      start_time = sgx_clock();
+      uint32_t msg1_full_size = sizeof(ra_samp_request_header_t)+sizeof(sgx_ra_msg1_t);
+      //p_msg1_full = (ra_samp_request_header_t*)calloc(1, msg1_full_size);
+      //RECV(client_fd, p_msg1_full, msg1_full_size);
+      get_ssl_context(sgx_cert_cont, sgx_cert_size, sgx_pkey_cont, sgx_pkey_size);
+
+      ret = get_sigrl(p_msg1_full);
+      if (ret != 0) {
+        puts("Error, process_msg_all for msg1 failed.");
+        is_ok = -1;
+        //SEND(client_fd, &is_ok, sizeof(int));
+        goto err;
+      }
+
+      end_time = sgx_clock();
+      diff += (end_time - start_time);
+      total_diff += diff;
+      printf(" %ld ", diff);
+    }
+    printf("Average time = %ld\n", total_diff / 100);
+    printf("\nProcessing MSG2 time\n");
+    total_diff = 0;
+    for (int i = 0; i < 5; i++) {
+      diff = 0;
+      sgx_free(p_msg2_full);
+      start_time = sgx_clock();
+      uint32_t msg2_size = 168;
+      uint32_t msg2_full_size = sizeof(ra_samp_response_header_t)+msg2_size;
+      build_msg2(p_msg1_full, msg1_full_size, &p_msg2_full, msg2_full_size);
+      end_time = sgx_clock();
+      diff += (end_time - start_time);
+      total_diff += diff;
+      printf(" %ld ", diff);
+    }
+    printf("Average time = %ld\n", total_diff / 100);
+    printf("\nProcessing MSG3 time\n");
+    total_diff = 0;
+    for (int i = 0; i < 5; i++) {
+      diff = 0;
+      start_time = sgx_clock();      
+      uint32_t msg3_size = 0;
+      //RECV(client_fd, &msg3_size, sizeof(uint32_t));
+      uint32_t msg3_full_size = sizeof(ra_samp_request_header_t)+msg3_size;
+      //p_msg3_full = (ra_samp_request_header_t*)calloc(1, msg3_full_size);
+      //RECV(client_fd, p_msg3_full, sizeof(ra_samp_request_header_t)+msg3_size);
+      ret = post_quote(p_msg3_full);
+      if (ret != 0){
+        puts("Error, post_quote for p_msg3_full failed.");
+        is_ok = -1;
+        //SEND(client_fd, &is_ok, sizeof(int));
+        goto err;
+      }
+      end_time = sgx_clock();
+      diff += (end_time - start_time);
+      total_diff += diff;
+      printf(" %ld ", diff);
+    }
+    printf("Average time = %ld\n", total_diff / 100);
+    printf("\nProcessing MSG4 time\n");
+    total_diff = 0;
+    for (int i = 0; i < 5; i++) {
+      sgx_free(p_att_result_msg_full);
+      diff = 0;
+      start_time = sgx_clock();
+      uint32_t att_result_msg_size = sizeof(sample_ra_att_result_msg_t);
+      uint32_t msg4_size = att_result_msg_size + sizeof(ra_samp_response_header_t)+8;
+      build_msg4(p_msg3_full, msg3_full_size, &p_att_result_msg_full, att_result_msg_size);
+      end_time = sgx_clock();
+      diff += (end_time - start_time);
+      total_diff += diff;
+      printf(" %ld ", diff);
+    }
+    printf("Average time = %ld\n", total_diff / 100);
+#endif
+
+
 	err:
 		sgx_free(p_msg0_full);
 		sgx_free(p_msg0_resp_full);
@@ -685,18 +996,18 @@ void sgx_start_remote_attestation_server(int remote_server_port, void *sgx_cert_
 			g_ctx = NULL;
 		}
 		sgx_closesocket(client_fd);	
-		#ifdef EVAL_REMOTE_ATTEST_TIME
-				is_remote_attest_start = false;
-				if (is_remote_attest_start) {
-					end_time = sgx_clock();
-					diff += (end_time - start_time) / (double)1000;
-				}
-				printf("Time for remote attestation : %lf\n", diff);
-		#endif
-		#ifdef EVAL_REMOTE_ATTEST_COUNT
-				is_remote_attest_start = false;
-				printf("Count: send = %d, recv = %d\nBytes: send = %d bytes, recv = %d bytes\n", send_cnt, recv_cnt, send_byte, recv_byte);
-		#endif
+#ifdef EVAL_REMOTE_ATTEST_TIME
+		is_remote_attest_start = false;
+		end_time = sgx_clock();
+		diff += (end_time - start_time);
+    total_diff += diff;
+    //printf("Processing free and push = %ld\n", diff);
+		printf("Time for total remote attestation = %ld\n", total_diff);
+#endif
+#ifdef EVAL_REMOTE_ATTEST_COUNT
+		is_remote_attest_start = false;
+		printf("Count: send = %d, recv = %d\nBytes: send = %d bytes, recv = %d bytes\n", send_cnt, recv_cnt, send_byte, recv_byte);
+#endif
 	}
 	sgx_thread_mutex_destroy(&remote_mutex);
 	sgx_closesocket(server_fd);
@@ -825,13 +1136,6 @@ char *strdup(const char *str)
 		printf("Error: strdup, errno = %d\n", sgx_errno);
 	}
 	return retv;
-}
-
-char *real_strdup(const char *str)
-{
-  char *retv;
-  ocall_sgx_strdup(&retv, str);
-  return retv;
 }
 
 char *_strdup(const char* s)
@@ -1037,8 +1341,7 @@ int sgx_open(const char *pathname, int flags, unsigned mode)
 			new_file->is_private = is_private;
 			sgx_fileFMap[max_fd] = new_file;
 			retv = max_fd;
-			max_fd += 1;	
-			printf("******* max_fd = %d *******\n", max_fd);
+			max_fd += 1;
 			if (!is_private) {
 				printf("non private file!\n");
 			}
@@ -1120,14 +1423,8 @@ int sgx_write(int fd, const void *buf, int n)
 		long seek = f->seek;
 		long content_len = f->content_len;
 		long mem_size = f->content_len > n + seek ? f->content_len : n + seek;
-		printf("~~WRITE~~ private? %d, memsize = %d\n", f->is_private, mem_size);
-		char *new_cont;
-		if(f->is_private) {
-			new_cont = (char *)calloc(1, mem_size);
-		}
-		else {
-			new_cont = (char *)sgx_calloc(1, mem_size);
-		}
+		char *new_cont = (char *)calloc(1, mem_size);
+
 		if (f->content != NULL) {
 			int remain = content_len - seek - n;
 			remain = remain > 0 ? remain : 0;
@@ -1382,8 +1679,7 @@ int sgx_CryptGenRandom(unsigned long long prov, int buf_len, unsigned char *buf)
 
 	return retv;
 }
-
-//37
+//4
 int sgx_CryptReleaseContext(unsigned long long hProv, unsigned long dwFlags)
 {
 	int retv;
@@ -1401,7 +1697,7 @@ int sgx_CryptReleaseContext(unsigned long long hProv, unsigned long dwFlags)
 }
 
 static void (* cur_fn) (void *) = NULL;
-//4
+//5
 // OCALL make thread and call enclave function
 unsigned long long sgx_beginthread(void (*fn)(void *), int num, void *port, int port_len)
 {
@@ -1435,7 +1731,7 @@ void enclave_func_caller(void *args, int args_len)
 	ocall_num++;
 #endif
 }
-//5
+//6
 unsigned long sgx_GetAdaptersAddresses(unsigned long family, unsigned long flags, 
 				IP_ADAPTER_ADDRESSES * addresses, unsigned long *psize)
 {
@@ -1451,7 +1747,7 @@ unsigned long sgx_GetAdaptersAddresses(unsigned long family, unsigned long flags
 #endif
 	return retv;
 }
-//6
+//7
 unsigned long sgx_GetNetworkParams(void *fixed, unsigned long *fixed_size)
 {
 	unsigned long retv;
@@ -1485,7 +1781,7 @@ unsigned long sgx_GetNetworkParams(void *fixed, unsigned long *fixed_size)
 
 	return retv;
 }
-//7
+//8
 int sgx_socket(int af, int type, int protocol)
 {
 		int retv;
@@ -1501,7 +1797,7 @@ int sgx_socket(int af, int type, int protocol)
 
 		return retv;
 }
-//8
+//9
 int sgx_select(int nfds, void *rfd, void *wfd,  void *efd, int fd_size, struct timeval *timeout)
 {
 	int retv;
@@ -1517,7 +1813,7 @@ int sgx_select(int nfds, void *rfd, void *wfd,  void *efd, int fd_size, struct t
 
 	return retv;
 }
-//9
+//10
 int sgx_accept(int s, struct sockaddr *addr, int *addrlen)
 {
 	int retv;
@@ -1534,7 +1830,7 @@ int sgx_accept(int s, struct sockaddr *addr, int *addrlen)
 
 	return retv;
 }
-//10
+//11
 int sgx_bind(int s, const struct sockaddr *addr, int addrlen)
 {
 	int retv;
@@ -1550,7 +1846,7 @@ int sgx_bind(int s, const struct sockaddr *addr, int addrlen)
 
 	return retv;
 }
-//11
+//12
 int sgx_listen(int s, int backlog)
 {
 		int retv;
@@ -1566,7 +1862,7 @@ int sgx_listen(int s, int backlog)
 
 		return retv;
 }
-//12
+//13
 int sgx_connect(int s, const struct sockaddr *addr, int addrlen)
 {
 	int retv;
@@ -1574,7 +1870,7 @@ int sgx_connect(int s, const struct sockaddr *addr, int addrlen)
 #ifdef EVAL_REMOTE_ATTEST_TIME
 	if (is_remote_attest_start) {
 		end_time = sgx_clock();
-		diff += (end_time - start_time) / (double)1000;
+		diff += (end_time - start_time);
 	}
 #endif
 	if((sgx_retv = ocall_sgx_connect(&retv, s, addr, addrlen)) != SGX_SUCCESS) {
@@ -1592,7 +1888,7 @@ int sgx_connect(int s, const struct sockaddr *addr, int addrlen)
 
 	return retv;
 }
-//13
+//14
 int sgx_ioctlsocket(int s, long cmd, unsigned long *argp)
 {
 	int retv;
@@ -1608,7 +1904,7 @@ int sgx_ioctlsocket(int s, long cmd, unsigned long *argp)
 
 	return retv;
 }
-//14
+//15
 int sgx_getsockname(int s,  struct sockaddr *name, int *namelen)
 {
 	int retv;
@@ -1624,7 +1920,7 @@ int sgx_getsockname(int s,  struct sockaddr *name, int *namelen)
 
 	return retv;
 }
-//15
+//16
 int sgx_getsockopt(int s, int level, int optname, char *optval, int* optlen)
 {
 	int retv;
@@ -1640,7 +1936,7 @@ int sgx_getsockopt(int s, int level, int optname, char *optval, int* optlen)
 
 	return retv;
 }
-//16
+//17
 int sgx_setsockopt(int s, int level, int optname, const char *optval, int optlen)
 {
 	int retv;
@@ -1656,112 +1952,33 @@ int sgx_setsockopt(int s, int level, int optname, const char *optval, int optlen
 
 	return retv;
 }
-//17
+//18
 int sgx_recv(int s, char *buf, int len, int flags)
 {	
 	int retv;
 	sgx_status_t sgx_retv;
-	/* // TEST
-	if (sgx_is_within_enclave(buf, len) == 0) { // App memory
-		char *tmp_buf = (char *)calloc(1, len);
-		if (tmp_buf == NULL) {
-			printf("Out of memory: sgx_recv\n");
-			abort();
-		}
-		memcpy(tmp_buf, buf, len);
-		if ((sgx_retv = ocall_sgx_recv(&retv, s, tmp_buf, len, flags)) != SGX_SUCCESS) {
-			printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-			abort();
-		}
-		memcpy(buf, tmp_buf, len);
-		free(tmp_buf);
-	}
-	*/
-	if (sgx_is_within_enclave(buf, len) == 0) { // App memory
-		if ((sgx_retv = ocall_sgx_direct_recv(&retv, s, (unsigned long long)buf, len, flags)) != SGX_SUCCESS) {
-			printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-			abort();
-		}
-	}
-	else {
-#ifdef EVAL_REMOTE_ATTEST_TIME
-		if (is_remote_attest_start) {
-			end_time = sgx_clock();
-			diff += (end_time - start_time) / (double)1000;
-		}
-#endif
-		if ((sgx_retv = ocall_sgx_recv(&retv, s, buf, len, flags)) != SGX_SUCCESS) {
-			printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-			abort();
-		}
-#ifdef EVAL_REMOTE_ATTEST_COUNT
-		if (is_remote_attest_start) {
-			recv_cnt++;
-			recv_byte += retv;
-		}
-#endif
-#ifdef EVAL_REMOTE_ATTEST_TIME
-		if (is_remote_attest_start) {
-			start_time = sgx_clock();
-		}
-#endif
-	}
 
-#ifdef EVAL_OCALL_COUNT
-	ocall_num++;
-#endif
-
-	return retv;
-}
-//18
-int sgx_send(int s, const char *buf, int len, int flags)
-{
-	int retv;
-	sgx_status_t sgx_retv;
-	/*
-	if (sgx_is_within_enclave(buf, len) == 0) { // App memory
-		char *tmp_buf = (char *)calloc(1, len);
-		if (tmp_buf == NULL) {
-			printf("Out of memory: sgx_send\n");
-			abort();
-		}
-		memcpy(tmp_buf, buf, len);
-		if ((sgx_retv = ocall_sgx_send(&retv, s, tmp_buf, len, flags)) != SGX_SUCCESS) {
-			printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-			abort();
-		}
-		free(tmp_buf);
-	}
-*/
-	if (sgx_is_within_enclave(buf, len) == 0) { // App memory
-		if ((sgx_retv = ocall_sgx_direct_send(&retv, s, (unsigned long long)buf, len, flags)) != SGX_SUCCESS) {
-			printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-			abort();
-		}
-	}
-	else {
 #ifdef EVAL_REMOTE_ATTEST_TIME
-		if (is_remote_attest_start) {
-			end_time = sgx_clock();
-			diff += (end_time - start_time) / (double)1000;
-		}
+	if (is_remote_attest_start) {
+		end_time = sgx_clock();
+		diff += (end_time - start_time);
+	}
 #endif
-		if ((sgx_retv = ocall_sgx_send(&retv, s, buf, len, flags)) != SGX_SUCCESS) {
-			printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-			abort();
-		}
+	if ((sgx_retv = ocall_sgx_recv(&retv, s, buf, len, flags)) != SGX_SUCCESS) {
+		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+		abort();
+	}
 #ifdef EVAL_REMOTE_ATTEST_COUNT
-		if (is_remote_attest_start) {
-			send_cnt++;
-			send_byte += retv;
-		}
+	if (is_remote_attest_start) {
+		recv_cnt++;
+		recv_byte += retv;
+	}
 #endif
 #ifdef EVAL_REMOTE_ATTEST_TIME
-		if (is_remote_attest_start) {
-			start_time = sgx_clock();
-		}
-#endif
+	if (is_remote_attest_start) {
+		start_time = sgx_clock();
 	}
+#endif
 
 #ifdef EVAL_OCALL_COUNT
 	ocall_num++;
@@ -1770,6 +1987,64 @@ int sgx_send(int s, const char *buf, int len, int flags)
 	return retv;
 }
 //19
+int sgx_ucheck_recv(int s, char *buf, int len, int flags)
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_ucheck_recv(&retv, s, buf, len, flags)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  
+  return retv;
+}
+int sgx_ucheck_send(int s, const char *buf, int len, int flags)
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_ucheck_send(&retv, s, buf, len, flags)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+
+  return retv;
+}
+
+//19
+int sgx_send(int s, const char *buf, int len, int flags)
+{
+	int retv;
+	sgx_status_t sgx_retv;
+
+#ifdef EVAL_REMOTE_ATTEST_TIME
+	if (is_remote_attest_start) {
+		end_time = sgx_clock();
+		diff += (end_time - start_time);
+	}
+#endif
+	if ((sgx_retv = ocall_sgx_send(&retv, s, buf, len, flags)) != SGX_SUCCESS) {
+		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+		abort();
+	}
+#ifdef EVAL_REMOTE_ATTEST_COUNT
+	if (is_remote_attest_start) {
+		send_cnt++;
+		send_byte += retv;
+	}
+#endif
+#ifdef EVAL_REMOTE_ATTEST_TIME
+	if (is_remote_attest_start) {
+		start_time = sgx_clock();
+	}
+#endif
+
+#ifdef EVAL_OCALL_COUNT
+	ocall_num++;
+#endif
+
+	return retv;
+}
+//20
 int sgx_sendto(int s, const void *msg, int len, int flags, const struct sockaddr *to, int tolen)
 {
 	int retv;
@@ -1785,7 +2060,7 @@ int sgx_sendto(int s, const void *msg, int len, int flags, const struct sockaddr
 
 	return retv;
 }
-//20
+//21
 int sgx_recvfrom(int s, void *msg, int len, int flags, struct sockaddr *fr, int *in_len)
 {
 	int retv;
@@ -1801,7 +2076,7 @@ int sgx_recvfrom(int s, void *msg, int len, int flags, struct sockaddr *fr, int 
 
 	return retv;
 }
-//21
+//22
 int sgx_closesocket(int s)
 {
 	int retv;
@@ -1817,7 +2092,7 @@ int sgx_closesocket(int s)
 
 	return retv;
 }
-//22
+//23
 int sgx_GetLastError(void)
 {
 	int retv;
@@ -1833,7 +2108,7 @@ int sgx_GetLastError(void)
 
 	return retv;
 }
-//23
+//24
 void sgx_SetLastError(int e)
 {
 	sgx_status_t sgx_retv;
@@ -1847,7 +2122,7 @@ void sgx_SetLastError(int e)
 #endif
 
 }
-//24
+//25
 int sgx_WSAGetLastError(void)
 {
 	int retv;
@@ -1863,7 +2138,7 @@ int sgx_WSAGetLastError(void)
 
 	return retv;
 }
-//25
+//26
 void sgx_WSASetLastError(int e)
 {
 	sgx_status_t sgx_retv;
@@ -1877,7 +2152,7 @@ void sgx_WSASetLastError(int e)
 #endif
 
 }
-//26
+//27
 unsigned int sgx_getpid(void)
 {
 	unsigned int retv;
@@ -1893,7 +2168,7 @@ unsigned int sgx_getpid(void)
 
 	return retv;
 }
-//27
+//28
 int sgx_gethostname(char *name, size_t namelen)
 {
 	int retv;
@@ -1909,15 +2184,28 @@ int sgx_gethostname(char *name, size_t namelen)
 
 	return retv;
 }
-//28
+//29
 time_t sgx_time(time_t *timep)
 {
-	time_t retv;
+  time_t retv;
 	sgx_status_t sgx_retv;
-	if((sgx_retv = ocall_get_time(&retv, timep, sizeof(time_t))) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
+	sgx_time_source_nonce_t nonce;
+
+  if (is_pse_available) {
+    if ((sgx_retv = sgx_get_trusted_time((sgx_time_t *)&retv, &nonce)) != SGX_SUCCESS) {
+      printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+      abort();
+    }
+    if (timep != NULL) {
+      memcpy(timep, &retv, sizeof(time_t));
+    }
+  }
+  else {
+    if ((sgx_retv = ocall_get_time(&retv, timep, sizeof(time_t))) != SGX_SUCCESS) {
+      printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+      abort();
+    }
+  }
 
 #ifdef EVAL_OCALL_COUNT
 	ocall_num++;
@@ -1925,7 +2213,7 @@ time_t sgx_time(time_t *timep)
 
 	return retv;
 }
-//29
+//30
 struct tm * sgx_localtime(const time_t *timep)
 {
 	struct tm* retv;
@@ -1941,7 +2229,7 @@ struct tm * sgx_localtime(const time_t *timep)
 
 	return retv;
 }
-//30
+//31
 struct tm * sgx_gmtime(const time_t *timep)
 {
 	struct tm* retv;
@@ -1957,7 +2245,7 @@ struct tm * sgx_gmtime(const time_t *timep)
 
 	return retv;
 }
-//31
+//32
 time_t sgx_mktime(struct tm *timeptr)
 {
 	time_t r;
@@ -1973,7 +2261,7 @@ time_t sgx_mktime(struct tm *timeptr)
 
 	return r;
 }
-//32
+//33
 void sgx_ftime(struct _timeb *tb, int sizetb)
 {
 	sgx_status_t sgx_retv;
@@ -1987,7 +2275,7 @@ void sgx_ftime(struct _timeb *tb, int sizetb)
 #endif
 
 }
-//33
+//34
 void sgx_GetSystemTimeAsFileTime(FILETIME *ft)
 {
 	sgx_status_t sgx_retv;
@@ -2001,7 +2289,7 @@ void sgx_GetSystemTimeAsFileTime(FILETIME *ft)
 #endif
 
 }
-//34
+//35
 struct hostent *sgx_gethostbyname(const char *name)
 {
 	struct hostent *ent;
@@ -2031,48 +2319,316 @@ void sgx_free(void *ptr)
 #endif
 
 }
-
-int sgx_check_remote_accept_list(unsigned long ip)
+//37
+int real_sgx_open(const char *pathname, int flags, unsigned mode)
 {
-	int found = -1, cnt = 1;
-	unsigned long cur_ip;
-	if (remote_attest_server_port == -1) {
-		// Remote attestation not set. Return true
-		return 0;
-	}
-	sgx_thread_mutex_lock(&remote_mutex);
-	if (remote_accept_list.empty()) {
-		printf("Remote accept list is empty!\n");
-	}
-	else {
-		printf("Searching IP = %u.%u.%u.%u\n", ip & 0xFF, (ip >> 8) & 0xFF, (ip >> 16) & 0xFF, (ip >> 24) & 0xFF);
-		list<unsigned long *>::iterator iter;
-		for (iter = remote_accept_list.begin(); iter != remote_accept_list.end(); iter++) {
-			cur_ip = **iter;
-			printf("IP list[%d] = %u.%u.%u.%u\n", cnt++, cur_ip & 0xFF, (cur_ip >> 8) & 0xFF, (cur_ip >> 16) & 0xFF, (cur_ip >> 24) & 0xFF);
-			if (cur_ip == ip) {
-				printf("Found in remote accept list!\n");
-				found = 0;
-				break;
-			}
-		}
-	}
-	sgx_thread_mutex_unlock(&remote_mutex);
-	return found;
+  int retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_open(&retv, pathname, flags, mode)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//38
+FILE *real_sgx_fdopen(int fd, const char *format)
+{
+  unsigned long long retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_fdopen(&retv, fd, format)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return (FILE *)retv;
+}
+//39
+int real_sgx_write(int fd, const void *buf, int n)
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if (sgx_is_within_enclave(buf, n) == 0) { // App memory
+    if ((sgx_retv = ocall_sgx_direct_write(&retv, fd, (unsigned long long)buf, n)) != SGX_SUCCESS) {
+      printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+      abort();
+    }
+  }
+  else {
+    if ((sgx_retv = ocall_sgx_write(&retv, fd, buf, n)) != SGX_SUCCESS) {
+      printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+      abort();
+    }
+  }
+  return retv;
+}
+//40
+int real_sgx_read(int fd, void *buf, int n)
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if (sgx_is_within_enclave(buf, n) == 0) { // App memory
+    if ((sgx_retv = ocall_sgx_direct_read(&retv, fd, (unsigned long long)buf, n)) != SGX_SUCCESS) {
+      printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+      abort();
+    }
+  }
+  else {
+    if ((sgx_retv = ocall_sgx_read(&retv, fd, buf, n)) != SGX_SUCCESS) {
+      printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+      abort();
+    }
+  }
+  return retv;
+}
+//41
+off_t real_sgx_lseek(int fildes, off_t offset, int whence)
+{
+  off_t retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_lseek(&retv, fildes, offset, whence)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//42
+int real_sgx_locking(int fd, int mode, long num)
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_locking(&retv, fd, mode, num)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//43
+int real_sgx_close(int fd)
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_close(&retv, fd)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//44
+int real_sgx_fputs(const char *str, FILE *file)
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_fputs(&retv, str, file, sizeof(FILE))) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//45
+int real_sgx_fclose(FILE * file)
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_fclose(&retv, file, sizeof(FILE))) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//46
+int real_sgx_unlink(const char *filename)
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_unlink(&retv, filename)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//47
+int real_sgx_stat(const char *filename, struct stat *st)
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_stat(&retv, filename, st, sizeof(struct stat))) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//48
+int real_sgx_mkdir(const char *path)
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_mkdir(&retv, path)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//49
+int real_sgx_UnmapViewOfFile(const void* lpBaseAddress)
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_UnmapViewOfFile(&retv, (unsigned long long)lpBaseAddress)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//50
+void *real_sgx_MapViewOfFile(
+  int hFileMappingObject,
+  unsigned long dwDesiredAccess,
+  unsigned long dwFileOffsetHigh,
+  unsigned long dwFileOffsetLow,
+  unsigned long long dwNumberOfBytesToMap
+  )
+{
+  void *retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_MapViewOfFile(&retv, hFileMappingObject, dwDesiredAccess, dwFileOffsetHigh, dwFileOffsetLow, dwNumberOfBytesToMap)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//51
+int real_sgx_CreateFileMapping(
+  int hFile,
+  void *_null,
+  unsigned long flProtect,
+  unsigned long dwMaximumSizeHigh,
+  unsigned long dwMaximumSizeLow,
+  const char* lpName
+  )
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_CreateFileMapping(&retv, hFile, _null, flProtect, dwMaximumSizeHigh, dwMaximumSizeLow, lpName)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//52
+unsigned long real_sgx_GetFileSize(int hFile, unsigned long *lpFileSizeHigh)
+{
+  unsigned long retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_GetFileSize(&retv, hFile, lpFileSizeHigh)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//53
+HANDLE real_sgx_CreateFile(
+  const char *lpFileName,
+  DWORD dwDesiredAccess,
+  DWORD dwShareMode,
+  void *_null,
+  DWORD dwCreationDisposition,
+  DWORD dwFlagsAndAttributes,
+  HANDLE hTemplateFile)
+{
+  HANDLE retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_CreateFile(&retv, lpFileName, dwDesiredAccess, dwShareMode, _null,
+    dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//54
+int real_sgx_rename(const char *from_str, const char *to_str)
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_rename(&retv, from_str, to_str)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//55
+int real_sgx_fstat(int fd, struct stat *buf)
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_fstat(&retv, fd, buf, sizeof(struct stat))) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//56
+int real_sgx_chsize(int fd, long val)
+{
+  int retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_chsize(&retv, fd, val)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+//57
+int sgx_CloseHandle(int hObject)
+{
+  int retv;
+  ocall_sgx_CloseHandle(&retv, hObject);
+  return retv;
 }
 
-// For eval, clock
-long sgx_clock(void)
+// ------------------------------------------------------------------------//
+//  ------------------- For Debug Purpose OCALL START  ------------------- //
+// ------------------------------------------------------------------------//
+void *sgx_malloc(int m_size)
 {
-	long retv;
-	ocall_sgx_clock(&retv);
-	return retv;
+  void *retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_malloc(&retv, m_size)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+void *sgx_calloc(int m_cnt, int m_size)
+{
+  void *retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_calloc(&retv, m_cnt, m_size)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+void *sgx_realloc(void *old_mem, int m_size)
+{
+  void *retv;
+  sgx_status_t sgx_retv;
+  if ((sgx_retv = ocall_sgx_realloc(&retv, (unsigned long long)old_mem, m_size)) != SGX_SUCCESS) {
+    printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
+    abort();
+  }
+  return retv;
+}
+// For eval, clock
+long long sgx_clock(void)
+{
+  long long retv;
+  ocall_sgx_clock(&retv);
+  return retv;
 }
 
 /* Not need new OCALL, just use "sgx_GetSystemTimeAsFileTime" */
 void sgx_get_current_time(struct timeval *t)
 {
-	// [Notice] (tor_gettimeofday) used by OpenSSL  function
+  // [Notice] (tor_gettimeofday) used by OpenSSL  function
 #define U64_LITERAL(n) (n ## ui64)
 #define EPOCH_BIAS U64_LITERAL(116444736000000000)
 #define UNITS_PER_SEC U64_LITERAL(10000000)
@@ -2085,300 +2641,12 @@ void sgx_get_current_time(struct timeval *t)
   /* number of 100-nsec units since Jan 1, 1601 */
   sgx_GetSystemTimeAsFileTime(&ft.ft_ft);
   if (ft.ft_64 < EPOCH_BIAS) {
-    log_err(LD_GENERAL,"System time is before 1970; failing.");
+    log_err(LD_GENERAL, "System time is before 1970; failing.");
     exit(1);
   }
   ft.ft_64 -= EPOCH_BIAS;
-  t->tv_sec = (unsigned) (ft.ft_64 / UNITS_PER_SEC);
-  t->tv_usec = (unsigned) ((ft.ft_64 / UNITS_PER_USEC) % USEC_PER_SEC);
-}
-
-// ------------------------------------------------------------------------//
-//  ------------------- For Debug Purpose OCALL START  ------------------- //
-// ------------------------------------------------------------------------//
-
-void *sgx_malloc(int m_size)
-{
-	unsigned long long retv;
-	sgx_status_t sgx_retv;
-	if ((sgx_retv = ocall_sgx_malloc(&retv, m_size)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return (void *)retv;
-}
-
-void *sgx_calloc(int m_cnt, int m_size)
-{
-	void *retv;
-	sgx_status_t sgx_retv;
-	if ((sgx_retv = ocall_sgx_calloc(&retv, m_cnt, m_size)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-void *sgx_realloc(void *old_mem, int m_size)
-{
-	void *retv;
-	sgx_status_t sgx_retv;
-	if ((sgx_retv = ocall_sgx_realloc(&retv, (unsigned long long)old_mem, m_size)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-int real_sgx_fileno_stdout()
-{
-	int retv;
-	sgx_status_t sgx_retv;
-	if((sgx_retv =	ocall_sgx_fileno_stdout(&retv)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-int real_sgx_open(const char *pathname, int flags, unsigned mode)
-{
-	int retv;
-	sgx_status_t sgx_retv;
-	if((sgx_retv =	ocall_sgx_open(&retv, pathname, flags, mode)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-int real_sgx_write(int fd, const void *buf, int n)
-{
-	int retv;
-	sgx_status_t sgx_retv;
-  if (sgx_is_within_enclave(buf, n) == 0) { // App memory
-    if ((sgx_retv = ocall_sgx_direct_write(&retv, fd, (unsigned long long)buf, n)) != SGX_SUCCESS) {
-      printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-      abort();
-    }
-  }
-  else {
-	  if((sgx_retv =	ocall_sgx_write(&retv, fd, buf, n)) != SGX_SUCCESS) {
-		  printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		  abort();
-	  }
-  }
-	return retv;
-}
-
-int real_sgx_read(int fd, void *buf, int n)
-{
-	int retv;
-	sgx_status_t sgx_retv;
-  if (sgx_is_within_enclave(buf, n) == 0) { // App memory
-    if ((sgx_retv = ocall_sgx_direct_read(&retv, fd, (unsigned long long)buf, n)) != SGX_SUCCESS) {
-      printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-      abort();
-    }
-  }
-  else {
-	  if((sgx_retv = ocall_sgx_read(&retv, fd, buf, n)) != SGX_SUCCESS) {
-		  printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		  abort();
-	  }
-  }
-	return retv;
-}
-
-off_t real_sgx_lseek(int fildes, off_t offset, int whence)
-{
-	off_t retv;
-	sgx_status_t sgx_retv;
-	if((sgx_retv =	ocall_sgx_lseek(&retv, fildes, offset, whence)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-int real_sgx_locking(int fd, int mode, long num)
-{
-	int retv;
-	sgx_status_t sgx_retv;
-	if ((sgx_retv = ocall_sgx_locking(&retv, fd, mode, num)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-int real_sgx_close(int fd)
-{
-	int retv;
-	sgx_status_t sgx_retv;
-	if((sgx_retv =	ocall_sgx_close(&retv, fd)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-int real_sgx_fclose(FILE * file)
-{
-	int retv;
-	sgx_status_t sgx_retv;
-	if((sgx_retv =	ocall_sgx_fclose(&retv, file, sizeof(FILE))) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-int real_sgx_unlink(const char *filename) 
-{
-	int retv;
-	sgx_status_t sgx_retv;
-	if((sgx_retv =	ocall_sgx_unlink(&retv, filename)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-int real_sgx_stat(const char *filename, struct stat *st) 
-{
-	int retv;
-	sgx_status_t sgx_retv;
-	if((sgx_retv =	ocall_sgx_stat(&retv, filename, st, sizeof(struct stat))) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-int real_sgx_mkdir(const char *path)
-{
-	int retv;
-	sgx_status_t sgx_retv;
-	if ((sgx_retv = ocall_sgx_mkdir(&retv, path)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-int real_sgx_UnmapViewOfFile(const void* lpBaseAddress)
-{
-	int retv;
-	sgx_status_t sgx_retv;
-	if((sgx_retv =	ocall_sgx_UnmapViewOfFile(&retv, (unsigned long long)lpBaseAddress)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-void *real_sgx_MapViewOfFile(
-    int hFileMappingObject,
-    unsigned long dwDesiredAccess,
-    unsigned long dwFileOffsetHigh,
-    unsigned long dwFileOffsetLow,
-    unsigned long long dwNumberOfBytesToMap
-    )
-{
-	void *retv;
-	sgx_status_t sgx_retv;
-	if((sgx_retv =	ocall_sgx_MapViewOfFile(&retv, hFileMappingObject, dwDesiredAccess, dwFileOffsetHigh, dwFileOffsetLow, dwNumberOfBytesToMap)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-int real_sgx_CreateFileMapping(
-    int hFile,
-    void *_null,
-    unsigned long flProtect,
-    unsigned long dwMaximumSizeHigh,
-    unsigned long dwMaximumSizeLow,
-    const char* lpName
-    )
-{
-	int retv;
-	sgx_status_t sgx_retv;
-	if((sgx_retv =	ocall_sgx_CreateFileMapping(&retv, hFile, _null, flProtect, dwMaximumSizeHigh, dwMaximumSizeLow, lpName)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-unsigned long real_sgx_GetFileSize(int hFile, unsigned long *lpFileSizeHigh)
-{
-	unsigned long retv;
-	sgx_status_t sgx_retv;
-	if((sgx_retv =	ocall_sgx_GetFileSize(&retv, hFile, lpFileSizeHigh)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-HANDLE real_sgx_CreateFile(
-				const char *lpFileName,
-				DWORD dwDesiredAccess,
-				DWORD dwShareMode,
-				void *_null,
-				DWORD dwCreationDisposition,
-				DWORD dwFlagsAndAttributes,
-				HANDLE hTemplateFile)
-{
-	HANDLE retv;
-	sgx_status_t sgx_retv;
-	if((sgx_retv =	ocall_sgx_CreateFile(&retv, lpFileName, dwDesiredAccess, dwShareMode, _null,
-		dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-int real_sgx_rename(const char *from_str, const char *to_str)
-{
-	int retv;
-	sgx_status_t sgx_retv;
-	if((sgx_retv =	ocall_sgx_rename(&retv, from_str, to_str)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-int real_sgx_fstat(int fd, struct stat *buf)
-{
-	int retv;
-	sgx_status_t sgx_retv;
-	if((sgx_retv =	ocall_sgx_fstat(&retv, fd, buf, sizeof(struct stat))) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-int real_sgx_chsize(int fd, long val)
-{
-	int retv;
-	sgx_status_t sgx_retv;
-	if((sgx_retv =	ocall_sgx_chsize(&retv, fd, val)) != SGX_SUCCESS) {
-		printf("OCALL FAILED!, Error code = %d\n", sgx_retv);
-		abort();
-	}
-	return retv;
-}
-
-int sgx_CloseHandle(int hObject)
-{
-	int retv;
-	ocall_sgx_CloseHandle(&retv, hObject);
-	return retv;
+  t->tv_sec = (unsigned)(ft.ft_64 / UNITS_PER_SEC);
+  t->tv_usec = (unsigned)((ft.ft_64 / UNITS_PER_USEC) % USEC_PER_SEC);
 }
 
 // ------------------------------------------------------------------------//
@@ -2387,6 +2655,8 @@ int sgx_CloseHandle(int hObject)
 
 void *sgx_TlsGetValue(unsigned long index)
 {
+  puts("[DEBUG]SGX: sgx_TlsGetValue should not called");
+  abort();
 	void *retv;
 	ocall_sgx_TlsGetValue(&retv, index);
 	return retv;
@@ -2394,6 +2664,8 @@ void *sgx_TlsGetValue(unsigned long index)
 
 int sgx_TlsSetValue(unsigned long index, void *val)
 {
+  puts("[DEBUG]SGX: sgx_TlsSetValue should not called");
+  abort();
 	int retv;
 	ocall_sgx_TlsSetValue(&retv, index, val);
 	return retv;
@@ -2401,16 +2673,22 @@ int sgx_TlsSetValue(unsigned long index, void *val)
 
 void sgx_Sleep(unsigned long ms)
 {
+  puts("[DEBUG]SGX: sgx_Sleep should not called");
+  abort();
 	ocall_sgx_Sleep(ms);
 }
 
 void sgx_getservbyname(const char *name, int name_len, const char *proto, int proto_len, void *serv_ptr, int serv_len)
 {
+  puts("[DEBUG]SGX: sgx_getservbyname should not called");
+  abort();
 	ocall_sgx_getservbyname(name, name_len, proto, proto_len, serv_ptr, serv_len);
 }
 
 void sgx_getprotobynumber(int number, void *proto, int proto_len, char *proto_name, int proto_name_len)
 {
+  puts("[DEBUG]SGX: sgx_getprotobynumber should not called");
+  abort();
 	ocall_sgx_getprotobynumber(number, proto, proto_len, proto_name, proto_name_len);
 }
 
@@ -2419,6 +2697,8 @@ static int max_f_id = 1;
 
 void (*sgx_signal(int signum, void(*_Func)(int)))(int)
 {
+  puts("[DEBUG]SGX: sgx_signal should not called");
+  abort();
 	int cur_f_id = max_f_id;
 	func_map[cur_f_id] = _Func;	
 	ocall_sgx_signal(signum, cur_f_id);
@@ -2428,6 +2708,8 @@ void (*sgx_signal(int signum, void(*_Func)(int)))(int)
 
 void sgx_signal_handle_caller(int signum, int f_id)
 {
+  puts("[DEBUG]SGX: sgx_signal_handle_caller should not called");
+  abort();
 	if(func_map.find(f_id) == func_map.end()) {
 		printf("Error: sgx_signal_handle_caller: func_map not found\n");
 		return;
@@ -2438,6 +2720,8 @@ void sgx_signal_handle_caller(int signum, int f_id)
 
 int sgx_shutdown(int fd)
 {
+  puts("[DEBUG]SGX: sgx_shutdown should not called");
+  abort();
 	int retv;
 	ocall_sgx_shutdown(&retv, fd);
 	return retv;
@@ -2449,6 +2733,8 @@ int sgx_shutdown(int fd)
 
 int sgx_CreateIoCompletionPort(int FileHandle, int p, unsigned long k, unsigned long numthreads)
 {
+  puts("[DEBUG]SGX: sgx_CreateIoCompletionPort should not called");
+  abort();
 	int retv;
 	ocall_sgx_CreateIoCompletionPort(&retv, FileHandle, p, k, numthreads);
 	return retv;
@@ -2456,6 +2742,8 @@ int sgx_CreateIoCompletionPort(int FileHandle, int p, unsigned long k, unsigned 
 
 int sgx_GetQueuedCompletionStatus(int p, unsigned long *numbytes, __int64 *k, void *lpOverlapped, int lpOverlapped_len, unsigned long dwMilliseconds)
 {
+  puts("[DEBUG]SGX: sgx_GetQueuedCompletionStatus should not called");
+  abort();
 	int retv, numbytes_len = sizeof(unsigned long), k_len = sizeof(__int64);
 	ocall_sgx_GetQueuedCompletionStatus(&retv, p, numbytes, numbytes_len, k, k_len, lpOverlapped, lpOverlapped_len, dwMilliseconds);
 	return retv;
@@ -2463,6 +2751,8 @@ int sgx_GetQueuedCompletionStatus(int p, unsigned long *numbytes, __int64 *k, vo
 
 int sgx_PostQueuedCompletionStatus(int port, unsigned int n, unsigned int key, void *o, int o_len)
 {
+  puts("[DEBUG]SGX: sgx_PostQueuedCompletionStatus should not called");
+  abort();
 	int retv;
 	ocall_sgx_PostQueuedCompletionStatus(&retv, port, n, key, o, o_len);
 	return retv;
@@ -2470,26 +2760,36 @@ int sgx_PostQueuedCompletionStatus(int port, unsigned int n, unsigned int key, v
 
 void sgx_EnterCriticalSection(void *lock, int lock_len)
 {
+  puts("[DEBUG]SGX: sgx_EnterCriticalSection should not called");
+  abort();
 	ocall_sgx_EnterCriticalSection(lock, lock_len);
 }
 
 void sgx_LeaveCriticalSection(void *lock, int lock_len)
 {
+  puts("[DEBUG]SGX: sgx_LeaveCriticalSection should not called");
+  abort();
 	ocall_sgx_LeaveCriticalSection(lock, lock_len);
 }
 
 void sgx_DeleteCriticalSection(void *lock, int lock_len)
 {
+  puts("[DEBUG]SGX: sgx_DeleteCriticalSection should not called");
+  abort();
 	ocall_sgx_DeleteCriticalSection(lock, lock_len);
 }
 
 void sgx_InitializeCriticalSectionAndSpinCount(void *lock, int lock_len, int count)
 {
+  puts("[DEBUG]SGX: sgx_InitializeCriticalSectionAndSpinCount should not called");
+  abort();
 	ocall_sgx_InitializeCriticalSectionAndSpinCount(lock, lock_len, count);
 }
 
 int sgx_CreateSemaphore(void *attr, int attr_len, long initcount, long maxcount, void *name, int name_len)
 {
+  puts("[DEBUG]SGX: sgx_CreateSemaphore should not called");
+  abort();
 	int retv;
 	ocall_sgx_CreateSemaphore(&retv, attr, attr_len, initcount, maxcount, name, name_len);
 	return retv;
@@ -2497,11 +2797,15 @@ int sgx_CreateSemaphore(void *attr, int attr_len, long initcount, long maxcount,
 
 void sgx_WaitForSingleObject(int handle, unsigned long ms_)
 {
+  puts("[DEBUG]SGX: sgx_WaitForSingleObject should not called");
+  abort();
 	ocall_sgx_WaitForSingleObject(handle, ms_);
 }
 
 int sgx_ReleaseSemaphore(int hSemaphore, long lReleaseCount, long* lpPreviousCount, int lp_len)
 {
+  puts("[DEBUG]SGX: sgx_ReleaseSemaphore should not called");
+  abort();
 	int retv;
 	ocall_sgx_ReleaseSemaphore(&retv, hSemaphore, lReleaseCount, lpPreviousCount, lp_len);
 	return retv;
@@ -2537,7 +2841,7 @@ static const sgx_ec256_public_t g_sp_pub_key = {
 	}
 };
 
-sgx_status_t enclave_init_ra(
+sgx_status_t sgx_init_ra(
     int b_pse,
     sgx_ra_context_t *p_context)
 {
@@ -2567,7 +2871,7 @@ sgx_status_t enclave_init_ra(
 // @param context The trusted KE library key context.
 //
 // @return Return value from the key context close API
-sgx_status_t SGXAPI enclave_ra_close(
+sgx_status_t SGXAPI sgx_close_ra(
     sgx_ra_context_t context)
 {
   sgx_status_t ret;
@@ -2590,7 +2894,7 @@ sgx_status_t SGXAPI enclave_ra_close(
 // @return Any error produced by tKE  API to get SK key.
 // @return Any error produced by the AESCMAC function.
 // @return SGX_ERROR_MAC_MISMATCH - MAC compare fails.
-sgx_status_t verify_att_result_mac(sgx_ra_context_t context,
+sgx_status_t sgx_verify_att_result_mac(sgx_ra_context_t context,
                                    uint8_t* p_message,
                                    size_t message_size,
                                    uint8_t* p_mac,

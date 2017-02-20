@@ -1120,7 +1120,7 @@ rend_service_load_keys(rend_service_t *s)
   }
 
   tor_snprintf(buf, sizeof(buf),"%s.onion\n", s->service_id);
-  if (write_str_to_file(fname,buf,0)<0) {
+  if (real_write_str_to_file(fname, buf, 0)<0) {
     log_warn(LD_CONFIG, "Could not write onion address to hostname file.");
     memwipe(buf, 0, sizeof(buf));
     return -1;
@@ -1155,8 +1155,8 @@ rend_service_load_auth_keys(rend_service_t *s, const char *hfname)
   char cfname[512];
   char *client_keys_str = NULL;
   strmap_t *parsed_clients = strmap_new();
-  sgx_file *cfile, *hfile;
-  open_file_t *open_cfile = NULL, *open_hfile = NULL;
+  FILE *cfile, *hfile;
+  real_open_file_t *open_cfile = NULL, *open_hfile = NULL;
   char extended_desc_cookie[REND_DESC_COOKIE_LEN+1];
   char desc_cook_out[3*REND_DESC_COOKIE_LEN_BASE64+1];
   char service_id[16+1];
@@ -1169,7 +1169,7 @@ rend_service_load_auth_keys(rend_service_t *s, const char *hfname)
              "file: \"%s\".", s->directory);
     goto err;
   }
-  client_keys_str = read_file_to_str(cfname, RFTS_IGNORE_MISSING, NULL);
+  client_keys_str = real_read_file_to_str(cfname, RFTS_IGNORE_MISSING, NULL);
   if (client_keys_str) {
     if (rend_parse_client_keys(parsed_clients, client_keys_str) < 0) {
       log_warn(LD_CONFIG, "Previously stored client_keys file could not "
@@ -1182,7 +1182,7 @@ rend_service_load_auth_keys(rend_service_t *s, const char *hfname)
   }
 
   /* Prepare client_keys and hostname files. */
-  if (!(cfile = start_writing_to_stdio_file(cfname,
+  if (!(cfile = real_start_writing_to_stdio_file(cfname,
                                             OPEN_FLAGS_REPLACE | O_TEXT,
                                             0600, &open_cfile))) {
     log_warn(LD_CONFIG, "Could not open client_keys file %s",
@@ -1190,7 +1190,7 @@ rend_service_load_auth_keys(rend_service_t *s, const char *hfname)
     goto err;
   }
 
-  if (!(hfile = start_writing_to_stdio_file(hfname,
+  if (!(hfile = real_start_writing_to_stdio_file(hfname,
                                             OPEN_FLAGS_REPLACE | O_TEXT,
                                             0600, &open_hfile))) {
     log_warn(LD_CONFIG, "Could not open hostname file %s", escaped(hfname));
@@ -1275,7 +1275,7 @@ rend_service_load_auth_keys(rend_service_t *s, const char *hfname)
       }
     }
 
-    if (sgx_fputs(buf, cfile) < 0) {
+	if (real_sgx_fputs(buf, cfile) < 0) {
       log_warn(LD_FS, "Could not append client entry to file: %s",
                strerror(errno));
       goto err;
@@ -1303,23 +1303,23 @@ rend_service_load_auth_keys(rend_service_t *s, const char *hfname)
                    service_id, desc_cook_out, client->client_name);
     }
 
-    if (sgx_fputs(buf, hfile)<0) {
+    if (real_sgx_fputs(buf, hfile)<0) {
       log_warn(LD_FS, "Could not append host entry to file: %s",
                strerror(errno));
       goto err;
     }
   } SMARTLIST_FOREACH_END(client);
 
-  finish_writing_to_file(open_cfile);
-  finish_writing_to_file(open_hfile);
+  real_finish_writing_to_file(open_cfile);
+  real_finish_writing_to_file(open_hfile);
 
   goto done;
  err:
   r = -1;
   if (open_cfile)
-    abort_writing_to_file(open_cfile);
+	  real_abort_writing_to_file(open_cfile);
   if (open_hfile)
-    abort_writing_to_file(open_hfile);
+	  real_abort_writing_to_file(open_hfile);
  done:
   if (client_keys_str) {
     memwipe(client_keys_str, 0, strlen(client_keys_str));

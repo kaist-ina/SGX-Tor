@@ -1081,8 +1081,8 @@ tor_lockfile_unlock(tor_lockfile_t *lockfile)
 
   log_info(LD_FS, "Unlocking \"%s\"", lockfile->filename);
 #ifdef _WIN32
-  _lseek(lockfile->fd, 0, SEEK_SET);
-  if (_locking(lockfile->fd, _LK_UNLOCK, 1) < 0) {
+  real_sgx_lseek(lockfile->fd, 0, SEEK_SET);
+  if (real_sgx_locking(lockfile->fd, _LK_UNLOCK, 1) < 0) {
     log_warn(LD_FS,"Error unlocking \"%s\": %s", lockfile->filename,
              strerror(errno));
   }
@@ -1095,7 +1095,7 @@ tor_lockfile_unlock(tor_lockfile_t *lockfile)
   /* Closing the lockfile is sufficient. */
 #endif
 
-  close(lockfile->fd);
+  real_sgx_close(lockfile->fd);
   lockfile->fd = -1;
   tor_free(lockfile->filename);
   tor_free(lockfile);

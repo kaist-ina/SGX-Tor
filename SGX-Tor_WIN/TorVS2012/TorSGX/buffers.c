@@ -118,8 +118,25 @@ chunk_free_unchecked(chunk_t *chunk)
   total_bytes_allocated_in_chunks -= CHUNK_ALLOC_SIZE(chunk->memlen);
   real_tor_free(chunk);
 }
+
 static INLINE chunk_t *
 chunk_new_with_alloc_size(size_t alloc)
+{
+  chunk_t *ch;
+  ch = tor_malloc(alloc);
+  ch->next = NULL;
+  ch->datalen = 0;
+#ifdef DEBUG_CHUNK_ALLOC
+  ch->DBG_alloc = alloc;
+#endif
+  ch->memlen = CHUNK_SIZE_WITH_ALLOC(alloc);
+  total_bytes_allocated_in_chunks += alloc;
+  ch->data = &ch->mem[0];
+  return ch;
+}
+
+static INLINE chunk_t *
+ucheck_chunk_new_with_alloc_size(size_t alloc)
 {
   chunk_t *ch;
   ch = real_tor_malloc(alloc);
@@ -428,6 +445,37 @@ buf_add_chunk_with_capacity(buf_t *buf, size_t capacity, int capped)
   return chunk;
 }
 
+static chunk_t *
+ucheck_buf_add_chunk_with_capacity(buf_t *buf, size_t capacity, int capped)
+{
+  chunk_t *chunk;
+  struct timeval now;
+  if (CHUNK_ALLOC_SIZE(capacity) < buf->default_chunk_size) {
+    chunk = ucheck_chunk_new_with_alloc_size(buf->default_chunk_size);
+  }
+  else if (capped && CHUNK_ALLOC_SIZE(capacity) > MAX_CHUNK_ALLOC) {
+    chunk = ucheck_chunk_new_with_alloc_size(MAX_CHUNK_ALLOC);
+  }
+  else {
+    chunk = ucheck_chunk_new_with_alloc_size(preferred_chunk_size(capacity));
+  }
+
+  tor_gettimeofday_cached_monotonic(&now);
+  chunk->inserted_time = (uint32_t)tv_to_msec(&now);
+
+  if (buf->tail) {
+    tor_assert(buf->head);
+    buf->tail->next = chunk;
+    buf->tail = chunk;
+  }
+  else {
+    tor_assert(!buf->head);
+    buf->head = buf->tail = chunk;
+  }
+  check();
+  return chunk;
+}
+
 /** Return the age of the oldest chunk in the buffer <b>buf</b>, in
  * milliseconds.  Requires the current time, in truncated milliseconds since
  * the epoch, as its input <b>now</b>.
@@ -527,7 +575,7 @@ read_to_buf(tor_socket_t s, size_t at_most, buf_t *buf, int *reached_eof,
     size_t readlen = at_most - total_read;
     chunk_t *chunk;
     if (!buf->tail || CHUNK_REMAINING_CAPACITY(buf->tail) < MIN_READ_LEN) {
-      chunk = buf_add_chunk_with_capacity(buf, at_most, 1);
+      chunk = ucheck_buf_add_chunk_with_capacity(buf, at_most, 1);
       if (readlen > chunk->memlen)
         readlen = chunk->memlen;
     } else {
@@ -584,7 +632,7 @@ read_to_buf_tls(tor_tls_t *tls, size_t at_most, buf_t *buf)
     size_t readlen = at_most - total_read;
     chunk_t *chunk;
     if (!buf->tail || CHUNK_REMAINING_CAPACITY(buf->tail) < MIN_READ_LEN) {
-      chunk = buf_add_chunk_with_capacity(buf, at_most, 1);
+      chunk = ucheck_buf_add_chunk_with_capacity(buf, at_most, 1);
       if (readlen > chunk->memlen)
         readlen = chunk->memlen;
     } else {
@@ -1231,14 +1279,14 @@ fetch_from_buf_http(buf_t *buf,
   }
   /* all happy. copy into the appropriate places, and return 1 */
   if (headers_out) {
-    *headers_out = real_tor_malloc(headerlen+1);
+    *headers_out = tor_malloc(headerlen+1);
     fetch_from_buf(*headers_out, headerlen, buf);
     (*headers_out)[headerlen] = 0; /* NUL terminate it */
   }
   if (body_out) {
     tor_assert(body_used);
     *body_used = bodylen;
-    *body_out = real_tor_malloc(bodylen+1);
+    *body_out = tor_malloc(bodylen+1);
     fetch_from_buf(*body_out, bodylen, buf);
     (*body_out)[bodylen] = 0; /* NUL terminate it */
   }

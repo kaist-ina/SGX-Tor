@@ -77,6 +77,8 @@ static int sock_puts(BIO *h, const char *str);
 static long sock_ctrl(BIO *h, int cmd, long arg1, void *arg2);
 static int sock_new(BIO *h);
 static int sock_free(BIO *data);
+static int ucheck_sock_read(BIO *h, char *buf, int size);
+
 int BIO_sock_should_retry(int s);
 
 static BIO_METHOD methods_sockp = {
@@ -90,6 +92,7 @@ static BIO_METHOD methods_sockp = {
     sock_new,
     sock_free,
     NULL,
+    ucheck_sock_read,
 };
 
 BIO_METHOD *BIO_s_socket(void)
@@ -138,6 +141,22 @@ static int sock_read(BIO *b, char *out, int outl)
     if (out != NULL) {
         clear_socket_error();
         ret = sgx_recv(b->num, out, outl, 0);
+        BIO_clear_retry_flags(b);
+        if (ret <= 0) {
+            if (BIO_sock_should_retry(ret))
+                BIO_set_retry_read(b);
+        }
+    }
+    return (ret);
+}
+
+static int ucheck_sock_read(BIO *b, char *out, int outl)
+{
+    int ret = 0;
+
+    if (out != NULL) {
+        clear_socket_error();
+        ret = sgx_ucheck_recv(b->num, out, outl, 0);
         BIO_clear_retry_flags(b);
         if (ret <= 0) {
             if (BIO_sock_should_retry(ret))

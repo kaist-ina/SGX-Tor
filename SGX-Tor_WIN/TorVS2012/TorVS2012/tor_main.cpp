@@ -63,6 +63,7 @@ int ocall_num;
 
 //#define EVAL_REMOTE_ATTEST_COUNT
 //#define EVAL_REMOTE_ATTEST_TIME
+//#define EVAL_REMOTE_ATTEST_FAIL_TIME
 
 #ifdef EVAL_REMOTE_ATTEST_COUNT
 //bool is_remote_attest_start;  // need modification!
@@ -102,9 +103,9 @@ int ocall_sgx_mkdir(const char *path)
 }
 
 
-unsigned long long ocall_sgx_malloc(int m_size)
+void *ocall_sgx_malloc(int m_size)
 {
-	return (unsigned long long)malloc(m_size);
+	return malloc(m_size);
 }
 
 void *ocall_sgx_calloc(int m_cnt, int m_size)
@@ -125,11 +126,6 @@ int ocall_sgx_stat(const char  *filename, struct stat *st, int stat_size)
 int ocall_sgx_fclose(FILE *file, int file_size)
 {
 	return fclose(file);
-}
-
-int ocall_sgx_fileno_stdout(void)
-{
-	return fileno(stdout);
 }
 
 void *ocall_sgx_calloc(size_t cnt, size_t sz)
@@ -233,19 +229,42 @@ void ocall_print_string(const char *str)
 	printf("%s", str);
 }
 
+int ocall_sgx_ucheck_recv(int s, char *buf, int len, int flags)
+{
+  int retv = recv((SOCKET)s, buf, len, flags);
+  /*
+  if (retv == SOCKET_ERROR) {
+    long e = WSAGetLastError();
+    printf("ucheck_recv function failed with error: %ld\n", e);
+  }
+  */
+  return retv;
+}
+
+int ocall_sgx_ucheck_send(int s, const char *buf, int len, int flags)
+{
+  int retv = send((SOCKET)s, buf, len, flags);
+  /*
+  if (retv == SOCKET_ERROR) {
+    long e = WSAGetLastError();
+    printf("ucheck_send function failed with error: %ld\n", e);
+  }
+  */
+  return retv;
+}
+
 int ocall_sgx_recv(int s, char *buf, int len, int flags)
 {
 #ifdef EVAL_OCALL_COUNT
 	ocall_num++;
 #endif
-
 	int retv = recv((SOCKET)s, buf, len, flags);
-	/*
+  /*
 	if(retv == SOCKET_ERROR) {
 		long e = WSAGetLastError();
 		printf("recv function failed with error: %ld\n", e);
 	}
-	*/
+  */
 	return retv;
 }
 
@@ -584,11 +603,6 @@ int ocall_sgx_direct_read(int fd, unsigned long long buf, int n)
   return r;
 }
 
-char *ocall_sgx_strdup(char *str)
-{
-  return strdup(str);
-}
-
 off_t ocall_sgx_lseek(int fildes, off_t offset, int whence)
 {
 	return lseek(fildes, offset, whence);
@@ -817,6 +831,11 @@ void ocall_sgx_signal(int signum, int f_id)
 	signal(signum, sgx_signal_handle_caller_caller);
 }
 
+unsigned long long ocall_sgx_fdopen(int fd, const char *format)
+{
+  return (unsigned long long)fdopen(fd, format);
+}
+
 int ocall_sgx_fputs(const char *str, FILE *stream, int stream_size)
 {
 	return fputs(str, stream);
@@ -832,9 +851,11 @@ unsigned long ocall_sgx_GetAdaptersAddresses(unsigned long family, unsigned long
 }
 
 // For eval
-long ocall_sgx_clock(void)
+long long ocall_sgx_clock(void)
 {
-	return clock();
+  high_resolution_clock::time_point cur = high_resolution_clock::now();
+  return duration_cast<microseconds>(cur.time_since_epoch()).count();
+	//return clock();
 }
 
 /**************************************************************************/
@@ -863,13 +884,20 @@ void PRINT_BYTE_ARRAY(void *mem, uint32_t len)
 void init_ra()
 {
 	sgx_status_t ret, status;
-	ret = enclave_init_ra(eid,
-                        &status,
-                        false,
-                        &context);
-
+	ret = sgx_init_ra(eid, &status, false, &context);
 	if (SGX_SUCCESS != ret){
 		puts("*** Error, Enclave RA Initialization failed ***");
+		abort();
+	}
+}
+
+void close_ra()
+{
+	sgx_status_t ret, status;
+	ret = sgx_close_ra(eid, &status, context);
+
+	if (SGX_SUCCESS != ret){
+		puts("*** Error, Enclave RA close failed ***");
 		abort();
 	}
 }
@@ -1052,18 +1080,18 @@ int verify_msg4(ra_samp_response_header_t *msg4)
     return -1;
   }
 	p_msg4_body = (sample_ra_att_result_msg_t *)((uint8_t*)msg4 + sizeof(ra_samp_response_header_t));
-	ret = verify_att_result_mac(eid,
-															&status,
-															context,
-															(uint8_t*)&p_msg4_body->platform_info_blob,
-															sizeof(ias_platform_info_blob_t),
-															(uint8_t*)&p_msg4_body->mac,
-															sizeof(sgx_mac_t));
+	ret = sgx_verify_att_result_mac(eid,
+									&status,
+									context,
+									(uint8_t*)&p_msg4_body->platform_info_blob,
+									sizeof(ias_platform_info_blob_t),
+									(uint8_t*)&p_msg4_body->mac,
+									sizeof(sgx_mac_t));
 	if((SGX_SUCCESS != ret) || (SGX_SUCCESS != status))	{
 		puts("Error: INTEGRITY FAILED - attestation result message MK based cmac failed.");
 		return -1;
 	}
-	puts("Call verify_att_result_mac success.");
+	puts("Call sgx_verify_att_result_mac success.");
 	//puts("MSG4 - ");
 	//PRINT_BYTE_ARRAY(msg4->body, msg4->size);
 	return 0;
@@ -1172,6 +1200,9 @@ int start_remote_attestation_client()
 	ra_samp_request_header_t *p_msg3_full = NULL;
 	ra_samp_response_header_t* p_msg4_full = NULL;	
 
+	init_ra();
+	puts("Call sgx_init_ra success.");
+
 	list<SOCKADDR_IN *>::iterator iter;
 	for(iter = remote_list.begin(); iter != remote_list.end(); iter++) {
 		int ret = -1;
@@ -1193,6 +1224,10 @@ int start_remote_attestation_client()
 		uint32_t msg0_full_size = sizeof(ra_samp_request_header_t)+sizeof(uint32_t);
 		p_msg0_full = (ra_samp_request_header_t *)sgx_calloc(1, msg0_full_size);
 		build_msg0(p_msg0_full);
+
+#ifdef EVAL_REMOTE_ATTEST_FAIL_TIME // Make fail on purpose
+    //p_msg0_full->body[0] = 1; 
+#endif
 		SEND(server_fd, p_msg0_full, msg0_full_size);
 		puts("Send MSG0 success!");
 		RECV(server_fd, &is_ok, sizeof(int));
@@ -1201,12 +1236,14 @@ int start_remote_attestation_client()
 			goto err;
 		}
 
-		init_ra();
-		puts("Call enclave_init_ra success.");
-
 		uint32_t msg1_full_size = sizeof(ra_samp_request_header_t) + sizeof(sgx_ra_msg1_t);
 		p_msg1_full = (ra_samp_request_header_t*)sgx_calloc(1, msg1_full_size);
 		build_msg1(p_msg1_full);
+
+#ifdef EVAL_REMOTE_ATTEST_FAIL_TIME // Make fail on purpose
+    p_msg1_full->body[67] = 1;
+#endif
+
 		SEND(server_fd, p_msg1_full, msg1_full_size);
 		puts("Send MSG1 success!");
 		RECV(server_fd, &is_ok, sizeof(int));
@@ -1224,6 +1261,13 @@ int start_remote_attestation_client()
 
 		uint32_t msg3_full_size = 0;
 		build_msg3(p_msg2_full, &p_msg3_full, &msg3_full_size);
+#ifdef EVAL_REMOTE_ATTEST_FAIL_TIME // Make fail on purpose
+    //sample_ra_msg3_t *p_msg3 = (sample_ra_msg3_t*)((uint8_t*)p_msg3_full + sizeof(ra_samp_request_header_t));
+    //p_msg3->quote[0] = 1;
+#endif
+#ifdef EVAL_REMOTE_ATTEST_FAIL_TIME // Make fail on purpose
+    //p_msg3_full->body[1] = 1;
+#endif
 		SEND(server_fd, &msg3_full_size, sizeof(uint32_t));
 		SEND(server_fd, p_msg3_full, msg3_full_size);
 		puts("Send MSG3 success!");
@@ -1270,6 +1314,7 @@ int start_remote_attestation_client()
 		system("pause");
 #endif
 	}
+	close_ra();
 	return 0;
 }
 
@@ -1287,54 +1332,57 @@ void start_remote_attestation_server()
 	void *sgx_cert_cont, *sgx_pkey_cont;
 	struct stat statbuf;
 
-	path = "D:\\demo\\client.crt";
+	path = "C:\\demo\\client.crt";
 	fd = open(path, O_RDONLY, 0);
 	if (fd < 0) {
-		printf("unable to open torrc! path: %s\n", path);
+		printf("unable to open client.crt! path: %s\n", path);
 		return;
 	}
 	if (fstat(fd, &statbuf) < 0) {
-		printf("unable to fstat torrc! path: %s\n", path);
+		printf("unable to fstat client.crt! path: %s\n", path);
 		return;
 	}
 	if ((uint64_t)(statbuf.st_size) >= SIZE_T_CEILING) {
 		close(fd);
-		printf("unable to fstat torrc! path: %s\n", path);
+		printf("unable to fstat client.crt! path: %s\n", path);
 		return;
 	}
 	sgx_cert_cont_size = statbuf.st_size;
 	sgx_cert_cont = (char *)malloc(sgx_cert_cont_size);
 	r = read_all(fd, (char *)sgx_cert_cont, sgx_cert_cont_size, 0);
 	if (r < 0) {
-		printf("unable to read torrc! path: %s\n", path);
+		printf("unable to read client.crt! path: %s\n", path);
 		return;
 	}
 	close(fd);
 
-	path = "D:\\demo\\client.key";
+	path = "C:\\demo\\client.key";
 	fd = open(path, O_RDONLY, 0);
 	if (fd < 0) {
-		printf("unable to open torrc! path: %s\n", path);
+		printf("unable to open client.key! path: %s\n", path);
 		return;
 	}
 	if (fstat(fd, &statbuf) < 0) {
-		printf("unable to fstat torrc! path: %s\n", path);
+		printf("unable to fstat client.key! path: %s\n", path);
 		return;
 	}
 	if ((uint64_t)(statbuf.st_size) >= SIZE_T_CEILING) {
 		close(fd);
-		printf("unable to fstat torrc! path: %s\n", path);
+		printf("unable to fstat client.key! path: %s\n", path);
 		return;
 	}
 	sgx_pkey_cont_size = statbuf.st_size;
 	sgx_pkey_cont = (char *)malloc(sgx_pkey_cont_size);
 	r = read_all(fd, (char *)sgx_pkey_cont, sgx_pkey_cont_size, 0);
 	if (r < 0) {
-		printf("unable to read torrc! path: %s\n", path);
+		printf("unable to read client.key! path: %s\n", path);
 		return;
 	}
 	close(fd);
 	printf("127.0.0.1 = %lu", inet_addr("127.0.0.1"));
+#ifdef EVAL_REMOTE_ATTEST_TIME
+  is_remote_attest_start = true;
+#endif
 	sgx_start_remote_attestation_server(eid, remote_attest_server_port, sgx_cert_cont, sgx_cert_cont_size, sgx_pkey_cont, sgx_pkey_cont_size, my_ip);
 }
 
@@ -1639,7 +1687,7 @@ main(int argc, char *argv[])
 #define TOR_RELAY 1
 #define TOR_DIR_SERVER 2
 #define DIR_MONTH "12"
-
+  system_clock::time_point start;
 // For eval
 #ifdef EVAL_SEALING 
 	system_clock::time_point start, end;
@@ -1683,6 +1731,7 @@ main(int argc, char *argv[])
 	ret = sgx_create_enclave(ENCLAVE_FILE, SGX_DEBUG_FLAG, &token, &updated, &eid, NULL);
 	if (ret != SGX_SUCCESS) {
 		printf("App: error %#x, failed to create enclave.\n", ret);
+    abort();
 		return -1;
 	}
 
@@ -1928,28 +1977,34 @@ main(int argc, char *argv[])
 			printf("Error, CreateThread\n");
 			goto done;
 		}
-		
 		system("pause");
 	}
 	if(!remote_list.empty()) {
 		int ret;
-		ret = start_remote_attestation_client();
-		if(ret != 0) {
-			printf("Remote attestation failed\n");
-			goto done;
-		}
+#ifdef EVAL_REMOTE_ATTEST_FAIL_TIME
+    for (int i = 0; i < 110; i++) {
+#endif
+      ret = start_remote_attestation_client();
+      if (ret != 0) {
+        printf("Remote attestation failed\n");
+        goto done;
+      }
+#ifdef EVAL_REMOTE_ATTEST_FAIL_TIME
+    }
+    system("pause");
+#endif
 	}
 
-	if( (ret = StartTorSGX(eid, argc, argv, argv_len, 
+	if ((ret = sgx_start_tor(eid, argc, argv, argv_len,
 			(void *)&info, info.dwOSVersionInfoSize, // GetVersion
 			(unsigned long long)&errno, (unsigned long long)&environ, // errno address
 			get_sgx_get_windows_conf_root(), torrc,
 			(const char *)app_system_dir,
 			&mse, &sys_info
 			)) != SGX_SUCCESS) {
-		printf("StartTorSGX failed... Error code = %d\n", ret);
+		printf("sgx_start_tor failed... Error code = %d\n", ret);
 	}
-	printf("StartTorSGX Success = %d\n", ret);
+	printf("sgx_start_tor Success = %d\n", ret);
 	
 done:
 	if(SGX_SUCCESS != sgx_destroy_enclave(eid))

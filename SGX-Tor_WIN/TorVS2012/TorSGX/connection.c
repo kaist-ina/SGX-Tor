@@ -2075,10 +2075,10 @@ connection_read_https_proxy_response(connection_t *conn)
     log_warn(LD_NET,
              "Unparseable headers from proxy (connecting to '%s'). Closing.",
              conn->address);
-    real_tor_free(headers);
+    tor_free(headers);
     return -1;
   }
-  real_tor_free(headers);
+  tor_free(headers);
   if (!reason) reason = tor_strdup("[no reason given]");
 
   if (status_code == 200) {

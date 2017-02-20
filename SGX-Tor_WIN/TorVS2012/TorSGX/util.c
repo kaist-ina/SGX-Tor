@@ -177,6 +177,7 @@ tor_malloc_(size_t size DMALLOC_PARAMS)
 #endif
 
   if (PREDICT_UNLIKELY(result == NULL)) {
+    puts("Out of memory on malloc(). Dying.");
     log_err(LD_MM,"Out of memory on malloc(). Dying.");
     /* If these functions die within a worker process, they won't call
      * spawn_exit, but that's ok, since the parent will run out of memory soon
@@ -317,6 +318,7 @@ tor_realloc_(void *ptr, size_t size DMALLOC_PARAMS)
 #endif
 
   if (PREDICT_UNLIKELY(result == NULL)) {
+    puts("Out of memory on realloc(). Dying.");
     log_err(LD_MM,"Out of memory on realloc(). Dying.");
     // SGX
 		//exit(1);
@@ -2578,6 +2580,21 @@ fdopen_file(open_file_t *file_data)
   return file_data->stdio_file;
 }
 
+FILE *
+real_fdopen_file(real_open_file_t *file_data)
+{
+  tor_assert(file_data);
+  if (file_data->stdio_file)
+    return file_data->stdio_file;
+  tor_assert(file_data->fd >= 0);
+  if (!(file_data->stdio_file = real_sgx_fdopen(file_data->fd,
+    file_data->binary ? "ab" : "a"))) {
+    log_warn(LD_FS, "Couldn't fdopen \"%s\" [%d]: %s", file_data->filename,
+      file_data->fd, strerror(errno));
+  }
+  return file_data->stdio_file;
+}
+
 /** Combines start_writing_to_file with fdopen_file(): arguments are as
  * for start_writing_to_file, but  */
 sgx_file *
@@ -2589,6 +2606,20 @@ start_writing_to_stdio_file(const char *fname, int open_flags, int mode,
     return NULL;
   if (!(res = fdopen_file(*data_out))) {
     abort_writing_to_file(*data_out);
+    *data_out = NULL;
+  }
+  return res;
+}
+
+FILE *
+real_start_writing_to_stdio_file(const char *fname, int open_flags, int mode,
+                            real_open_file_t **data_out)
+{
+  FILE *res;
+  if (real_start_writing_to_file(fname, open_flags, mode, data_out)<0)
+    return NULL;
+  if (!(res = real_fdopen_file(*data_out))) {
+    real_abort_writing_to_file(*data_out);
     *data_out = NULL;
   }
   return res;
@@ -2955,11 +2986,11 @@ real_read_file_to_str_until_eof(int fd, size_t max_bytes_to_read, size_t *sz_out
     string_max = pos + 1024;
     if (string_max > max_bytes_to_read)
       string_max = max_bytes_to_read + 1;
-    string = real_tor_realloc(string, string_max);
+    string = tor_realloc(string, string_max);
     r = real_sgx_read(fd, string + pos, string_max - pos - 1);
     if (r < 0) {
       int save_errno = errno;
-      real_tor_free(string);
+      tor_free(string);
       errno = save_errno;
       return NULL;
     }
@@ -3147,14 +3178,14 @@ real_read_file_to_str(const char *filename, int flags, struct stat *stat_out)
     return NULL;
   }
 
-  string = real_tor_malloc((size_t)(statbuf.st_size+1));
+  string = tor_malloc((size_t)(statbuf.st_size+1));
 
   r = real_read_all(fd,string,(size_t)statbuf.st_size,0);
   if (r<0) {
     int save_errno = errno;
     log_warn(LD_FS,"Error reading from file \"%s\": %s", filename,
              strerror(errno));
-    real_tor_free(string);
+    tor_free(string);
     real_sgx_close(fd);
     errno = save_errno;
     return NULL;
@@ -3179,7 +3210,7 @@ real_read_file_to_str(const char *filename, int flags, struct stat *stat_out)
       int save_errno = errno;
       log_warn(LD_FS,"Could read only %d of %ld bytes of file \"%s\".",
                (int)r, (long)statbuf.st_size,filename);
-      real_tor_free(string);
+      tor_free(string);
       real_sgx_close(fd);
       errno = save_errno;
       return NULL;

@@ -390,7 +390,7 @@ microdesc_cache_reload(microdesc_cache_t *cache)
       total += smartlist_len(added);
       smartlist_free(added);
     }
-    real_tor_free(journal_content);
+    tor_free(journal_content);
   }
   log_info(LD_DIR, "Reloaded microdescriptor cache. Found %d descriptors.",
            total);

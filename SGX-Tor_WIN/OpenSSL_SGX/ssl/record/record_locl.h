@@ -132,6 +132,7 @@
 #define DTLS_RECORD_LAYER_get_r_epoch(rl)       ((rl)->d->r_epoch)
 
 __owur int ssl3_read_n(SSL *s, int n, int max, int extend);
+__owur int ucheck_ssl3_read_n(SSL *s, int n, int max, int extend);
 
 void RECORD_LAYER_set_write_sequence(RECORD_LAYER *rl, const unsigned char *ws);
 DTLS1_BITMAP *dtls1_get_bitmap(SSL *s, SSL3_RECORD *rr,
@@ -165,9 +166,12 @@ void dtls1_record_bitmap_update(SSL *s, DTLS1_BITMAP *bitmap);
 void SSL3_BUFFER_clear(SSL3_BUFFER *b);
 void SSL3_BUFFER_set_data(SSL3_BUFFER *b, const unsigned char *d, int n);
 void SSL3_BUFFER_release(SSL3_BUFFER *b);
+void ucheck_SSL3_BUFFER_release(SSL3_BUFFER *b);
 __owur int ssl3_setup_read_buffer(SSL *s);
+__owur int ucheck_ssl3_setup_read_buffer(SSL *s);
 __owur int ssl3_setup_write_buffer(SSL *s);
 int ssl3_release_read_buffer(SSL *s);
+int ucheck_ssl3_release_read_buffer(SSL *s);
 int ssl3_release_write_buffer(SSL *s);
 
 /* Macros/functions provided by the SSL3_RECORD component */

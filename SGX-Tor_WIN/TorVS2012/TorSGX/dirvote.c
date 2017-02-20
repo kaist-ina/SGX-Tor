@@ -3044,8 +3044,8 @@ dirvote_compute_consensuses(void)
       smartlist_add(votes, v->vote); /* collect votes to compute consensus */
     });
 
-  votefile = get_datadir_fname("v3-status-votes");
-  real_write_chunks_to_file(votefile, votestrings, 0, 0);
+  votefile = tor_strdup("v3-status-votes");
+  write_chunks_to_file(votefile, votestrings, 0, 0);
   tor_free(votefile);
   SMARTLIST_FOREACH(votestrings, sized_chunk_t *, c, tor_free(c));
   smartlist_free(votestrings);

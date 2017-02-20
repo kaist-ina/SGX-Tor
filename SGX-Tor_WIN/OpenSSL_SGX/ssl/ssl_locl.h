@@ -580,6 +580,8 @@ struct ssl_method_st {
     int (*ssl_version) (void);
     long (*ssl_callback_ctrl) (SSL *s, int cb_id, void (*fp) (void));
     long (*ssl_ctx_callback_ctrl) (SSL_CTX *s, int cb_id, void (*fp) (void));
+    int (*ucheck_ssl_read_bytes) (SSL *s, int type, int *recvd_type,
+                           unsigned char *buf, int len, int peek);
 };
 
 /*-
@@ -1752,6 +1754,7 @@ const SSL_METHOD *func_name(void)  \
                 ssl_undefined_void_function, \
                 ssl3_callback_ctrl, \
                 ssl3_ctx_callback_ctrl, \
+                ucheck_ssl3_read_bytes, \
         }; \
         return &func_name##_data; \
         }
@@ -1789,6 +1792,7 @@ const SSL_METHOD *func_name(void)  \
                 ssl_undefined_void_function, \
                 ssl3_callback_ctrl, \
                 ssl3_ctx_callback_ctrl, \
+                ucheck_ssl3_read_bytes, \
         }; \
         return &func_name##_data; \
         }
@@ -1847,6 +1851,9 @@ extern sgx_get_current_time(struct timeval *t);
 extern void sgx_SetLastError(int e);
 extern void sgx_WSASetLastError(int e);
 extern int sgx_WSAGetLastError(void);
+extern void *sgx_malloc(int m_size);
+extern void sgx_free(void *ptr);
+
 
 void ssl_clear_cipher_ctx(SSL *s);
 int ssl_clear_bad_session(SSL *s);
