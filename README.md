@@ -99,3 +99,29 @@ $ run
 Seongmin Kim <dallas1004@gmail.com><br />
 Juhyeng Han <sparkly9399@gmail.com><br />
 Jaehyeong Ha <thundershower@kaist.ac.kr>
+
+## Authors
+
+Seongmin Kim <dallas1004@gmail.com><br />
+Juhyeng Han <sparkly9399@gmail.com><br />
+Jaehyeong Ha <thundershower@kaist.ac.kr><br />
+Taesoo Kim <taesoo@gatech.edu><br />
+Dongsu Han <dongsuh@ee.kaist.ac.kr>
+
+## Publications
+
+Please use the citation below as the canonical reference to SGX-Tor.
+
+~~~~~{.sh}
+Enhancing Security and Privacy of Tor's Ecosystem by using Trusted Execution Environments
+Seongmin Kim, Juhyeng Han, Jaehyeong Ha, Taesoo Kim, Dongsu Han
+NDSI 2017
+
+@inproceedings{sgx-tor,
+        title        = {{Enhancing Security and Privacy of Tor's Ecosystem by using Trusted Execution Environments}},
+        author       = {Seongmin Kim and Juhyeng Han and Jaehyeong Ha Taesoo Kim and Dongsu Han},
+        booktitle    = {13th USENIX Symposium on Networked Systems Design and Implementation (NSDI 16)},
+        year         = 2017,
+}
+~~~~~
+
