@@ -113,14 +113,14 @@ Dongsu Han <dongsuh@ee.kaist.ac.kr>
 Please use the citation below as the canonical reference to SGX-Tor.
 
 ~~~~~{.sh}
-Enhancing Security and Privacy of Tor's Ecosystem by using Trusted Execution Environments
+Enhancing Security and Privacy of Tor''s Ecosystem by using Trusted Execution Environments
 Seongmin Kim, Juhyeng Han, Jaehyeong Ha, Taesoo Kim, Dongsu Han
 NDSI 2017
 
 @inproceedings{sgx-tor,
         title        = {{Enhancing Security and Privacy of Tor's Ecosystem by using Trusted Execution Environments}},
         author       = {Seongmin Kim and Juhyeng Han and Jaehyeong Ha Taesoo Kim and Dongsu Han},
-        booktitle    = {13th USENIX Symposium on Networked Systems Design and Implementation (NSDI 16)},
+        booktitle    = {14th USENIX Symposium on Networked Systems Design and Implementation (NSDI 17)},
         year         = 2017,
 }
 ~~~~~
