@@ -113,7 +113,7 @@ Dongsu Han <dongsuh@ee.kaist.ac.kr>
 Please use the citation below as the canonical reference to SGX-Tor.
 
 ~~~~~{.sh}
-Enhancing Security and Privacy of Tor''s Ecosystem by using Trusted Execution Environments
+Enhancing Security and Privacy of Tor\'s Ecosystem by using Trusted Execution Environments
 Seongmin Kim, Juhyeng Han, Jaehyeong Ha, Taesoo Kim, Dongsu Han
 NDSI 2017
 
