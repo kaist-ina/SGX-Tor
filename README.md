@@ -41,21 +41,18 @@ Use 'VS2013 x64 Native Tools Command Prompt'<br />
 ~~~~~{.sh}
 $ cd (rootdir)/SGX-Tor_WIN/OpenSSL_APP
 or
-$ cd (rootdir)/SGX-Tor_WIN/OpenSSL_APP
+$ cd (rootdir)/SGX-Tor_WIN/OpenSSL_SGX
 ~~~~~
-
--compile
+- compile
 ~~~~~{.sh}
 $ ina_setting.bat
 $ ina_build.bat
 bntest.obj : error LNK2019: messages are OK
 ~~~~~
-
--clean
+- clean
 ~~~~~{.sh}
 $ ina_clean.bat
 ~~~~~
-
 ###Build LibEvent Libraries
 - Application and SGX LibEvent library should be built respectively
 ~~~~~{.sh}
@@ -63,8 +60,7 @@ $ cd (rootdir)/SGX-Tor_WIN/LibEvent_APP
 or
 $ cd (rootdir)/SGX-Tor_WIN/LibEvent_SGX
 ~~~~~
-
--compile
+- compile
 ~~~~~{.sh}
 $ nmake -f Makefile.nmake
 ~~~~~
@@ -91,8 +87,34 @@ $ do same thing to 'project TorVS2012'
 $ build each solution
 $ run
 ~~~~~
-
+<br />
 - Warning: use sdk version 1.6 in this repository. SGX-Tor does not work on sdk version 1.7.
+
+###For setting private network
+####Setting torrc
+
+one time setting<br />
+- setting three authorities<br />
+~~~~~{.sh}
+$open TorOriginial2012 directory 
+$double click ina_fingerprint.bat
+$double click ina_gencert.bat
+$modify ip_list in ina_set_fingerprint.py to what you want
+$(ex. "10.0.0.1", "10.0.0.2", "10.0.0.3")
+$double click ina_set.bat 
+$SGX-Tor_WIN/nodes/A00x/torrc ,/C001/torrc ... all torrc are changed to their own fingerprint.
+$copy a DirAuthority line and paste another torrc
+$ open torrc and change OrPort, Address and DirPort to appropriate value
+~~~~~
+- setting client 
+~~~~~{.sh}
+
+$ change DirAuthority lines in C001/torrc to authorities information 
+$ set project arguments
+
+~~~~~
+
+
 
 ## Contact
 
