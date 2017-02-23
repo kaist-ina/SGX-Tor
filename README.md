@@ -75,8 +75,8 @@ $ change Platform to x64.
 $ visual studio build
 ~~~~~
 
-Run SGX-Tor
-
+###Run SGX-Tor<br />
+SGX-Tor will be executed as a client. You can check it by using firefox browser
 ~~~~~{.sh}
 $ change configuration to Prerelease mdoe
 $ change Platform to x64.
@@ -87,13 +87,12 @@ $ do same thing to 'project TorVS2012'
 $ build each solution
 $ run
 ~~~~~
-<br />
 - Warning: use sdk version 1.6 in this repository. SGX-Tor does not work on sdk version 1.7.
 
 ###For setting private network
 ####Setting torrc
 
-one time setting<br />
+these settings are needed only once<br />
 - setting three authorities<br />
 ~~~~~{.sh}
 $open TorOriginial2012 directory 
@@ -108,12 +107,13 @@ $ open torrc and change OrPort, Address and DirPort to appropriate value
 ~~~~~
 - setting client 
 ~~~~~{.sh}
-
 $ change DirAuthority lines in C001/torrc to authorities information 
 $ set project arguments
-
 ~~~~~
-
+![Alt text](https://github.com/kaist-ina/SGX-Tor/blob/master/Fig/torrc_setting.png)
+- arguments setting<br />
+<br />
+![Alt text](https://github.com/kaist-ina/SGX-Tor/blob/master/Fig/setting_arguments.png)
 
 
 ## Contact
