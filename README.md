@@ -19,7 +19,7 @@ $ cd (rootdir)/Enclave/TrustedLibrary/LibEvent_SGX
 $ ./configure
 $ make 
 $ cd (rootdir)/Enclave/TrustedLibrary/OpenSSL_SGX
-$ ./config -fPIC
+$ ./ina_setting.sh
 $ make
 $ cd (rootdir)/Enclave/TrustedLibrary/zlib-1.2.8
 $ make

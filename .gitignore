@@ -64,3 +64,10 @@ SGX-Tor_WIN_2/OpenSSL_SGX/tmp32/timeouts.h
 SGX-Tor_WIN_2/OpenSSL_SGX/tmp32/ui_locl.h
 SGX-Tor_WIN_2/OpenSSL_SGX/tmp32/wp_locl.h
 SGX-Tor_WIN_2/OpenSSL_SGX/tmp32/x509_lcl.h
+App/*.o
+App/Edger8rSyntax/*.o
+Enclave/*.o
+Enclave/TorSGX/*.o
+service_provider/*.o
+*.so
+app
