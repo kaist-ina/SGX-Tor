@@ -3456,6 +3456,9 @@ expand_filename(const char *filename)
 #ifdef _WIN32
   return tor_strdup(filename);
 #else
+  // Added for Linux
+  return tor_strdup(filename);
+
   if (*filename == '~') {
     char *home, *result=NULL;
     const char *rest;
