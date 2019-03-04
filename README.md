@@ -7,7 +7,7 @@ This project will be published in NSDI'17.
 
 *Notice*
 Due to the recent patch in remote attestation protocol in SGX SDK, we are currently updating and modifying the SGX-Tor code, which makes SGX-Tor does not correctly work.
-We believe we can release the new version of SGX-Tor in Feb.
+We believe we can release the new version of SGX-Tor in March.
 
 Build and run
 ------------
